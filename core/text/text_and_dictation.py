@@ -25,6 +25,7 @@ ctx.lists["user.prose_modifiers"] = {
 }
 ctx.lists["user.prose_snippets"] = {
     "spacebar": " ",
+    "void": " ",
     "new line": "\n",
     "new paragraph": "\n\n",
     # Curly quotes are used to obtain proper spacing for left and right quotes, but will later be straightened.

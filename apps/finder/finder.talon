@@ -5,7 +5,9 @@ tag(): user.file_manager
 tag(): user.tabs
 preferences: key(cmd-,)
 options: key(cmd-j)
-search: key(cmd-alt-f)
+search: key(cmd-f)
+
+go [to] folder: key(cmd-shift-g)
 
 # bit of a mouthful, but it's probably not the kind of thing you'd be saying frequently
 sort by none: key(ctrl-alt-cmd-0)
@@ -26,3 +28,13 @@ trash it: key(cmd-backspace)
 
 hide [finder]: key(cmd-h)
 hide others: app.window_hide_others()
+
+show view options: key(cmd-j)
+
+go top: key(alt-up)
+go bottom: key(alt-down)
+
+tag [file] <number>: key("ctrl-{number}")
+remove [file] tags: key(ctrl-0)
+
+show hidden files: key(cmd-shift-.)

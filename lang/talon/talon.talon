@@ -4,11 +4,12 @@ tag(): user.code_operators_math
 tag(): user.code_operators_assignment
 tag(): user.code_comment_line
 tag(): user.code_functions_common
+
 # uncomment user.talon_populate_lists tag to activate talon-specific lists of actions, scopes, modes etcetera.
 # Do not enable this tag with dragon, as it will be unusable.
 # with conformer, the latency increase may also be unacceptable depending on your cpu
 # see https://github.com/talonhub/community/issues/600
-# tag(): user.talon_populate_lists
+tag(): user.talon_populate_lists
 
 dot talon: insert(".talon")
 #defintion blocks for the context
@@ -35,6 +36,7 @@ tag set [{user.talon_tags}]:
 host require:
     hostname = user.talon_get_hostname()
     user.paste("hostname: {hostname}\n")
+
 # requires user.talon_populate_lists tag. do not use with dragon
 list {user.talon_lists}: "{{{talon_lists}}}"
 # requires user.talon_populate_lists tag. do not use with dragon
@@ -45,9 +47,28 @@ key <user.keys> over: "{keys}"
 key <user.modifiers> over: "{modifiers}"
 
 # all actions (requires uncommenting user.talon_populate_lists tag above)
-funk {user.talon_actions}:
-    user.code_insert_function(talon_actions, edit.selected_text())
-funk cell <number>: user.code_select_function(number - 1, "")
-funk wrap <user.code_common_function>:
-    user.code_insert_function(code_common_function, edit.selected_text())
-funk wrap <number>: user.code_select_function(number - 1, edit.selected_text())
+# funk {user.talon_actions}:
+#     user.code_insert_function(talon_actions, edit.selected_text())
+# funk cell <number>: user.code_select_function(number - 1, "")
+# funk wrap <user.code_common_function>:
+#     user.code_insert_function(code_common_function, edit.selected_text())
+# funk wrap <number>: user.code_select_function(number - 1, edit.selected_text())
+
+########andreas stuff
+
+# Context requirements
+# require win:                "os: windows\n"
+# require mac:                "os: mac\n"
+# require linux:              "os: linux\n"
+# require title:              "title: "
+# require app:                "app: "
+# require tag:                "tag: "
+
+# # Generic
+# make tag:                   "tag(): "
+# make true:                  "true"
+# make false:                 "false"
+# snip command:               user.code_insert_snippet("voiceCommandDeclaration")
+
+# ----- Function call -----
+# call {user.code_function}:  user.code_call_function(code_function)

@@ -15,7 +15,7 @@ please [<user.text>]:
     insert(user.text or "")
 
 # Sidebar
-bar explore: user.vscode("workbench.view.explorer")
+bar explore | [bar] explorer: user.vscode("workbench.view.explorer")
 bar extensions: user.vscode("workbench.view.extensions")
 bar outline: user.vscode("outline.focus")
 bar run: user.vscode("workbench.view.debug")
@@ -40,7 +40,7 @@ panel control: user.vscode("workbench.panel.repl.view.focus")
 panel output: user.vscode("workbench.panel.output.focus")
 panel problems: user.vscode("workbench.panel.markers.view.focus")
 panel switch: user.vscode("workbench.action.togglePanel")
-panel terminal: user.vscode("workbench.action.terminal.focus")
+(panel | go | open | show) (terminal | term): user.vscode("workbench.action.terminal.focus")
 focus editor: user.vscode("workbench.action.focusActiveEditorGroup")
 
 # Settings
@@ -57,7 +57,7 @@ show snippets: user.vscode("workbench.action.openSnippets")
 # Display
 centered switch: user.vscode("workbench.action.toggleCenteredLayout")
 fullscreen switch: user.vscode("workbench.action.toggleFullScreen")
-theme switch: user.vscode("workbench.action.selectTheme")
+theme switch | color theme: user.vscode("workbench.action.selectTheme")
 wrap switch: user.vscode("editor.action.toggleWordWrap")
 zen switch: user.vscode("workbench.action.toggleZenMode")
 
@@ -104,7 +104,7 @@ hierarchy peek: user.vscode("editor.showCallHierarchy")
 references find: user.vscode("references-view.find")
 format that: user.vscode("editor.action.formatDocument")
 format selection: user.vscode("editor.action.formatSelection")
-imports fix: user.vscode("editor.action.organizeImports")
+imports organize: user.vscode("editor.action.organizeImports")
 problem next: user.vscode("editor.action.marker.nextInFiles")
 problem last: user.vscode("editor.action.marker.prevInFiles")
 problem fix: user.vscode("problems.action.showQuickFixes")
@@ -240,8 +240,8 @@ terminal scroll down: user.vscode("workbench.action.terminal.scrollDown")
 terminal <number_small>: user.vscode_terminal(number_small)
 
 #TODO: should this be added to linecommands?
-copy line down: user.vscode("editor.action.copyLinesDownAction")
-copy line up: user.vscode("editor.action.copyLinesUpAction")
+(clone | copy) (line | nine) [down]: user.vscode("editor.action.copyLinesDownAction")
+(clone | copy) (line | nine) up: user.vscode("editor.action.copyLinesUpAction")
 
 #Expand/Shrink AST Selection
 select less: user.vscode("editor.action.smartSelect.shrink")
@@ -259,7 +259,7 @@ replace here:
     user.replace("")
     key(cmd-alt-l)
 
-hover show: user.vscode("editor.action.showHover")
+hover show | (show | pop) (hover | tool tip | tooltip) | (tool tip | tooltip): user.vscode("editor.action.showHover")
 
 join lines: user.vscode("editor.action.joinLines")
 
@@ -278,3 +278,13 @@ cell run: user.vscode("notebook.cell.execute")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
 preview markdown: user.vscode("markdown.showPreview")
+
+
+copy command id: 
+    user.copy_command_id()
+
+imports fix:
+    user.vscode_add_missing_imports()
+    sleep(100ms)
+    user.vscode("editor.action.organizeImports")
+

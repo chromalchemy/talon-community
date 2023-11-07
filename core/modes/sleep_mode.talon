@@ -8,6 +8,7 @@ settings():
     # Stop mouse scroll down using hiss noise
     user.mouse_enable_hiss_scroll = 0
 
+
 #================================================================================
 # Commands to wake Talon
 #================================================================================

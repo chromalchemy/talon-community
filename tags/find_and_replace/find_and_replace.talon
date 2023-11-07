@@ -1,25 +1,35 @@
 tag: user.find_and_replace
 -
-hunt this: user.find("")
-hunt this (pace | paste):
+
+hunt (this | [in] file): user.find("")
+hunt (this | [in] file) (pace | paste):
     user.find("")
     sleep(25ms)
     edit.paste()
-hunt this <user.text>: user.find(text)
+hunt (this | [in] file) <user.text>: user.find(text)
 hunt all: user.find_everywhere("")
 hunt all (pace | paste):
     user.find_everywhere("")
     sleep(25ms)
     edit.paste()
+    
 hunt all <user.text>: user.find_everywhere(text)
 hunt case: user.find_toggle_match_by_case()
 hunt word: user.find_toggle_match_by_word()
 hunt expression: user.find_toggle_match_by_regex()
 hunt next: user.find_next()
-hunt previous: user.find_previous()
-replace this [<user.text>]: user.replace(text or "")
+hunt (previous | last | prev): user.find_previous()
+replace (this | [in] file) [<user.text>]: user.replace(text or "")
+replace (this | [in] file) (pace | paste): 
+    user.replace("")
+    sleep(25ms)
+    edit.paste()
 replace all: user.replace_everywhere("")
-replace <user.text> all: user.replace_everywhere(text)
+replace all (pace | paste):
+    user.replace_everywhere("")
+    sleep(25ms)
+    edit.paste()
+replace all <user.text>: user.replace_everywhere(text)
 replace confirm that: user.replace_confirm()
 replace confirm all: user.replace_confirm_all()
 

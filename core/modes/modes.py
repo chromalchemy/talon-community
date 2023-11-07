@@ -27,7 +27,7 @@ class Actions:
             elif app.platform == "windows":
                 actions.user.engine_wake()
                 # note: this may not do anything for all versions of Dragon. Requires Pro.
-                actions.user.engine_mimic("switch to command mode")
+                actions.user.engine_mimic("switch to mixed mode")
 
     def dragon_mode():
         """For windows and Mac with Dragon, disables Talon commands and exits Dragon's command mode"""

@@ -97,7 +97,6 @@ def unmodified_key(m) -> str:
     "A single key with no modifiers"
     return str(m)
 
-
 @mod.capture(rule="{self.modifier_key}* <self.unmodified_key>")
 def key(m) -> str:
     "A single key with optional modifiers"
@@ -149,6 +148,8 @@ punctuation_words = {
     "full stop": ".",
     "semicolon": ";",
     "colon": ":",
+    "stacked": ":",
+    "void": " ",
     "forward slash": "/",
     "question mark": "?",
     "exclamation mark": "!",
