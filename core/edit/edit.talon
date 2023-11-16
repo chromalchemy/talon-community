@@ -105,7 +105,7 @@ clear way down:
     edit.delete()
 
 # Copy
-copy [that]: edit.copy()
+copy [(that | it)]: edit.copy()
 copy all: user.copy_all()
 copy line: user.copy_line()
 copy line start: user.copy_line_start()
@@ -129,7 +129,7 @@ copy word right: user.copy_word_right()
 #     edit.copy()
 
 # Cut
-(carve | cut) [that]: edit.cut()
+(carve | cut) [(that | it)]: edit.cut()
 (carve | cut) all: user.cut_all()
 (carve | cut) line: user.cut_line()
 (carve | cut) line start: user.cut_line_start()
@@ -152,17 +152,19 @@ copy word right: user.copy_word_right()
 #     edit.select_all()
 #     edit.cut()
 
+
+
 # Paste
-(pace | paste) [that]: edit.paste()
-(pace | paste) enter:
+(paste | pace | piss) [(that | it)]: edit.paste()
+(paste | pace | piss) enter:
     edit.paste()
     key(enter)
-(pace | paste) [and] match [style]: edit.paste_match_style()
-(pace | paste) all: user.paste_all()
-(pace | paste) line: user.paste_line()
-(pace | paste) line start: user.paste_line_start()
-(pace | paste) line end: user.paste_line_end()
-(pace | paste) word: user.paste_word()
+(paste | pace | piss) [and] match [style]: edit.paste_match_style()
+(paste | pace | piss) all: user.paste_all()
+(paste | pace | piss) line: user.paste_line()
+(paste | pace | piss) line start: user.paste_line_start()
+(paste | pace | piss) line end: user.paste_line_end()
+(paste | pace | piss) word: user.paste_word()
 
 # Duplication
 clone that: edit.selection_clone()
