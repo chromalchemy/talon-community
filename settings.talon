@@ -1,6 +1,6 @@
 settings():
     # Adjust the scale of the imgui to my liking
-    imgui.scale = 1.3
+    imgui.scale = 1.2
 
     # Enable if you'd like the picker gui to automatically appear when explorer has focus
     user.file_manager_auto_show_pickers = 0
@@ -15,16 +15,16 @@ settings():
     user.mouse_continuous_scroll_amount = 80
 
     # Stop continuous scroll/gaze scroll with a pop
-    user.mouse_enable_pop_stops_scroll = 1
+    # user.mouse_enable_pop_stops_scroll = 1
 
     # Enable pop click with 'control mouse' mode.
     # 0 = off
     # 1 = on with eyetracker but not zoom mouse mode
     # 2 = on but not with zoom mouse mode
-    user.mouse_enable_pop_click = 2
+    # user.mouse_enable_pop_click = 2
 
     # Enable if you like to use the hissing noise to do mouse scroll
-    user.mouse_enable_hiss_scroll = 0
+    # user.mouse_enable_hiss_scroll = 1
 
     # When enabled, the 'Scroll Mouse' GUI will not be shown.
     user.mouse_hide_mouse_gui = 0
