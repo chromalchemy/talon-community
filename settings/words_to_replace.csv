@@ -1,0 +1,70 @@
+Replacement,Original
+January,january
+February,february
+April,april
+June,june
+July,july
+August,august
+September,september
+October,october
+October,october
+November,november
+December,december
+sniped, snippet
+snipped, snippet
+
+# Default words that need to be remapped.
+
+add, ad
+align, aline
+a range, arrange
+blu tack, blue tack
+boolean, bullion
+booleans, bullions
+serial, cereal
+checkbox, checkbooks
+class name, classname
+cursorless, curse les
+the, de
+deck, dick
+this, dis
+edit, ed it
+aegis, egis
+else, els
+yes, ess
+false, falls
+firefox, fire fox
+flat map, flatmap
+eye tracker, I tracker
+Izabel, Isabel
+java, jabba
+json, Jason
+yes, jess
+user, juicer
+users, juicers
+using, juicing
+merino, marino
+null, noll
+organisation, organization
+organisations, organizations
+pull request, poll request
+pull request, pool request
+parse, pours
+wrapper, rapper
+readme, read me
+repl, ripple
+syntax, seen tax
+charm, sharm
+chat, shat
+syntax, sin tax
+snippet, sniped
+snippet, snipped
+syntax, soon tax
+tshirt, te shirt
+today, to day
+to, too
+update, up date
+whitespace, white space
+wiki, wicky
+user, you sir
+enter, hinter
