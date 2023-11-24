@@ -2,7 +2,7 @@
 (talon | tellin | tell in | tallin) [voice] check [for] updates: 
     menu.check_for_updates()
 
-[(open | view | show)] (talon | tellin | tell in | tallin) [voice]  log: 
+[(open | view | show)] (talon | tellin | tell in | tallin) [voice] [show]  log: 
     menu.open_log()
 
 key(cmd-ctrl-alt-shift-d): menu.open_log()
