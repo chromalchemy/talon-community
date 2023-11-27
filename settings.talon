@@ -49,9 +49,11 @@ settings():
     user.command_history_size = 50
 
     # default wav2letter timeout changed in 0.1.5 from 150 to 300 ms
-    speech.timeout = 0.4  
+    speech.timeout = 0.45  
     #default 0.3
     #nriley has 0.15 !
+    # speech.debug = 1
+    # speech._subtitles = 0
 
     # Uncomment the below line to add a directory (relative to the Talon user dir) with additional .snippet files
     # Changing this setting requires a restart of Talon
