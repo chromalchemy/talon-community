@@ -3,6 +3,7 @@ control off: user.mouse_sleep()
 zoom mouse: tracking.control_zoom_toggle()
 camera overlay: tracking.control_debug_toggle()
 run calibration: tracking.calibrate()
+
 touch:
     mouse_click(0)
     # close the mouse grid if open
@@ -34,43 +35,62 @@ mid click:
     key("{modifiers}:up")
     # close the mouse grid
     user.grid_close()
+
+shipped touch:
+    key("shift:down")
+    mouse_click(0)
+    key("shift:up")
+    # close the mouse grid
+    user.grid_close()
+    
+
 <user.modifiers> righty:
     key("{modifiers}:down")
     mouse_click(1)
     key("{modifiers}:up")
     # close the mouse grid
     user.grid_close()
+
 (dub click | duke):
     mouse_click()
     mouse_click()
     # close the mouse grid
     user.grid_close()
+
 (trip click | trip lick):
     mouse_click()
     mouse_click()
     mouse_click()
     # close the mouse grid
     user.grid_close()
+
 left drag | drag:
     user.mouse_drag(0)
     # close the mouse grid
     user.grid_close()
+
 right drag | righty drag:
     user.mouse_drag(1)
     # close the mouse grid
     user.grid_close()
+
 end drag | drag end: user.mouse_drag_end()
+
 wheel up: user.mouse_scroll_down()
+
 wheel up here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down()
 wheel tiny [up]: user.mouse_scroll_down(0.2)
+
 wheel tiny [up] here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down(0.2)
 
     
-(wheel | we'll) upper: user.mouse_scroll_down_continuous()
+(wheel | we'll) upper: 
+    user.mouse_scroll_down_continuous()
+
 wheel upper here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down_continuous()
