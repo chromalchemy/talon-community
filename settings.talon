@@ -49,7 +49,7 @@ settings():
     user.command_history_size = 50
 
     # default wav2letter timeout changed in 0.1.5 from 150 to 300 ms
-    speech.timeout = 0.45  
+    speech.timeout = 0.40  
     #default 0.3
     #nriley has 0.15 !
     # speech.debug = 1
@@ -69,12 +69,12 @@ settings():
     # work in some applications. You may wish to enable this on a
     # per-application basis.
     #required by axkit macos dictation 
-    user.context_sensitive_dictation = 1
+    # user.context_sensitive_dictation = 1
     
     #required by axkit macos dictation 
-    user.accessibility_dictation = 1
-    # user.hiss_to_debug_accessibility = 0
     # # triggering this far too frequently?
+    # user.accessibility_dictation = 1
+    # user.hiss_to_debug_accessibility = 0
     # user.hiss_to_debug_accessibility_threshold = 2
 
     # How to resize windows moved across physical screens (eg. via `snap next`).
