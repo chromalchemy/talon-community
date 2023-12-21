@@ -442,11 +442,10 @@ cljs,closure script
 edn,eden
 tbsh,troubleshoot
 gtd,getting things done 
-tmem,t mem
+tmem, t mem
 tmem, tech mem
 tmem, tech memory 
 tmem, technical memory
-tbsh,troubleshoot
 nl,newsletter
 gb,get bit
 otg,on the go
@@ -464,6 +463,8 @@ tli, life index
 tli, total life index 
 pkm, personal knowledge management
 deps, dependencies
+razr, razor
+mic, microphone
 
 
 
