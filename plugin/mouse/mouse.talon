@@ -64,17 +64,19 @@ shipped touch:
     # close the mouse grid
     user.grid_close()
 
-left drag | drag:
+[left] drag [lock] :
     user.mouse_drag(0)
     # close the mouse grid
     user.grid_close()
 
-right drag | righty drag:
+(right | righty ) drag [lock]:
     user.mouse_drag(1)
     # close the mouse grid
     user.grid_close()
 
-end drag | drag end: user.mouse_drag_end()
+( end  | drop) drag | drag end: user.mouse_drag_end()
+
+## +++++++++++++++++++++++++ scrolling .
 
 wheel up: user.mouse_scroll_down()
 
