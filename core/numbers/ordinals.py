@@ -15,20 +15,19 @@ def ordinal(n):
         suffix = "th"
     return str(n) + suffix
 
-
 # The primitive ordinal words in English below a hundred.
 ordinal_words = {
-    0: "zeroth",
+    0: "zeroed",
     1: "first",
     2: "second",
     3: "third",
     4: "fourth",
-    5: "fifth",
-    6: "sixth",
+    5: "fiver",
+    6: "sixes",
     7: "seventh",
-    8: "eighth",
-    9: "ninth",
-    10: "tenth",
+    8: "octo",
+    9: "nines",
+    10: "tens",
     11: "eleventh",
     12: "twelfth",
     13: "thirteenth",
