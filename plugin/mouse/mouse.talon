@@ -74,7 +74,9 @@ shipped touch:
     # close the mouse grid
     user.grid_close()
 
-( end  | drop) drag | drag end: user.mouse_drag_end()
+^( end  | drop | release) drag$: user.mouse_drag_end()
+^drag (end | drop | release)$: user.mouse_drag_end()
+^drop$: user.mouse_drag_end()
 
 ## +++++++++++++++++++++++++ scrolling .
 
