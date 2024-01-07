@@ -148,6 +148,7 @@ formatters_dict = {
     ),
     "NO_SPACES": (NOSEP, every_word(lambda w: w)),
     "DASH_SEPARATED": words_with_joiner("-"),
+    "NS_SLASH_SEPARATED": words_with_joiner("/"),
     "TERMINAL_DASH_SEPARATED": (
         NOSEP,
         first_vs_rest(lambda w: " --" + w.lower(), lambda w: "-" + w.lower()),
@@ -178,6 +179,7 @@ code_formatter_names = {
     "dunder": "DOUBLE_UNDERSCORE",
     "hammer": "PUBLIC_CAMEL_CASE",
     "kebab": "DASH_SEPARATED",
+    "namespace": "NS_SLASH_SEPARATED",
     "packed": "DOUBLE_COLON_SEPARATED",
     "padded": "SPACE_SURROUNDED_STRING",
     "slasher": "SLASH_SEPARATED",
