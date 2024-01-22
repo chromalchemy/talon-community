@@ -12,3 +12,14 @@ tab (search | list) <user.text>$:
     sleep(200ms)
     insert("{text}")
     key(down)
+
+## +++++++++++++++ inspect in devtools .
+
+open inspector | inspect page:
+    key(cmd-shift-c)
+    
+inspect [here]: 
+    mouse_click(1)
+    sleep(100ms)
+    insert("inspect")
+    key(enter)
