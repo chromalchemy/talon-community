@@ -47,8 +47,6 @@ calc,calculator
 cam,camera
 ca,canada
 cm,centimeter
-chr,char
-char,character
 chk,check
 chld,child
 cn,china
@@ -463,8 +461,23 @@ tli, life index
 tli, total life index 
 pkm, personal knowledge management
 deps, dependencies
+dep, dependency
 razr, razor
 mic, microphone
+cond, conditional
+concat, concatenate
+comp, compose
+coll, collection
+conj, conjoin
+pred, predicate
+seq, sequence
+def, define
+conj, conjoin
+chr,char
+char,character
+chars, characters
+assoc, associate
+
 
 
 

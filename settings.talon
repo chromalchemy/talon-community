@@ -51,6 +51,7 @@ settings():
     # default wav2letter timeout changed in 0.1.5 from 150 to 300 ms
     #nriley has 0.15 !
     speech.timeout = 0.45
+    # speech.timeout = 0.35
     # speech.debug = 1
     # speech._subtitles = 0
 
