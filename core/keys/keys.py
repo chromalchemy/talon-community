@@ -125,6 +125,7 @@ modifier_keys = {
     "alt": "alt",  #'alter': 'alt',
     "control": "ctrl",  #'troll':   'ctrl',
     "shift": "shift",  #'sky':     'shift',
+    "ship": "shift",  #'sky':     'shift',
     "super": "super",
 }
 if app.platform == "mac":
