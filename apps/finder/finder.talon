@@ -5,7 +5,33 @@ tag(): user.file_manager
 tag(): user.tabs
 preferences: key(cmd-,)
 options: key(cmd-j)
+
 search: key(cmd-f)
+
+search <user.text>: 
+    key(cmd-f)
+    sleep(600ms)
+    insert(text)
+
+search (photo shop | photo | photoshop) <user.text>: 
+    key(cmd-f)
+    sleep(600ms)
+    insert(text + " .ps")
+
+search (name | names | file names) <user.text>: 
+    key(cmd-f)
+    sleep(500ms)
+    insert(text)
+    sleep(500ms)
+    key(down enter)
+
+search (photo shop | photo | photoshop) (name | names | file names) <user.text>: 
+    key(cmd-f)
+    sleep(500ms)
+    insert(text)
+    sleep(500ms)
+    key(down enter)
+    insert(".ps")
 
 go [to] folder: key(cmd-shift-g)
 
