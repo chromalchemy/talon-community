@@ -78,7 +78,7 @@ shipped touch:
     # close the mouse grid
     user.grid_close()
 
-[left] drag [lock] :
+[left] drag [(lock | start)] :
     # close zoom if open
     user.zoom_close()
     user.mouse_drag(0)

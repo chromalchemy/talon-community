@@ -12,6 +12,7 @@
 focus$: user.switcher_menu()
 
 # should be a picker
+focus last: user.switcher_focus_last()
 running (list | open | show) | list [open] apps | open (app | apps) [list] | help show running: user.switcher_toggle_running()
 running (close | hide) | close [open] (apps | app) list | help hide: user.switcher_hide_running()
 
