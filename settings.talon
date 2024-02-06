@@ -27,13 +27,13 @@ settings():
     user.mouse_enable_hiss_scroll = false
 
     # If `true`, hide the continuous scroll/gaze scroll GUI
-    user.mouse_hide_mouse_gui = false
+    user.mouse_hide_mouse_gui = true
 
     # If `true`, hide the cursor when enabling zoom mouse
     user.mouse_wake_hides_cursor = false
 
     # Set the amount to scroll up/down
-    user.mouse_wheel_down_amount =  80
+    user.mouse_wheel_down_amount =  200
 
     # Set the amount to scroll left/right
     user.mouse_wheel_horizontal_amount = 40

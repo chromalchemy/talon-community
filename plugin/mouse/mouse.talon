@@ -119,20 +119,19 @@ wheel upper here:
 
 wheel down: user.mouse_scroll_up()
 
-^(roll | rolly | rolling | ruling | rolle) [down] [a] <number>: 
+^(roll | rolly | rolling | ruling | rolle | wheel) [down] <number>: 
     n = 0 - number
     na = n * 20
     mouse_scroll(na)
- 
      
-^(roll | rolly | rolling | ruling | rolle) up [a] <number>: 
+^(roll | rolly | rolling | ruling | rolle | wheel) up <number>: 
     n= number * 20
     mouse_scroll(n)  
-
 
 wheel down here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up()
+
 wheel tiny down: user.mouse_scroll_up(0.2)
 wheel tiny down here:
     user.mouse_move_center_active_window()
@@ -142,32 +141,39 @@ wheel tiny down here:
 wheel downer here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up_continuous()
+
 wheel gaze: user.mouse_gaze_scroll()
 wheel gaze here:
     user.mouse_move_center_active_window()
     user.mouse_gaze_scroll()
+
 (wheel | we'll) stop | stopper: user.mouse_scroll_stop()
 wheel stop here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_stop()
+
 wheel left: user.mouse_scroll_left()
 wheel left here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_left()
+
 wheel tiny left: user.mouse_scroll_left(0.5)
 wheel tiny left here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_left(0.5)
+
 wheel right: user.mouse_scroll_right()
 wheel right here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_right()
+
 wheel tiny right: user.mouse_scroll_right(0.5)
 wheel tiny right here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_right(0.5)
     
 copy mouse (position | location): user.copy_mouse_position()
+
 curse no:
     # Command added 2021-12-13, can remove after 2022-06-01
     app.notify("Please activate the user.mouse_cursor_commands_enable tag to enable this command")
