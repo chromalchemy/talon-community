@@ -50,6 +50,39 @@ list view: key(cmd-2)
 gallery view: key(cmd-4)
 
 copy path: key(alt-cmd-c)
+
+copy file name: 
+    key(enter)
+    sleep(100ms)
+    edit.copy()
+    key(escape)
+    
+copy file name point: 
+    mouse_click(1)
+    key(enter)
+    sleep(100ms)
+    edit.copy()
+    key(escape)
+
+copy (whole | full) file name: 
+    key(enter)
+    sleep(100ms)
+    edit.select_all()
+    edit.copy()
+    key(escape)
+    
+# buggy
+copy (whole | full) file name point: 
+    mouse_click(1)
+    sleep(500ms)
+    key(enter)
+    sleep(500ms)
+    key(cmd-a)
+    sleep(500ms)
+    key(cmd-c)
+    sleep(500ms)
+    key(escape)
+
 trash it: key(cmd-backspace)
 
 hide [finder]: key(cmd-h)
