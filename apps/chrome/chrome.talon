@@ -23,3 +23,20 @@ inspect [here]:
     sleep(100ms)
     insert("inspect")
     key(enter)
+
+
+## +++ load and search browser history .
+
+(go  | show | search  | hunt) history [<user.text>]: 
+    browser.show_history()
+    sleep(300ms)
+    insert(text)
+
+(go  | show | search  | hunt) history (grouped  | groups) [<user.text>]: 
+    browser.go("chrome://history/grouped")
+    sleep(300ms)
+    insert(text)
+
+## ++++++++++++++++++ open closed tabs .
+(open | reopen) [last] (closed | close) tab | tab reopen:
+    key(cmd-shift-t)
