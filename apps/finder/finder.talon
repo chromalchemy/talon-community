@@ -97,3 +97,11 @@ tag [file] <number>: key("ctrl-{number}")
 remove [file] tags: key(ctrl-0)
 
 show hidden files: key(cmd-shift-.)
+
+show hidden folders: key(ctrl-shift-period)
+
+open file: key(cmd-o)
+
+close | close: key(space)
+
+get info: key(cmd-i)
