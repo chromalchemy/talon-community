@@ -52,7 +52,7 @@ shipped touch:
     user.grid_close()
     
 
-<user.modifiers> righty:
+<user.modifiers> (righty | right (click | lick | touch)):
     # close zoom if open
     user.zoom_close()
     key("{modifiers}:down")
@@ -61,7 +61,7 @@ shipped touch:
     # close the mouse grid
     user.grid_close()
 
-(dub click | duke):
+duke | (dub | double) (click | lick | touch):
     # close zoom if open
     user.zoom_close()
     mouse_click()
@@ -69,7 +69,7 @@ shipped touch:
     # close the mouse grid
     user.grid_close()
 
-(trip click | trip lick):
+(trip | triple) (click | lick | touch) :
     # close zoom if open
     user.zoom_close()
     mouse_click()
@@ -96,82 +96,7 @@ shipped touch:
 ^drag (end | drop | release)$: user.mouse_drag_end()
 ^drop$: user.mouse_drag_end()
 
-## +++++++++++++++++++++++++ scrolling .
 
-wheel up: user.mouse_scroll_down()
-
-wheel up here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_down()
-wheel tiny [up]: user.mouse_scroll_down(0.2)
-
-wheel tiny [up] here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_down(0.2)
-
-    
-(wheel | we'll) upper: 
-    user.mouse_scroll_down_continuous()
-
-wheel upper here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_down_continuous()
-
-wheel down: user.mouse_scroll_up()
-
-^(roll | rolly | rolling | ruling | rolle | wheel) [down] <number>: 
-    n = 0 - number
-    na = n * 20
-    mouse_scroll(na)
-     
-^(roll | rolly | rolling | ruling | rolle | wheel) up <number>: 
-    n= number * 20
-    mouse_scroll(n)  
-
-wheel down here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_up()
-
-wheel tiny down: user.mouse_scroll_up(0.2)
-wheel tiny down here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_up(0.2)
-
-(wheel | we'll) downer: user.mouse_scroll_up_continuous()
-wheel downer here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_up_continuous()
-
-wheel gaze: user.mouse_gaze_scroll()
-wheel gaze here:
-    user.mouse_move_center_active_window()
-    user.mouse_gaze_scroll()
-
-(wheel | we'll) stop | stopper: user.mouse_scroll_stop()
-wheel stop here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_stop()
-
-wheel left: user.mouse_scroll_left()
-wheel left here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_left()
-
-wheel tiny left: user.mouse_scroll_left(0.5)
-wheel tiny left here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_left(0.5)
-
-wheel right: user.mouse_scroll_right()
-wheel right here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_right()
-
-wheel tiny right: user.mouse_scroll_right(0.5)
-wheel tiny right here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_right(0.5)
-    
 copy mouse (position | location): user.copy_mouse_position()
 
 curse no:

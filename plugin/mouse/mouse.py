@@ -161,11 +161,11 @@ class Actions:
         """Scrolls down"""
         mouse_scroll(amount * settings.get("user.mouse_wheel_down_amount"))()
 
-    def mouse_scroll_down_continuous():
+    def mouse_scroll_down_continuous(amount: float = 1):
         """Scrolls down continuously"""
         global continuous_scroll_mode
         continuous_scroll_mode = "scroll down continuous"
-        mouse_scroll(settings.get("user.mouse_continuous_scroll_amount"))()
+        mouse_scroll(amount * settings.get("user.mouse_continuous_scroll_amount"))()
 
         if scroll_job is None:
             start_scroll()
@@ -177,11 +177,11 @@ class Actions:
         """Scrolls up"""
         mouse_scroll(-amount * settings.get("user.mouse_wheel_down_amount"))()
 
-    def mouse_scroll_up_continuous():
+    def mouse_scroll_up_continuous(amount: float = 1):
         """Scrolls up continuously"""
         global continuous_scroll_mode
         continuous_scroll_mode = "scroll up continuous"
-        mouse_scroll(-settings.get("user.mouse_continuous_scroll_amount"))()
+        mouse_scroll(-amount * settings.get("user.mouse_continuous_scroll_amount"))()
 
         if scroll_job is None:
             start_scroll()
