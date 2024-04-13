@@ -9,7 +9,8 @@ address copy | url copy | copy address | copy url:
 go home: browser.go_home()
 go forward: browser.go_forward()
 go (back | backward): browser.go_back()
-go to {user.website}: browser.go(website)
+go to [page] {user.website}: 
+    browser.go(website)
 go private: browser.open_private_window()
 
 bookmark it: browser.bookmark()
@@ -27,6 +28,7 @@ dev tools [show]: browser.toggle_dev_tools()
 
 # Legacy [verb noun] commands to be removed at a later time
 show downloads: browser.show_downloads()
-show extensions: browser.show_extensions()
+show extensions: 
+    browser.show_extensions()
 show history: browser.show_history()
 show cache: browser.show_clear_cache()
