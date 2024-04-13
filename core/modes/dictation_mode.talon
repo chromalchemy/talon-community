@@ -63,12 +63,20 @@ clear right <number_small> (character | characters):
 formatted <user.format_text>: user.dictation_insert_raw(format_text)
 ^format selection <user.formatters>$: user.formatters_reformat_selection(formatters)
 
+
+
+
 # Corrections
 nope that | scratch that: user.clear_last_phrase()
+
 (nope | scratch) selection: edit.delete()
+
 select that: user.select_last_phrase()
-spell that <user.letters>: user.dictation_insert(letters)
-spell that <user.formatters> <user.letters>:
+
+spell [that] <user.letters>: 
+    user.dictation_insert(letters)
+
+spell [that] <user.formatters> <user.letters>:
     result = user.formatted_text(letters, formatters)
     user.dictation_insert_raw(result)
 
