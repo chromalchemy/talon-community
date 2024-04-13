@@ -2,18 +2,25 @@ Spoken form, App name (or list an app name by itself on a line to exclude it)
 grip, DataGrip
 term, iTerm2
 termy, iTerm2
-one note, ONENOTE
 jet, IntelliJ IDEA
 roam, Roam Research
 notes, Roam Research
 note, Roam Research
 run, Roam Research
 browser, Chrome
+browse, Chrome
 files, Finder
 file manager, Finder
+finder, Finder
 editor, Code
 vs code, Code
 ide, Code
+code, Code
 photo, Adobe Photoshop (Beta)
 photos, Adobe Photoshop (Beta)
 further, Adobe Photoshop (Beta)
+flow storm, main
+flowstorm, main
+photo dev, Adobe UXP Developer Tools
+photo dev tools, Adobe UXP Developer Tools
+

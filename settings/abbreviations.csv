@@ -319,7 +319,6 @@ reg,registery
 regex,regular expression
 regex,regular expressions
 rm,remove
-repl,repel
 rsi,repetitive strain injury
 repo,repository
 repr,represent
@@ -443,8 +442,10 @@ gtd,getting things done
 tmem, tech mem
 tmem, tech memory 
 tmem, technical memory
+tmem, technological memory
 nl,newsletter
 gb,get bit
+gbo,get bit outdoors
 otg,on the go
 osx,mac os
 ps,photoshop
@@ -487,11 +488,17 @@ url, web link
 4p, four p
 4p, four pee
 4p, fourp
-
-
-
-
-
-
-
-
+bc, big commerce
+vs, verse
+po, purchase order
+talon, talon voice 
+talon, talent voice
+eval, evaluate
+bb, babashka
+llm, language model
+llm, large language model
+llm, large lang model
+llm, lang model
+wysiwyg, what you see is what you get
+nrepl, network repl
+nrepl, net repl
