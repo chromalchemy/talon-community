@@ -6,6 +6,7 @@ tag(): user.tabs
 preferences: key(cmd-,)
 options: key(cmd-j)
 
+
 search: key(cmd-f)
 
 search <user.text>: 
@@ -13,17 +14,30 @@ search <user.text>:
     sleep(600ms)
     insert(text)
 
-search (photo shop | photo | photoshop) <user.text>: 
-    key(cmd-f)
-    sleep(600ms)
-    insert(text + " .ps")
-
 search (name | names | file names) <user.text>: 
     key(cmd-f)
     sleep(500ms)
     insert(text)
     sleep(500ms)
     key(down enter)
+
+# exit search part and go to navigate file list
+go list: 
+    key(cmd-shift-g)
+    sleep(300ms)
+    key(esc)
+
+search (photo shop | photo | photoshop) <user.text>: 
+    key(cmd-f)
+    sleep(600ms)
+    insert(text + " .ps")
+
+search (feta shot | photo shop | photo | photoshop) (paste | pace): 
+    key(cmd-f)
+    sleep(600ms)
+    edit.paste()
+    insert(" .ps")
+
 
 search (photo shop | photo | photoshop) (name | names | file names) <user.text>: 
     key(cmd-f)
@@ -34,6 +48,8 @@ search (photo shop | photo | photoshop) (name | names | file names) <user.text>:
     insert(".ps")
 
 go [to] folder: key(cmd-shift-g)
+
+new folder: key(cmd-shift-n)
 
 # bit of a mouthful, but it's probably not the kind of thing you'd be saying frequently
 sort by none: key(ctrl-alt-cmd-0)
@@ -71,6 +87,8 @@ copy (whole | full) file name:
     edit.copy()
     key(escape)
     
+edit file name:
+    key(enter)
 # buggy
 copy (whole | full) file name point: 
     mouse_click(1)
