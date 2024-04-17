@@ -49,25 +49,28 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
 
 ## +++++++++++++++++++++++++++ Testing .
 
-^(talon | tellin | tell in | tallin | talent) [voice] (test | tests) last$:
+^(talon | tellin | tell in | tallin | talent) [voice] (test | tests | sim | simulate)  last$:
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
-^(talon | tellin | tell in | tallin | talent) [voice] (test | tests) log last$:
+
+^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] log last$:
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
     menu.open_log()
     
 # test nth back command
-^(talon | tellin | tell in | tallin | talent) [voice] (test | tests) (numb | number) <number_small>$:
+^(talon | tellin | tell in | tallin | talent) [voice] (test | tests | sim | simulate) (numb | number) <number_small>$:
     phrase = user.history_get(number_small)
     user.talon_sim_phrase(phrase)
-^(talon | tellin | tell in | tallin | talent) [voice] (test | tests) log (numb | number) <number_small>$:
+
+^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] log (numb | number) <number_small>$:
     phrase = user.history_get(number_small)
     user.talon_sim_phrase(phrase)
     menu.open_log()
 
-^(talon | tellin | tell in | tallin | talent) [voice] (test | tests) <phrase>$: user.talon_sim_phrase(phrase)
-^(talon | tellin | tell in | tallin | talent) [voice] (test | tests) log <phrase>$: 
+^(talon | tellin | tell in | tallin | talent) [voice]  (test | tests | sim | simulate)  <phrase>$: user.talon_sim_phrase(phrase)
+
+^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] log <phrase>$: 
     user.talon_sim_phrase(phrase)
     menu.open_log()
 
