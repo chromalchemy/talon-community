@@ -68,7 +68,7 @@ clear line: edit.delete_line()
 clear line start: user.delete_line_start()
 clear line end: user.delete_line_end()
 clear left: edit.delete()
-clear right: user.delete_right()
+clear right | delete forward: user.delete_right()
 
 clear up:
     edit.extend_line_up()

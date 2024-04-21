@@ -7,6 +7,7 @@ preferences: key(cmd-,)
 options: key(cmd-j)
 
 
+
 search: key(cmd-f)
 
 search <user.text>: 
@@ -87,8 +88,10 @@ copy (whole | full) file name:
     edit.copy()
     key(escape)
     
-edit file name:
+edit file name | rename file | file rename:
     key(enter)
+
+
 # buggy
 copy (whole | full) file name point: 
     mouse_click(1)

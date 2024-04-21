@@ -2,7 +2,7 @@
 (talon | tellin | tell in | tallin | talent) [voice] check [for] updates: 
     menu.check_for_updates()
 
-[(open | view | show)] (talon | tellin | tell in | tallin | talent) [voice] [show]  log: 
+[(open | view | show)] (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love): 
     menu.open_log()
 
 key(cmd-ctrl-alt-shift-d): menu.open_log()
@@ -53,7 +53,7 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
 
-^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] log last$:
+^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] (log | love) last$:
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
     menu.open_log()
@@ -63,14 +63,14 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
     phrase = user.history_get(number_small)
     user.talon_sim_phrase(phrase)
 
-^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] log (numb | number) <number_small>$:
+^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] (log | love) (numb | number) <number_small>$:
     phrase = user.history_get(number_small)
     user.talon_sim_phrase(phrase)
     menu.open_log()
 
 ^(talon | tellin | tell in | tallin | talent) [voice]  (test | tests | sim | simulate)  <phrase>$: user.talon_sim_phrase(phrase)
 
-^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] log <phrase>$: 
+^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] (log | love) <phrase>$: 
     user.talon_sim_phrase(phrase)
     menu.open_log()
 
