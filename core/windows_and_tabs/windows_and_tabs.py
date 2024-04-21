@@ -1,7 +1,9 @@
-from talon import Context, actions, ui
+from talon import Context, actions, ui, Module
 
 ctx = Context()
+mod = Module()
 
+mod.list("code_workspace", "VSCode Project Path")
 
 @ctx.action_class("app")
 class AppActions:
