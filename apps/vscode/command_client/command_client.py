@@ -295,6 +295,15 @@ class Actions:
             arg5,
         )
 
+    def run_repl_command_by_name(
+        snippetName: Any = NotSet
+    ):
+        """Execute custom repl command via RPC by calling snippet name."""
+        run_command(
+            "calva.runCustomREPLCommand",
+            snippetName,
+        )
+    
     def run_repl_command(
         snippetStr: Any = NotSet,
         replStr: Any = NotSet, 
