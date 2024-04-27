@@ -152,7 +152,13 @@ copy word right: user.copy_word_right()
 #     edit.select_all()
 #     edit.cut()
 
+dedent | (unindent | un indent) [that]: 
+    key(shift-tab)
 
+select (all | or): key(cmd-a)
+
+paste there: key(cmd-v)
+    
 
 # Paste
 (paste | pace | piss) [(that | it)]: edit.paste()
@@ -188,3 +194,59 @@ new line below | slap: edit.line_insert_down()
 # Save
 file save: edit.save()
 file save all: edit.save_all()
+
+## +++++++++++++++++++ My custom stuff .
+
+copy it: key(cmd-c)  
+paste it: key(cmd-v)
+
+
+dedent: key(shift-tab)
+
+take (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    
+(chuck | crop | clear) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.delete()
+
+(chuck | crop | clear) (Pointer | point) force:
+    key(shift:down)
+    mouse_click(0)
+    edit.delete()
+    key(escape)    
+
+(copy) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.copy()
+
+(copy) (Pointer | point) force:
+    key(shift:down)
+    mouse_click(0)
+    edit.copy()
+    key(escape)
+    # cursor go back action
+
+(cut | carve) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.cut()
+
+# Make version that leaves the pasted text selected    
+(paste) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.paste()
+
+(override line | over ride line):
+    edit.line_clone()
+    sleep(300ms)
+    # comment line
+    key(up cmd-/) 
+    #navigate to place in new line
+    key(down left:2) 
+    # mimic("go to line start")
+    # insert("#")

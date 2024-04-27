@@ -192,6 +192,8 @@ symbol_key_words = {
     "backslash": "\\",
     "minus": "-",
     "dash": "-",
+    "m dash": "—",
+    "en dash": "–", 
     "equals": "=",
     "plus": "+",
     "grave": "`",

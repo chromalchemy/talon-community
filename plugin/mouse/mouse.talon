@@ -21,6 +21,12 @@ righty:
     # close the mouse grid if open
     user.grid_close()
 
+((right | r | are | part) click | (context | see | sea) (click | touch | that | menu | options)):
+    mouse_click(1)
+    # close the mouse grid if open
+    user.grid_close()
+    
+
 mid click:
     # close zoom if open
     user.zoom_close()
@@ -106,3 +112,28 @@ curse no:
 # To scroll with a hiss sound, set mouse_enable_hiss_scroll to true in settings.talon
 mouse hiss up: user.hiss_scroll_up()
 mouse hiss down: user.hiss_scroll_down()
+
+## ++++++++++++++++++++++++++ my stuff . 
+#todo: get this working in finder
+
+#todo: Implement option clicks
+
+
+option drag:
+    user.mouse_drag(0)
+    sleep(300ms)
+    key(alt:down)
+    user.grid_close()
+    
+hold option: key(alt:down)
+
+shift drag:
+    key(shift:down)
+    user.mouse_drag(0)
+    user.grid_close()
+
+command drag:
+    key(cmd:down)
+    user.mouse_drag(0)
+    user.grid_close()
+    

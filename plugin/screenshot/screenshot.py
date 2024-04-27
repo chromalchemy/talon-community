@@ -5,6 +5,11 @@ from typing import Optional
 from talon import Context, Module, actions, app, clip, cron, screen, settings, ui
 from talon.canvas import Canvas
 
+try:
+    from talon.experimental import ocr
+except ImportError:
+    ocr = None
+
 mod = Module()
 
 default_folder = ""
@@ -55,6 +60,18 @@ class Actions:
         selected_screen = get_screen(screen_number)
         clipboard_rect(selected_screen.rect)
 
+    def screenshot_clipboard_ocr(screen_number: Optional[int] = None):
+        """Takes a screenshot of the entire screen and saves it to the clipboard.
+        Optional screen number can be given to use screen other than main."""
+        selected_screen = get_screen(screen_number)
+        clipboard_rect(selected_screen.rect)
+
+        # def clipboard_rect_ocr(rect: ui.Rect):
+        # flash_rect(rect)
+        # img = screen.capture_rect(rect)
+        # ocr_text = ocr_text(img)
+        # clip.set_image(ocr_text)
+
     def screenshot_window_clipboard():
         """Takes a screenshot of the active window and saves it to the clipboard"""
         win = ui.active_window()
@@ -75,6 +92,7 @@ def clipboard_rect(rect: ui.Rect):
     flash_rect(rect)
     img = screen.capture_rect(rect)
     clip.set_image(img)
+
 
 
 def get_screenshot_path(title: str = ""):
