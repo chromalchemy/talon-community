@@ -65,8 +65,3 @@ snap last [screen]:
 
 snap screen <number>: 
     user.move_window_to_screen(number)
-
-## ++++++++++++++++ open vscode project by name .
-
-[open | go] {user.code_workspace} project [in] [new]  [window] | project {user.code_workspace}: 
-    user.system_command_nb("code '/Users/ryan{code_workspace}'")
