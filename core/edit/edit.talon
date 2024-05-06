@@ -159,6 +159,9 @@ select (all | or): key(cmd-a)
 
 paste there: key(cmd-v)
     
+round (string | rap | wrap | text) <user.prose>:
+    insert("({prose})")
+
 
 # Paste
 (paste | pace | piss) [(that | it)]: edit.paste()

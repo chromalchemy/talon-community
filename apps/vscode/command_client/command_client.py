@@ -295,10 +295,10 @@ class Actions:
             arg5,
         )
 
-    def run_repl_command_by_name(
+    def run_repl_snippet(
         snippetName: Any = NotSet
     ):
-        """Execute custom repl command via RPC by calling snippet name."""
+        """Execute custom calva repl snippet name  or inline clj snippet str, via RPC."""
         run_command(
             "calva.runCustomREPLCommand",
             snippetName,
@@ -308,7 +308,7 @@ class Actions:
         snippetStr: Any = NotSet,
         replStr: Any = NotSet, 
     ):
-        """Execute custom repl command via RPC."""
+        """Execute custom calva repl snippet code, trying to desctructure object."""
         snippetArgs = {
             "snippet": snippetStr,
             "repl": replStr,
