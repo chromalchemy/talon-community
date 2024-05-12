@@ -11,6 +11,7 @@ phrase <user.text> over:
 force <user.format_code>+$: user.insert_many(format_code_list)
 <user.format_code>+: user.insert_many(format_code_list)
 <user.format_code>+ over: user.insert_many(format_code_list)
+
 <user.formatters> that: user.formatters_reformat_selection(user.formatters)
 word <user.word>:
     user.add_phrase_to_history(word)

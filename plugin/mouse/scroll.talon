@@ -1,13 +1,8 @@
 
 ^(wheel | we'll) down [<number>]: 
     user.mouse_scroll_up(number or 1)  
-
-^[(wheel | we'll)] downer [<number>]: 
-    user.mouse_scroll_up(number or 1)
-^(wheel | we'll) up [<number>]: 
-    user.mouse_scroll_down(number or 1)  
     
-^[(wheel | we'll)] upper [<number>]: 
+^(wheel | we'll) up [<number>]: 
     user.mouse_scroll_down(number or 1)  
 
 [(wheel | we'll)] down here:
