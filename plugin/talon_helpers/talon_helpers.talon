@@ -107,4 +107,4 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
 ^(talon | tellin | tell in | tallin | talent) [voice] (bug report | report bug):
     user.open_url("https://github.com/(talon | tellin | tell in | tallin | talent) [voice]hub/community/issues")
 
-    
+^(talon | tellin | tell in | tallin | talent) [voice] relaunch: user.talon_relaunch()
