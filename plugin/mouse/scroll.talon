@@ -1,9 +1,15 @@
 
-^(wheel | we'll) down [<number>]: 
-    user.mouse_scroll_up(number or 1)  
-    
-^(wheel | we'll) up [<number>]: 
-    user.mouse_scroll_down(number or 1)  
+^((wheel | we'll) down | (tall | (slide | sled | slit)))$: 
+    user.mouse_scroll_up(1)
+
+^((wheel | we'll) down | (tall | (slide | sled | slit))) [<number>]: 
+    user.mouse_scroll_up(number)  
+
+^((wheel | we'll) up | (sup | (bale | bail | bill)))$: 
+    user.mouse_scroll_down(1)  
+
+^((wheel | we'll) up | (sup | (bale | bail | bill))) [<number>]: 
+    user.mouse_scroll_down(number)  
 
 [(wheel | we'll)] down here:
     user.mouse_move_center_active_window()
