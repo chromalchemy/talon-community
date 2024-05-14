@@ -1,4 +1,6 @@
-from talon import Context, actions, clip
+from talon import Module, Context, actions, clip
+
+mod = Module()
 
 ctx = Context()
 ctx.matches = r"""
@@ -192,3 +194,9 @@ class EditActions:
 
     def zoom_reset():
         actions.key("cmd-0")
+
+@mod.action_class
+class Actions:
+    def paste_without_formatting():
+        """Paste without formatting on osx"""
+        actions.key("cmd-shift-v")
