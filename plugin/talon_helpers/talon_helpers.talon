@@ -70,7 +70,7 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
 
 ^(talon | tellin | tell in | tallin | talent) [voice]  (test | tests | sim | simulate)  <phrase>$: user.talon_sim_phrase(phrase)
 
-^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] (log | love) <phrase>$: 
+^[(talon | tellin | tell in | tallin | talent)] [voice] [(test | tests | sim | simulate)] (log | love) <phrase>$: 
     user.talon_sim_phrase(phrase)
     menu.open_log()
 
