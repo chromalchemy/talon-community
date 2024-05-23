@@ -3,10 +3,11 @@
 
 tag(): user.rango_direct_clicking
 
-open [in] new [(tab | page)] {user.website}: 
+
+(open [in] new [(tab | page)] | new tab) {user.website}: 
     user.open_url(website)
 
-(go | open) [(tab | page)] {user.website} [again]:
+(go | open | hope in) [(tab | page)] {user.website} [again]:
     user.switcher_focus("Google Chrome")
     sleep(300ms)
     user.rango_command_without_target("focusOrCreateTabByUrl", website)
@@ -24,14 +25,6 @@ hunt {user.website} [<user.text>]:
     sleep(2000ms)
     user.rango_run_action_on_reference("focusElement", "search")
     insert("{text or ''}")
-
-hunt {user.website} (paste | pace):
-    user.open_url("https://store-7hstasnrjg.mybigcommerce.com/manage/products")
-    sleep(2000ms)
-    user.rango_run_action_on_reference("focusElement", "search")
-    edit.paste()
-    sleep(200ms)
-    key(enter)
 
 # reuse tab if exists
 
