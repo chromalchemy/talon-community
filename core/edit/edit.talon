@@ -39,28 +39,37 @@ go page up: edit.page_up()
 go page down: edit.page_down()
 
 # Selecting
-select all: edit.select_all()
+(select | take) (all | or): 
+    edit.select_all()
+    key(cmd-a)
 select line: edit.select_line()
-select line start: user.select_line_start()
-select line end: user.select_line_end()
+(select | take) line start: user.select_line_start()
+(select | take) line end: user.select_line_end()
 
-select left: edit.extend_left()
-select right: edit.extend_right()
-select up: edit.extend_line_up()
-select down: edit.extend_line_down()
+(select | take) left: edit.extend_left()
+(select | take) right: edit.extend_right()
+(select | take) up: edit.extend_line_up()
+(select | take) down: edit.extend_line_down()
 
 select word: edit.select_word()
-select word left: edit.extend_word_left()
-select word right: edit.extend_word_right()
+(select | take) word left: edit.extend_word_left()
+(select | take) word right: edit.extend_word_right()
 
-select way left: edit.extend_line_start()
-select way right: edit.extend_line_end()
-select way up: edit.extend_file_start()
-select way down: edit.extend_file_end()
+(select | take) way left: edit.extend_line_start()
+(select | take) way right: edit.extend_line_end()
+(select | take) way up: edit.extend_file_start()
+(select | take) way down: edit.extend_file_end()
+
+(select | take) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
 
 # Indentation
 indent [more]: edit.indent_more()
 (indent less | out dent): edit.indent_less()
+dedent | (unindent | un indent) [that]: 
+    key(shift-tab)
+
 
 # Delete
 clear all: user.delete_all()
@@ -104,6 +113,18 @@ clear way down:
     edit.extend_file_end()
     edit.delete()
 
+(chuck | crop | clear) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.delete()
+
+(chuck | crop | clear) (Pointer | point) force:
+    key(shift:down)
+    mouse_click(0)
+    edit.delete()
+    key(escape)    
+    
+
 # Copy
 copy [(that | it)]: edit.copy()
 copy all: user.copy_all()
@@ -113,6 +134,18 @@ copy line end: user.copy_line_end()
 copy word: user.copy_word()
 copy word left: user.copy_word_left()
 copy word right: user.copy_word_right()
+
+copy (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.copy()
+
+copy (Pointer | point) force:
+    key(shift:down)
+    mouse_click(0)
+    edit.copy()
+    key(escape)
+    # cursor go back action
 
 #to do: do we want these variants, seem to conflict
 # copy left:
@@ -131,12 +164,18 @@ copy word right: user.copy_word_right()
 # Cut
 (carve | cut) [(that | it)]: edit.cut()
 (carve | cut) all: user.cut_all()
-(carve | cut) line: user.cut_line()
+cut line: user.cut_line()
 (carve | cut) line start: user.cut_line_start()
 (carve | cut) line end: user.cut_line_end()
-(carve | cut) word: user.cut_word()
+cut word: user.cut_word()
 (carve | cut) word left: user.cut_word_left()
 (carve | cut) word right: user.cut_word_right()
+
+(cut | carve) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.cut()
+
 
 #to do: do we want these variants
 # cut left:
@@ -152,28 +191,39 @@ copy word right: user.copy_word_right()
 #     edit.select_all()
 #     edit.cut()
 
-dedent | (unindent | un indent) [that]: 
-    key(shift-tab)
-
-select (all | or): key(cmd-a)
-
-paste there: key(cmd-v)
-    
-round (string | rap | wrap | text) <user.prose>:
-    insert("({prose})")
-
 
 # Paste
-(paste | pace | piss) [(that | it)]: edit.paste()
+
+(paste | pace | piss) [(that | it | there | here)]:
+     edit.paste()
+
 (paste | pace | piss) enter:
     edit.paste()
     key(enter)
-(paste | pace | piss) [and] match [style]: edit.paste_match_style()
-(paste | pace | piss) all: user.paste_all()
-(paste | pace | piss) line: user.paste_line()
-(paste | pace | piss) line start: user.paste_line_start()
-(paste | pace | piss) line end: user.paste_line_end()
-(paste | pace | piss) word: user.paste_word()
+
+(paste | pace | piss) [and] match [style]: 
+    edit.paste_match_style()
+
+(paste | pace | piss) [to] all: 
+    user.paste_all()
+
+(paste | pace | piss) line: 
+    user.paste_line()
+
+(paste | pace | piss) line start: 
+    user.paste_line_start()
+
+(paste | pace | piss) line end: 
+    user.paste_line_end()
+
+(paste | pace | piss) word: 
+    user.paste_word()
+   
+# Make version that leaves the pasted text selected    
+(paste) (Pointer | point):
+    key(shift:down)
+    mouse_click(0)
+    edit.paste()
 
 # Duplication
 clone that: edit.selection_clone()
@@ -195,54 +245,10 @@ new line below | slap: edit.line_insert_down()
 (you do | redo) [that]: edit.redo()
 
 # Save
-file save: edit.save()
-file save all: edit.save_all()
+(file  | i'll) save: edit.save()
+(file  | i'll) save all: edit.save_all()
 
 ## +++++++++++++++++++ My custom stuff .
-
-copy it: key(cmd-c)  
-paste it: key(cmd-v)
-
-
-dedent: key(shift-tab)
-
-take (Pointer | point):
-    key(shift:down)
-    mouse_click(0)
-    
-(chuck | crop | clear) (Pointer | point):
-    key(shift:down)
-    mouse_click(0)
-    edit.delete()
-
-(chuck | crop | clear) (Pointer | point) force:
-    key(shift:down)
-    mouse_click(0)
-    edit.delete()
-    key(escape)    
-
-(copy) (Pointer | point):
-    key(shift:down)
-    mouse_click(0)
-    edit.copy()
-
-(copy) (Pointer | point) force:
-    key(shift:down)
-    mouse_click(0)
-    edit.copy()
-    key(escape)
-    # cursor go back action
-
-(cut | carve) (Pointer | point):
-    key(shift:down)
-    mouse_click(0)
-    edit.cut()
-
-# Make version that leaves the pasted text selected    
-(paste) (Pointer | point):
-    key(shift:down)
-    mouse_click(0)
-    edit.paste()
 
 (override line | over ride line):
     edit.line_clone()
@@ -253,3 +259,6 @@ take (Pointer | point):
     key(down left:2) 
     # mimic("go to line start")
     # insert("#")
+
+round (string | rap | wrap | text) <user.prose>:
+    insert("({prose}) ")
