@@ -446,6 +446,10 @@ tmem, technological memory
 nl,newsletter
 gb,get bit
 gbo,get bit outdoors
+getbitoutdoors,get bit outdoors long   
+getbitoutdoors,get bit outdoors full
+getbitoutdoors,get bit  long   
+getbitoutdoors,get bit  full   
 otg,on the go
 osx,mac os
 ps,photoshop
@@ -505,3 +509,4 @@ wysiwyg, what you see is what you get
 nrepl, network repl
 nrepl, net repl
 sku, skew
+nexcess, nexus
