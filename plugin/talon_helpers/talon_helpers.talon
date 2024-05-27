@@ -108,3 +108,18 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
     user.open_url("https://github.com/(talon | tellin | tell in | tallin | talent) [voice]hub/community/issues")
 
 ^(talon | tellin | tell in | tallin | talent) [voice] relaunch: user.talon_relaunch()
+
+
+(hunt | hun) (talon | tellin | talin | command | tall and) [<user.text>]:
+    user.system_command_nb("code '/Users/ryan/.talon/user/talon-user.code-workspace'")
+    sleep(600ms)
+    user.vscode("workbench.view.search")
+    sleep(200ms)
+    insert(text or "")
+
+(hunt | hun) (talon | tellin | talin | command | tall and) (paste | pace):
+    user.system_command_nb("code '/Users/ryan/.talon/user/talon-user.code-workspace'")
+    sleep(600ms)
+    user.vscode("workbench.view.search")
+    sleep(200ms)
+    edit.paste()
