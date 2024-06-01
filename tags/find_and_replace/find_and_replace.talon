@@ -1,6 +1,7 @@
 tag: user.find_and_replace
 -
 tag(): user.clipboard_manager
+tag(): user.find
 
 
 ## ++++++++++++++++++++++ find in file .
