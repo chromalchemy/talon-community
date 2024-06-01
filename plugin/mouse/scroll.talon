@@ -61,20 +61,19 @@ mouse hiss down: user.hiss_scroll_down()
 
 #down
 
-(wheel | we'll) (max | all) down | (tall | (slide | sled | slit)) (max | all):
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_up(30.0)
+(wheel | we'll) ((max | all) down | bottom) | (tall | (slide | sled | slit)) (max | all | bottom):
+    user.mouse_scroll_up(50.0)
 
-((wheel | we'll) (max | all) down | (tall | (slide | sled | slit)) (max | all)) here:
+((wheel | we'll) ((max | all) down | bottom ) | (tall | (slide | sled | slit)) (max | all | bottom)) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_up(30.0)
+    user.mouse_scroll_up(50.0)
 
 #up 
-((wheel | we'll) (max | all) up | (sup | (bale | bail | bill))) (max | all):
-    user.mouse_move_center_active_window()
+
+(wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill)) (max | all | top):
     user.mouse_scroll_down(50.0)
 
-((wheel | we'll) (max | all) up | (sup | (bale | bail | bill))) (max | all) here:
+(((wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill))) (max | all | top)) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down(50.0)
 
