@@ -115,16 +115,17 @@ curse no:
 #todo: Implement option clicks
 
 
-option drag:
-    user.mouse_drag(0)
-    sleep(300ms)
+(option | alt) drag:
     key(alt:down)
+    user.mouse_drag(0)
+    # sleep(300ms)
     user.grid_close()
     
 hold option: key(alt:down)
 
 shift drag:
     key(shift:down)
+    # sleep(300ms)
     user.mouse_drag(0)
     user.grid_close()
 
