@@ -152,13 +152,24 @@ close tabs way right: user.vscode("workbench.action.closeEditorsToTheRight")
 close tabs way left: user.vscode("workbench.action.closeEditorsToTheLeft")
 
 # Folding
-fold that: user.vscode("editor.fold")
-unfold that: user.vscode("editor.unfold")
+fold (that | here): user.vscode("editor.fold")
+unfold (that | here): user.vscode("editor.unfold")
+
+fold point: 
+    mouse_click(0)
+    user.vscode("editor.fold")
+unfold point: 
+    mouse_click(0)
+    user.vscode("editor.unfold")
+
 fold (those | form): user.vscode("editor.foldAllMarkerRegions")
 unfold (those | form | deep): user.vscode("editor.unfoldRecursively")
+
 fold all: user.vscode("editor.foldAll")
 unfold all: user.vscode("editor.unfoldAll")
+
 fold comments: user.vscode("editor.foldAllBlockComments")
+
 fold one: user.vscode("editor.foldLevel1")
 fold two: user.vscode("editor.foldLevel2")
 fold three: user.vscode("editor.foldLevel3")
