@@ -25,6 +25,11 @@ focus$: user.switcher_menu()
 (go | focus) last app: 
     user.switcher_focus_last()
 
+## trying to open a specific window
+# go debug: 
+#     user.switch
+#     user.switcher_focus_window("Flowstorm Debugger")
+
 (focus | go) [app]  <user.running_applications>: 
     user.switcher_focus(running_applications)
 
