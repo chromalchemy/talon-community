@@ -3,8 +3,9 @@ settings():
     imgui.scale = 1.2
 
     # Uncomment to set the speech timeout. This is the amount of time after you stop
-    # speaking until Talon starts processing the spoken audio. Default is 0.3s.
-    # speech.timeout = 0.3
+    # speaking until Talon starts processing the spoken audio. Default is 0.3s. 
+    # nriley has 0.15 !
+    speech.timeout = 0.45
 
     # Uncomment to enable dark mode for talon help menus
     # imgui.dark_mode = true
@@ -54,11 +55,6 @@ settings():
     # Set the total number of command history lines to display
     user.command_history_size = 50
 
-    # default wav2letter timeout changed in 0.1.5 from 150 to 300 ms
-    #nriley has 0.15 !
-    speech.timeout = 0.45
-    #default
-    # speech.timeout = 0.35
     # speech.debug = 1
     # speech._subtitles = 0
 
