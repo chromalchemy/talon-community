@@ -13,7 +13,8 @@ force <user.format_code>+$: user.insert_many(format_code_list)
 <user.format_code>+ over: user.insert_many(format_code_list)
 
 <user.formatters> that: user.formatters_reformat_selection(user.formatters)
-(word | were it) <user.word>:
+(<user.formatters> (pace | paste): user.insert_formatted(clip.text(), formatters)
+word | were it) <user.word>:
     user.add_phrase_to_history(word)
     insert(word)
 proud <user.word>: user.insert_formatted(word, "CAPITALIZE_FIRST_WORD")
