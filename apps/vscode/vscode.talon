@@ -258,6 +258,9 @@ debug clean: user.vscode("workbench.debug.panel.action.clearReplAction")
 (terminal  |  term) scroll down: user.vscode("workbench.action.terminal.scrollDown")
 (terminal  |  term) <number_small>: user.vscode_terminal(number_small)
 
+task run [<user.text>]:
+    user.vscode("workbench.action.tasks.runTask")
+    insert(user.text or "")
 #TODO: should this be added to linecommands?
 (clone | copy) (line | nine) [down]: user.vscode("editor.action.copyLinesDownAction")
 (clone | copy) (line | nine) up: user.vscode("editor.action.copyLinesUpAction")
