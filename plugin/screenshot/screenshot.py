@@ -12,6 +12,8 @@ except ImportError:
 
 mod = Module()
 
+mod.tag("screenshot_disabled", desc="Activating this tag disables screenshot commands")
+
 default_folder = ""
 if app.platform == "windows":
     default_folder = os.path.expanduser(os.path.join("~", r"OneDrive\\Pictures"))

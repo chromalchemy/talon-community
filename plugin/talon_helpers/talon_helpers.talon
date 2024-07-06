@@ -123,3 +123,10 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
     user.vscode("workbench.view.search")
     sleep(200ms)
     edit.paste()
+
+(go | open) [(talon  | talin | tellin)] [voice] abbreviations: 
+    key(cmd-p)
+    sleep(100ms)
+    insert("community/settings/abbreviations.csv")
+    sleep(200ms)
+    key(enter)

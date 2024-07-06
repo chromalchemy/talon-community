@@ -47,6 +47,9 @@ select line: edit.select_line()
 (select | take) line start: user.select_line_start()
 (select | take) line end: user.select_line_end()
 
+select block: edit.select_paragraph()
+
+
 (select | take) left: edit.extend_left()
 (select | take) right: edit.extend_right()
 (select | take) up: edit.extend_line_up()
@@ -77,6 +80,7 @@ clear all: user.delete_all()
 clear line: edit.delete_line()
 clear line start: user.delete_line_start()
 clear line end: user.delete_line_end()
+clear block: edit.delete_paragraph()
 clear left: edit.delete()
 clear right | delete forward: user.delete_right()
 
@@ -132,6 +136,7 @@ copy all: user.copy_all()
 copy line: user.copy_line()
 copy line start: user.copy_line_start()
 copy line end: user.copy_line_end()
+copy block: user.copy_paragraph()
 copy word: user.copy_word()
 copy word left: user.copy_word_left()
 copy word right: user.copy_word_right()
@@ -168,6 +173,8 @@ copy (Pointer | point) force:
 cut line: user.cut_line()
 (carve | cut) line start: user.cut_line_start()
 (carve | cut) line end: user.cut_line_end()
+cut block: user.cut_paragraph()
+
 cut word: user.cut_word()
 (carve | cut) word left: user.cut_word_left()
 (carve | cut) word right: user.cut_word_right()
@@ -202,22 +209,26 @@ cut word: user.cut_word()
     edit.paste()
     key(enter)
 
+paste match: edit.paste_match_style()
+
 (paste | pace | piss) [and] match [style]: 
     edit.paste_match_style()
 
 (paste | pace | piss) [to] all: 
     user.paste_all()
 
-(paste | pace | piss) line: 
+(paste | pace | piss) [to] line: 
     user.paste_line()
 
-(paste | pace | piss) line start: 
+(paste | pace | piss) [to] line start: 
     user.paste_line_start()
 
-(paste | pace | piss) line end: 
+(paste | pace | piss) [to] line end: 
     user.paste_line_end()
 
-(paste | pace | piss) word: 
+(pace | paste) [to] block: user.paste_paragraph()
+
+(paste | pace | piss) [to] word: 
     user.paste_word()
    
 # Make version that leaves the pasted text selected    
