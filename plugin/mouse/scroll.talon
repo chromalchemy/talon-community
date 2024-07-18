@@ -35,24 +35,24 @@ mouse hiss down: user.hiss_scroll_down()
 
 
 #down  
-
-((wheel | we'll) (tiny | small) down | (tiny | small) (tall | (slide | sled | slit))) [<number>]:
+  
+((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled | slit))) [<number>]:
     n = number or 4
     na = 0.1 * n 
     user.mouse_scroll_up(na)
 
-((wheel | we'll) (tiny | small) down | (tiny | small) (tall | (slide | sled | slit))) here:
+((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled | slit))) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up(0.2)
 
 #up
 
-(wheel | we'll) (tiny | small) up | (tiny | small) (sup | (bale | bail | bill)):
+(wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill)):
     n = number or 4
     na = 0.1 * n 
     user.mouse_scroll_down(na)
 
-(wheel | we'll) (tiny | small) up | (tiny | small) (sup | (bale | bail | bill)) here:
+(wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill)) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down(0.2)
 
@@ -113,10 +113,10 @@ mouse hiss down: user.hiss_scroll_down()
     user.mouse_move_center_active_window()
     user.mouse_scroll_right()
 
-[(wheel | we'll)] (tiny | small) left: 
+[(wheel | we'll)] (tiny | small | bit) left: 
     user.mouse_scroll_right(0.5)
 
-[(wheel | we'll)] (tiny | small) left here:
+[(wheel | we'll)] (tiny | small | bit) left here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_right(0.5)
 
@@ -129,10 +129,10 @@ mouse hiss down: user.hiss_scroll_down()
     user.mouse_move_center_active_window()
     user.mouse_scroll_left()
 
-[(wheel | we'll)] (tiny | small) (right | write): 
+[(wheel | we'll)] (tiny | small | bit) (right | write): 
     user.mouse_scroll_left(0.5)
 
-[(wheel | we'll)] (tiny | small) (right | write) here:
+[(wheel | we'll)] (tiny | small | bit) (right | write) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_left(0.5)
 
