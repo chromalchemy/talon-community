@@ -30,8 +30,12 @@ focus$: user.switcher_menu()
 #     user.switch
 #     user.switcher_focus_window("Flowstorm Debugger")
 
-(focus | go) [app]  <user.running_applications>: 
+(focus | go)  [app] <user.running_applications> [app]: 
     user.switcher_focus(running_applications)
+
+# This doesn't work from another app
+# go flow storm:
+#     user.switcher_focus_window("Flowstorm debugger")
 
 launch <user.launch_applications>: 
     user.switcher_launch(launch_applications)
