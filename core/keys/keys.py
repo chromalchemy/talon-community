@@ -277,6 +277,19 @@ ctx.lists["self.function_key"] = {
 }
 
 
+default_digits = (
+    "zero one two three four five six seven eight nine ten eleven twelve".split(" ")
+)
+
+mod.list("digit", "All number/digit keys")
+ctx.lists["user.digit"] = {
+    **{default_digits[i]: str(i) for i in range(10)},
+    "sero": "0",
+    # "oh": "0",
+}
+
+
+
 @mod.action_class
 class Actions:
     def move_cursor(s: str):
@@ -286,3 +299,4 @@ class Actions:
                 getattr(actions.edit, d)()
             else:
                 raise RuntimeError(f"invalid arrow key: {d}")
+
