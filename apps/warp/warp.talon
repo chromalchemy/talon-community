@@ -7,3 +7,6 @@ tag(): user.kubectl
 tag(): user.tabs
 tag(): user.file_manager
 tag(): user.readline
+
+clear tab | clear output: 
+    key(cmd-k)

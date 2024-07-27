@@ -2,10 +2,18 @@
 (talon | tellin | tell in | tallin | talent) [voice] check [for] updates: 
     menu.check_for_updates()
 
-[(open | view | show)] (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love): 
-    menu.open_log()
+(open | launch) (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love) [tab]: 
+    user.talon_open_log_in_warp_window()
+    # menu.open_log()
 
-key(cmd-ctrl-alt-shift-d): menu.open_log()
+
+[(go | view | show)] (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love):
+    user.talon_focus_warp_talon_log()
+
+
+key(cmd-ctrl-alt-shift-d): 
+    user.talon_focus_warp_talon_log()
+    # menu.open_log()
 
 (talon | tellin | tell in | tallin | talent) [voice] [(show | open)] (rebel | repl): 
     menu.open_repl()
@@ -56,7 +64,8 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
 ^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] (log | love) last$:
     phrase = user.history_get(1)
     user.talon_sim_phrase(phrase)
-    menu.open_log()
+    user.talon_focus_warp_talon_log()
+    # menu.open_log()
     
 # test nth back command
 ^(talon | tellin | tell in | tallin | talent) [voice] (test | tests | sim | simulate) (numb | number) <number_small>$:
@@ -66,13 +75,17 @@ key(cmd-ctrl-alt-shift-d): menu.open_log()
 ^(talon | tellin | tell in | tallin | talent) [voice] [(test | tests | sim | simulate)] (log | love) (numb | number) <number_small>$:
     phrase = user.history_get(number_small)
     user.talon_sim_phrase(phrase)
-    menu.open_log()
+    user.talon_focus_warp_talon_log()
+    # menu.open_log()
 
 ^(talon | tellin | tell in | tallin | talent) [voice]  (test | tests | sim | simulate)  <phrase>$: user.talon_sim_phrase(phrase)
 
 ^[(talon | tellin | tell in | tallin | talent)] [voice] [(test | tests | sim | simulate)] (log | love) <phrase>$: 
+    user.talon_focus_warp_talon_log()
+    sleep(400ms)
+    key(cmd-k)
     user.talon_sim_phrase(phrase)
-    menu.open_log()
+    # menu.open_log()
 
 ## +++++++++++++++++++++++++++++ debug .
 

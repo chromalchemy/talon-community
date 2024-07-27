@@ -33,9 +33,12 @@ focus$: user.switcher_menu()
 (focus | go)  [app] <user.running_applications> [app]: 
     user.switcher_focus(running_applications)
 
-# This doesn't work from another app
+# This doesn't work from another app needs a window object, not string
 # go flow storm:
 #     user.switcher_focus_window("Flowstorm debugger")
+
+# go tiki:
+    # user.switcher_focus_window("Talon Log")
 
 launch <user.launch_applications>: 
     user.switcher_launch(launch_applications)

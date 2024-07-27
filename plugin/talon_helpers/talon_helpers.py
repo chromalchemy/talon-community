@@ -160,6 +160,29 @@ class Actions:
         for app in apps:
             pp.pprint(app.windows())
 
+    def talon_open_log_in_warp_window():
+        """open in warp"""
+        actions.key("cmd-space delete")
+        actions.sleep("200ms")
+        actions.user.paste("warp new window")
+        actions.sleep("200ms")
+        actions.key("enter")
+        actions.sleep("500ms")
+        actions.user.menu_select("Tab|Rename the Current Tab")
+        actions.insert("Talon Log")
+        actions.key("enter")
+        actions.sleep("400ms")
+        actions.user.paste("tail -f /Users/ryan/.talon/talon.log")
+        actions.sleep("300ms")
+        actions.key("enter")
+    
+    def talon_focus_warp_talon_log():
+        """focus warp window with talon log, minimizeg other first"""
+        actions.user.switcher_focus("Warp")
+        actions.user.menu_select("Window|Minimize All")
+        actions.sleep("300ms")
+        actions.user.menu_select("Window|Talon Log")
+        
     def talon_relaunch():
         """Quit and relaunch the Talon app"""
         talon_app = ui.apps(pid=os.getpid())[0]
