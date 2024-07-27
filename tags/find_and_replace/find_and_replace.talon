@@ -6,14 +6,14 @@ tag(): user.find
 
 ## ++++++++++++++++++++++ find in file .
 
-hunt ([in] this | in file): user.find("")
+hunt ([in] this | in file): edit.find("")
 
 hunt ([in] this | in file) (pace | paste):
-    user.find("")
+    edit.find("")
     sleep(25ms)
     edit.paste()
 
-hunt ([in] this | in file) <user.text>: user.find(text)
+hunt ([in] this | in file) <user.text>: edit.find(text)
 
 ## ++++++++++++++++++++++ find in project .
 
@@ -33,8 +33,8 @@ hunt expression: user.find_toggle_match_by_regex()
 
 ## ++++++++++++++++++ navigate results .
 
-hunt next: user.find_next()
-hunt (previous | last | prev): user.find_previous()
+hunt next: edit.find_next()
+hunt (previous | last | prev): edit.find_previous()
 
 ## ++++++++++++++++++ replace and file .
 
