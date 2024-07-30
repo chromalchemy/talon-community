@@ -179,15 +179,18 @@ class Actions:
         actions.clip.set_text(command_id)
 
 
-@mac_ctx.action_class("user")
-class MacUserActions:
-    def command_palette():
-        actions.key("cmd-shift-p")
-
+@mac_ctx.action_class("edit")
+class MacEditActions:
     def find(text: str = None):
         actions.key("cmd-f")
         if text:
             actions.insert(text)
+
+
+@mac_ctx.action_class("user")
+class MacUserActions:
+    def command_palette():
+        actions.key("cmd-shift-p")
 
 
 @ctx.action_class("user")

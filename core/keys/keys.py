@@ -1,4 +1,4 @@
-from talon import Context, Module, actions, app
+from talon import Context, Module, app
 
 from ..user_settings import get_list_from_csv
 
@@ -45,12 +45,6 @@ def modifiers(m) -> str:
 def arrow_key(m) -> str:
     "One directional arrow key"
     return m.arrow_key
-
-
-@mod.capture(rule="<self.arrow_key>+")
-def arrow_keys(m) -> str:
-    "One or more arrow keys separated by a space"
-    return str(m)
 
 
 @mod.capture(rule="{self.number_key}")

@@ -1,4 +1,8 @@
 
+# Compound of action(select, clear, copy, cut, paste, etc.) and modifier(word, line, etc.) commands for editing text.
+# eg: "select line", "clear all"
+<user.edit_action> <user.edit_modifier>: user.edit_command(edit_action, edit_modifier)
+
 # Zoom
 zoom in: edit.zoom_in()
 zoom out: edit.zoom_out()
@@ -14,13 +18,17 @@ next (one | result | in page): edit.find_next()
 page up: edit.page_up()
 page down: edit.page_down()
 
-go word left: edit.word_left()
-go word right: edit.word_right()
+# go left, go left left down, go 5 left 2 down
+# go word left, go 2 words right
+go <user.navigation_step>+: user.perform_navigation_steps(navigation_step_list)
 
-go left: edit.left()
-go right: edit.right()
-go up: edit.up()
-go down: edit.down()
+# go word left: edit.word_left()
+# go word right: edit.word_right()
+
+# go left: edit.left()
+# go right: edit.right()
+# go up: edit.up()
+# go down: edit.down()
 
 #Does this conflict?
 go [line] (start | head): edit.line_start()
@@ -76,11 +84,6 @@ dedent | (unindent | un indent) [that]:
 
 
 # Delete
-clear all: user.delete_all()
-clear line: edit.delete_line()
-clear line start: user.delete_line_start()
-clear line end: user.delete_line_end()
-clear block: edit.delete_paragraph()
 clear left: edit.delete()
 clear right | delete forward: user.delete_right()
 
@@ -91,8 +94,6 @@ clear up:
 clear down:
     edit.extend_line_down()
     edit.delete()
-
-clear word: edit.delete_word()
 
 clear word left:
     edit.extend_word_left()
