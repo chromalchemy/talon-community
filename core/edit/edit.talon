@@ -171,9 +171,9 @@ copy (Pointer | point) force:
 # Cut
 (carve | cut) [(that | it)]: edit.cut()
 (carve | cut) all: user.cut_all()
-cut line: user.cut_line()
-(carve | cut) line start: user.cut_line_start()
-(carve | cut) line end: user.cut_line_end()
+# cut line: user.cut_line()
+# (carve | cut) line start: user.cut_line_start()
+# (carve | cut) line end: user.cut_line_end()
 cut block: user.cut_paragraph()
 
 cut word: user.cut_word()

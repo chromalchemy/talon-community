@@ -34,9 +34,9 @@ class EditActions:
 
 @ctx.action_class("user")
 class Actions:
-    def cut_line():
-        actions.edit.line_start()
-        actions.key("ctrl-k")
+    # def cut_line():
+    #     actions.edit.line_start()
+    #     actions.key("ctrl-k")
 
     def cut_word_left():
         actions.key("ctrl-w")
