@@ -60,9 +60,13 @@ class Actions:
 
     def talon_sim_phrase(phrase: Union[str, Phrase]):
         """Sims the phrase in the active app and dumps to the log"""
+        print("  ")
+        print("  ")
         print("**** Simulated Phrse **** ")
         print(speech_system._sim(str(phrase)))
         print("*************************")
+        print("  ")
+        print("  ")
 
     def talon_action_find(action: str):
         """Runs action.find for the provided action and dumps to the log"""

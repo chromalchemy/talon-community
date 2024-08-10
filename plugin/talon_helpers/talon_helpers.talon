@@ -81,9 +81,10 @@ key(cmd-ctrl-alt-shift-d):
 ^(talon | tellin | tell in | tallin | talent) [voice]  (test | tests | sim | simulate)  <phrase>$: user.talon_sim_phrase(phrase)
 
 ^[(talon | tellin | tell in | tallin | talent)] [voice] [(test | tests | sim | simulate)] (log | love) <phrase>$: 
-    user.talon_focus_warp_talon_log()
-    sleep(400ms)
-    key(cmd-k)
+    # user.talon_focus_warp_talon_log()
+    # sleep(500ms)
+    # key(cmd-k)
+    # sleep(300ms)
     user.talon_sim_phrase(phrase)
     # menu.open_log()
 
