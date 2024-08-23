@@ -1,29 +1,28 @@
 
+## ++++ swap app (not necessarily window) .
+
+# should be a picker?
+[(go | focus)] (last | next | back) app | swap app: 
+    user.switcher_focus_last()
+
+## ++++++++++++++++++++ swap among all app windows
+
 #switches to last/next app whether inside or outside current app
 #using #btt implementation (over alt-tab, which was glitching)
-[go] (last | back | next | swap | jug | juggle | flip | snap) win | win (last | back | next | swap | jug | juggle | flip | snap): 
+[go] (last | back | next | swap | jug | juggle | flip | snap) (window | win) | (window | win) (last | back | next | swap | jug | juggle | flip | snap): 
     key(alt-tab)
 
-(window | win) close: app.window_close()
-(window | win) hide: app.window_hide()
-
 ## ++++++++++++++++ switch in-app windows .
-
-^window (new | open): app.window_open()
-(new | open) window$: app.window_open()
 
 app (window | win) next | next app win: app.window_next()
 app (window | win) last | last app win: app.window_previous()
 
-## +++++++++++++++++++++ switch app .
+## +++++++++++++++++++++ switch app menu (broken on mac).
 
 # following only works on windows. Can't figure out how to make it work for mac. No idea what the equivalent for linux would be.
 focus$: user.switcher_menu()
 
-# should be a picker
-#Switches app, but not sub windows
-(go | focus) last app: 
-    user.switcher_focus_last()
+## +++++++++++ go directly to open app .
 
 ## trying to open a specific window
 # go debug: 
@@ -40,17 +39,33 @@ focus$: user.switcher_menu()
 # go tiki:
     # user.switcher_focus_window("Talon Log")
 
+## +++++++++ hide or close open window .
+
+#how does this compare w axkit?
+# todo broken?
+(window | win) close: app.window_close()
+(window | win) hide: app.window_hide()
+
+## +++++++++++++++++++ open closed app .
+
 launch <user.launch_applications>: 
     user.switcher_launch(launch_applications)
     
 
-## +++++++++++++++++++++++++ show running apps in popup .
+## +++++++++++++++++++++++++ show running app names in talon help popup .
 
-[help] (list | show) (running | open) apps: 
+[help] [(list | show)] (running | open) (apps | applications): 
     user.switcher_toggle_running()
 
-[help] (close | hide) (running | open) apps: 
+[help] (close | hide) (running | open) (apps | applications): 
     user.switcher_hide_running()
+
+
+## +++++++ new window (in current app) .
+
+^window (new | open): app.window_open()
+(new | open) window$: app.window_open()
+
 
 #snapping
 
