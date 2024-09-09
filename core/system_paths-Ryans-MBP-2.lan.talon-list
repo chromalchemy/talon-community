@@ -1,5 +1,5 @@
 list: user.system_paths
-host: Ryans-MBP-2.lan
+hostname: Ryans-MBP-2.lan
 -
 user: /Users/ryan
 profile: /Users/ryan
