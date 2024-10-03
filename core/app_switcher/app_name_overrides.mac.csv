@@ -1,29 +1,62 @@
 Spoken form, App name (or list an app name by itself on a line to exclude it)
+
 grip, DataGrip
+
 term, iTerm2
 termy, iTerm2
+
+warp term, warp
+warp, warp
+
 jet, IntelliJ IDEA
+
+
+gpt, ChatGPT
+ai, ChatGPT
+chat gpt, ChatGPT
+chat, ChatGPT
+
 roam, Roam Research
 notes, Roam Research
 note, Roam Research
+outliner, Roam Research
 run, Roam Research
+write, Roam Research
+
 browser, Google Chrome
 browse, Google Chrome
 brass, Google Chrome
+web, Google Chrome
+chrome, Google Chrome
+
 files, Finder
 file manager, Finder
 finder, Finder
+
 editor, Code
 vs code, Code
 ide, Code
 code, Code
+hack, Code
+
 photo, Adobe Photoshop (Beta)
 photos, Adobe Photoshop (Beta)
 further, Adobe Photoshop (Beta)
+fot, Adobe Photoshop (Beta)
+
+photo dev, Adobe UXP Developer Tools
+photo dev tools, Adobe UXP Developer Tools
+
 flow storm, java
 flowstorm, java
 storm, java
 flow, java
 flows, java
-photo dev, Adobe UXP Developer Tools
-photo dev tools, Adobe UXP Developer Tools
+
+zulip, zulip
+zule, zulip
+zull, zulip
+zoo lip, zulip
+get bit chat, zulip
+
+
