@@ -8,5 +8,5 @@ tag(): user.tabs
 tag(): user.file_manager
 tag(): user.readline
 
-clear tab | clear output: 
+clear (tab | output | text): 
     key(cmd-k)
