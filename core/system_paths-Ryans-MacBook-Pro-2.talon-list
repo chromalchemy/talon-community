@@ -1,0 +1,16 @@
+list: user.system_paths
+hostname: Ryans-MacBook-Pro-2
+-
+user: /Users/ryan
+desktop: /Users/ryan/Desktop
+desk: /Users/ryan/Desktop
+documents: /Users/ryan/Documents
+docks: /Users/ryan/Documents
+downloads: /Users/ryan/Downloads
+music: /Users/ryan/Music
+pictures: /Users/ryan/Pictures
+videos: /Users/ryan/Videos
+talon home: /Users/ryan/.talon
+talon recordings: /Users/ryan/.talon/recordings
+talon user: /Users/ryan/.talon/user
+home: /Users/ryan
