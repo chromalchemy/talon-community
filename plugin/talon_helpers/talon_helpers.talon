@@ -85,7 +85,7 @@ key(cmd-ctrl-alt-shift-d):
     # sleep(500ms)
     # key(cmd-k)
     # sleep(300ms)
-    user.talon_sim_phrase(phrase)
+    user.talon_sim_phrase("{phrase}")
     # menu.open_log()
 
 ## +++++++++++++++++++++++++++++ debug .
