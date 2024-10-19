@@ -6,6 +6,7 @@ end: end
 home: home
 minus: minus
 enter: enter
+hinter: enter
 page down: pagedown
 page up: pageup
 escape: escape
@@ -13,4 +14,5 @@ space: space
 tab: tab
 wipe: backspace
 delete: backspace
+chuck: backspace
 forward delete: delete
