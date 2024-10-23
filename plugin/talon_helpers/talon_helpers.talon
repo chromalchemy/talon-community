@@ -2,6 +2,9 @@
 (talon | tellin | tell in | tallin | talent) [voice] check [for] updates: 
     menu.check_for_updates()
 
+# the debug window is only available in the talon beta
+talon open debug: menu.open_debug_window()
+
 (open | launch) (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love) [tab]: 
     user.talon_open_log_in_warp_window()
     # menu.open_log()

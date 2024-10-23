@@ -5,13 +5,15 @@ os: mac
 end: end
 home: home
 minus: minus
-enter: enter
-hinter: enter
+return: return
+enter: keypad_enter
+hinter: return
 page down: pagedown
 page up: pageup
 escape: escape
 space: space
 tab: tab
+insert: insert
 wipe: backspace
 delete: backspace
 chuck: backspace
