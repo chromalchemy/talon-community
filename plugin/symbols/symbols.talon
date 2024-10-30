@@ -24,28 +24,34 @@ inside (graves | back ticks): user.insert_between("`", "`")
 angle that:
     text = edit.selected_text()
     user.paste("<{text}>")
+
 (square | bracket | square bracket) that:
     text = edit.selected_text()
     user.paste("[{text}]")
+
 (brace | curly bracket) that:
     text = edit.selected_text()
     user.paste("{{{text}}}")
+
 (parens | args | round) that:
     text = edit.selected_text()
     user.paste("({text})")
+
 percent that:
     text = edit.selected_text()
     user.paste("%{text}%")
+
 quote that:
     text = edit.selected_text()
     user.paste("'{text}'")
+
 (double quote | dub quote) that:
     text = edit.selected_text()
     user.paste('"{text}"')
+
 (grave | back tick) that:
     text = edit.selected_text()
     user.paste("`{text}`")
-
 
 (symbol | punct | punked) {user.symbol_key}:
     insert("{symbol_key}")
