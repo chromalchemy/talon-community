@@ -103,22 +103,6 @@ clear word right:
     edit.extend_word_right()
     edit.delete()
 
-clear way left:
-    edit.extend_line_start()
-    edit.delete()
-
-clear way right:
-    edit.extend_line_end()
-    edit.delete()
-
-clear way up:
-    edit.extend_file_start()
-    edit.delete()
-
-clear way down:
-    edit.extend_file_end()
-    edit.delete()
-
 (chuck | crop | clear) (Pointer | point):
     key(shift:down)
     mouse_click(0)
