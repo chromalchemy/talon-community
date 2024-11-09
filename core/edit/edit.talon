@@ -258,8 +258,8 @@ new line below | slap: edit.line_insert_down()
 (you do | redo) [that]: edit.redo()
 
 # Save
-(file  | i'll) save: edit.save()
-(file  | i'll) save all: edit.save_all()
+(file  | i'll | full) save: edit.save()
+(file  | i'll  | full) save all: edit.save_all()
 
 ## +++++++++++++++++++ My custom stuff .
 
