@@ -221,3 +221,16 @@ def number_signed_small(m) -> int:
     """Parses an integer between -99 and 99."""
     number = m[-1]
     return -number if (m[0] in ["negative", "minus"]) else number
+
+# andreas digits (used in clippy)
+
+default_digits = (
+    "zero one two three four five six seven eight nine ten eleven twelve".split(" ")
+)
+
+mod.list("digit", "All number/digit keys")
+ctx.lists["user.digit"] = {
+    **{default_digits[i]: str(i) for i in range(10)},
+    "sero": "0",
+    # "oh": "0",
+}
