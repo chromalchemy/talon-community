@@ -4,7 +4,7 @@
 tag(): user.rango_direct_clicking
 
 
-(open [in] new [(tab | page)] | new tab) {user.website}: 
+open [in] new [(tab | page)] {user.website}: 
     user.open_url(website)
 
 (go | open | hope in) [(tab | page)] {user.website} [again]:
