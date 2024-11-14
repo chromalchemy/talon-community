@@ -195,7 +195,7 @@ suggest show:
 hint show:
 	 user.vscode("editor.action.triggerParameterHints")
 
-definition show | go (def | deaf | definition) :
+definition show:
 	 user.vscode("editor.action.revealDefinition")
 
 (def | deaf | definition) peek:
@@ -234,7 +234,7 @@ problem fix:
 rename that:
 	 user.vscode("editor.action.rename")
 
-refactor that:
+refactor (that | this):
 	 user.vscode("editor.action.refactor")
 
 whitespace trim:
@@ -243,11 +243,6 @@ whitespace trim:
 language switch:
 	 user.vscode("workbench.action.editor.changeLanguageMode")
 
-refactor rename:
-	 user.vscode("editor.action.rename")
-
-refactor this:
-	 user.vscode("editor.action.refactor")
 
 ## +++++++++++++++++++ code navigation .
 
@@ -269,11 +264,10 @@ go type:
 go usage: 
     user.vscode("references-view.find")
 
-go recent [<user.text>]:
+pick recent project [folder] [<user.text>]:
     user.vscode("workbench.action.openRecent")
     sleep(50ms)
     insert(text or "")
-    sleep(250ms)
 
 go edit: user.vscode("workbench.action.navigateToLastEditLocation")
 
