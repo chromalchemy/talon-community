@@ -17,7 +17,7 @@ class Actions:
         subprocess.Popen(cmd, shell=True)
 
     def system_command_nb_get_text(cmd: str):
-        """execute a command on the system without blocking"""
+        """non blocking get text"""
         subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         # Read the output from the pipe
         output = process.communicate()[0]
@@ -29,6 +29,27 @@ class Actions:
         """execute a fn for ps repl via bb nrepl command"""
         cmd = 'cd "/Users/ryan/dev/ps script/plugins/scittle-repl"; bb nrepl-eval "' + f + '"' 
         subprocess.Popen(cmd, shell=True)
+
+    def bb_transform_text(input_text: str):
+        """tranforms a string with bb"""
+        cmd = "cd /Users/ryan/.talon/user/ryan/clojure/string-fns/ && bb uppercase.clj"
+        process = subprocess.Popen(
+            cmd,
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            shell=True)
+        stdout, stderr = process.communicate(input=input_text)
+        if process.returncode != 0:
+            print(f"Error: {stderr.strip()}")
+            return None
+        bb_result = stdout.strip() 
+        if bb_result:
+            print("bb result is: ", bb_result.upper())
+        else:
+            print("bb result is None")
+        return bb_result
 
     def betterdisplay_set(f: str):
         """execute a betterdisplay command"""
