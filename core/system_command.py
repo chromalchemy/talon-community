@@ -59,7 +59,6 @@ class Actions:
     def bb_transform_text(input_text: str, bb_fn_name: str):
          """tranforms a string with bb"""
          actions.user.bb_run_fn(input_text, bb_fn_name, "ryan/clojure/string-fns/") 
-    
 
     def betterdisplay_set(f: str):
         """execute a betterdisplay command"""
