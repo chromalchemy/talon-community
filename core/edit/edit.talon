@@ -1,7 +1,7 @@
 
 custom paste upper:
     x = clip.text() 
-    s = user.bb_transform_text(x)
+    s = user.bb_transform_text(x, "string-transforms/uppercase")
     user.paste(s)
 
 
