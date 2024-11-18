@@ -2,9 +2,9 @@
 custom paste upper:
     x = clip.text() 
     s = user.bb_transform_text(x)
-    insert(s)
+    user.paste(s)
 
-    
+
 # Compound of action(select, clear, copy, cut, paste, etc.) and modifier(word, line, etc.) commands for editing text.
 # eg: "select line", "clear all"
 <user.edit_action> <user.edit_modifier>: user.edit_command(edit_action, edit_modifier)

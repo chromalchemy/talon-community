@@ -32,7 +32,11 @@ class Actions:
 
     def bb_transform_text(input_text: str):
         """tranforms a string with bb"""
-        cmd = "cd /Users/ryan/.talon/user/ryan/clojure/string-fns/ && bb uppercase.clj"
+        bb_folder_path = "/Users/ryan/.talon/user/ryan/clojure/string-fns/"
+        bb_fn_name = "string-transforms/uppercase"
+        change_folder_cmd = "cd " + bb_folder_path
+        bb_cmd =  "bb -x " + bb_fn_name 
+        cmd = change_folder_cmd + " && " bb_cmd 
         process = subprocess.Popen(
             cmd,
             stdin=subprocess.PIPE,
