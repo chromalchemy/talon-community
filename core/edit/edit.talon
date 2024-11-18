@@ -1,7 +1,8 @@
 
 custom paste upper:
     x = clip.text() 
-    s = user.bb_transform_text(x, "string-transforms/uppercase")
+    # s = user.bb_transform_text(x, "string-transforms/uppercase")
+    s = user.bb_run_fn(x, "string-transforms/uppercase", "ryan/clojure/string-fns/")
     user.paste(s)
 
 

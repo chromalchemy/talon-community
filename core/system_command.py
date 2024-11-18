@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-from talon import Module
+from talon import Module, actions
 
 mod = Module()
 
@@ -30,11 +30,11 @@ class Actions:
         cmd = 'cd "/Users/ryan/dev/ps script/plugins/scittle-repl"; bb nrepl-eval "' + f + '"' 
         subprocess.Popen(cmd, shell=True)
 
-    def bb_transform_text(input_text: str, bb_fn_name: str):
-        """tranforms a string with bb"""
-        bb_folder_path = "/Users/ryan/.talon/user/ryan/clojure/string-fns/"
-        # bb_fn_name = "string-transforms/uppercase"
-        change_folder_cmd = "cd " + bb_folder_path
+    def bb_run_fn(input_text: str, bb_fn_name: str, bb_path: str) -> str:
+        """run a bb fn with input text"""
+        talon_user_path = "/Users/ryan/.talon/user/"
+        talon_bb_folder_path = talon_user_path + bb_path
+        change_folder_cmd = "cd " + talon_bb_folder_path
         bb_cmd =  "bb -x " + bb_fn_name 
         cmd = change_folder_cmd + " && " + bb_cmd 
         process = subprocess.Popen(
@@ -53,7 +53,13 @@ class Actions:
             print("bb result is: ", bb_result.upper())
         else:
             print("bb result is None")
+        print(type(bb_result))
         return bb_result
+    
+    def bb_transform_text(input_text: str, bb_fn_name: str):
+         """tranforms a string with bb"""
+         actions.user.bb_run_fn(input_text, bb_fn_name, "ryan/clojure/string-fns/") 
+    
 
     def betterdisplay_set(f: str):
         """execute a betterdisplay command"""
