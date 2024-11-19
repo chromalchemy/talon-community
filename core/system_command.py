@@ -37,6 +37,7 @@ class Actions:
         change_folder_cmd = "cd " + talon_bb_folder_path
         bb_cmd =  "bb -x " + bb_fn_name 
         cmd = change_folder_cmd + " && " + bb_cmd 
+        print(f"Command: {cmd}")
         process = subprocess.Popen(
             cmd,
             stdin=subprocess.PIPE,
@@ -45,20 +46,33 @@ class Actions:
             text=True,
             shell=True)
         stdout, stderr = process.communicate(input=input_text)
+        # print(f"Stdout: {stdout.strip()}")
+        # print(f"Stderr: {stderr.strip()}")
         if process.returncode != 0:
             print(f"Error: {stderr.strip()}")
             return None
         bb_result = stdout.strip() 
-        if bb_result:
-            print("bb result is: ", bb_result.upper())
-        else:
-            print("bb result is None")
-        print(type(bb_result))
+        if bb_result is None:
+            print("bb result is actually None")
+        elif bb_result == '':
+            print("bb result is an empty string")
+        # else:
+        #     print("bb result is: ", bb_result.upper())
         return bb_result
     
-    def bb_transform_text(input_text: str, bb_fn_name: str):
+    def print_type(x: object):
+        """debugging print type"""
+        print(f"Type: {type(x)}")
+
+    def bb_transform_text(input_text: str, bb_fn_name: str) -> str:
          """tranforms a string with bb"""
-         actions.user.bb_run_fn(input_text, bb_fn_name, "ryan/clojure/string-fns/") 
+        #  print(f"Input to bb_transform_text: {input_text}")
+         x = actions.user.bb_run_fn(input_text, bb_fn_name, "ryan/clojure/string-fns/")
+        #  print(f"Transformed text: {x}")
+        #  print(f"Type of transformed text: {type(x)}")
+        #  if x is None:
+        #     print("Warning: bb_transform_text is returning None.")
+         return x
 
     def betterdisplay_set(f: str):
         """execute a betterdisplay command"""

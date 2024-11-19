@@ -1,14 +1,17 @@
 
-custom paste upper:
-    x = clip.text() 
-    # s = user.bb_transform_text(x, "string-transforms/uppercase")
-    s = user.bb_run_fn(x, "string-transforms/uppercase!", "ryan/clojure/string-fns/")
-    user.paste(s)
 
-remove link params:
+
+remove (link | url) (parameters | params) | (paste | pace) (link | url) (without | no) (parameters | params):
     x = clip.text() 
     s = user.bb_run_fn(x, "string-transforms/remove-url-params!", "ryan/clojure/string-fns/")
     user.paste(s)
+
+custom paste upper:
+    clip_text = clip.text()
+    transformed_text = user.bb_transform_text(clip_text, "string-transforms/uppercase!")
+    # user.print_type(y)
+    user.paste(transformed_text)
+
     
 # Compound of action(select, clear, copy, cut, paste, etc.) and modifier(word, line, etc.) commands for editing text.
 # eg: "select line", "clear all"
