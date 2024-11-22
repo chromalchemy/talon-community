@@ -73,13 +73,3 @@ class Actions:
         #  if x is None:
         #     print("Warning: bb_transform_text is returning None.")
          return x
-
-    def betterdisplay_set(f: str):
-        """execute a betterdisplay command"""
-        cmd = 'betterdisplaycli set --UUID=37D8832A-2D66-02CA-B9F7-8F30A301B230 --' + f + '; exit 0' 
-        subprocess.Popen(cmd, shell=True)
-
-    def betterdisplay_toggle(f: str):
-        """execute a betterdisplay command"""
-        cmd = 'betterdisplaycli toggle --UUID=37D8832A-2D66-02CA-B9F7-8F30A301B230 -' + f + '; exit 0' 
-        subprocess.Popen(cmd, shell=True)
