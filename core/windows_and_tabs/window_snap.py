@@ -317,6 +317,13 @@ ctx.lists["user.window_split_positions"] = _split_positions.keys()
 
 @mod.action_class
 class Actions:
+    def string_to_int(value: str) -> int:
+        """Convert a string to an integer."""
+        try:
+            return int(value)
+        except ValueError:
+            raise actions.speech.say("Invalid number format")
+        
     def snap_window(position: RelativeScreenPos) -> None:
         """Move the active window to a specific position on its current screen, given a `RelativeScreenPos` object."""
         _snap_window_helper(ui.active_window(), position)

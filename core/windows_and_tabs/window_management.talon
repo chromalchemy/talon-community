@@ -82,9 +82,6 @@ snap <user.running_applications> <user.window_snap_position>:
 # <user.running_applications> is here twice to require at least two applications.
 snap <user.window_split_position> <user.running_applications> <user.running_applications>+:
     user.snap_layout(window_split_position, running_applications_list)
-    
-snap <user.running_applications> [screen] <number>:
-    user.move_app_to_screen(running_applications, number)
 
 ## +++++++++++ move to another screen .
 
@@ -94,5 +91,38 @@ snap next [screen]:
 snap last [screen]: 
     user.move_window_previous_screen()
 
-snap screen <number>: 
+## ++++++++++ snap to screen by number .
+
+snap [screen] <number>: 
     user.move_window_to_screen(number)
+
+snap [screen] <number> <user.window_snap_position>: 
+    user.move_window_to_screen(number)
+    user.snap_window(window_snap_position)
+
+snap <user.running_applications> [screen] <number>:
+    user.move_app_to_screen(running_applications, number)
+
+snap <user.running_applications> [screen] <number> <user.window_snap_position>:
+    user.move_app_to_screen(running_applications, number)
+    user.snap_app(running_applications, window_snap_position)
+
+## ++++++ snap with explict sreen name .
+
+snap {user.ryan.display_number.list} [screen]: 
+    number = user.string_to_int(user.ryan.display_number.list)
+    user.move_window_to_screen(number)
+
+snap {user.ryan.display_number.list} [screen] <user.window_snap_position>: 
+    number = user.string_to_int(user.ryan.display_number.list)
+    user.move_window_to_screen(number)
+    user.snap_window(window_snap_position)
+
+snap <user.running_applications> {user.ryan.display_number.list} [screen]:
+    number = user.string_to_int(user.ryan.display_number.list)
+    user.move_app_to_screen(running_applications, number)
+    
+snap <user.running_applications> {user.ryan.display_number.list} [screen] <user.window_snap_position>:
+    number = user.string_to_int(user.ryan.display_number.list)
+    user.move_app_to_screen(running_applications, number)
+    user.snap_app(running_applications, window_snap_position)
