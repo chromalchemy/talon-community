@@ -4,6 +4,9 @@ zoom mouse: tracking.control_zoom_toggle()
 camera overlay: tracking.control_debug_toggle()
 run calibration: tracking.calibrate()
 
+
+## ++++++++++++++++++++++++++++ clicks .
+
 touch:
     # close zoom if open
     user.zoom_close()
@@ -84,6 +87,8 @@ duke | (dub | double) (click | lick | touch):
     # close the mouse grid
     user.grid_close()
 
+## ++++++++++++++++++++++++++ dragging .
+
 [left] drag [(lock | start)] :
     # close zoom if open
     user.zoom_close()
@@ -103,17 +108,26 @@ duke | (dub | double) (click | lick | touch):
 ^drop$: user.mouse_drag_end()
 
 
+## +++++++++++++++++++++++++++++++ position
+
 copy mouse (position | location): user.copy_mouse_position()
 
-curse no:
-    # Command added 2021-12-13, can remove after 2022-06-01
-    app.notify("Please activate the user.mouse_cursor_commands_enable tag to enable this command")
 
 ## ++++++++++++++++++++++++++ my stuff . 
+
+# make percent of screen todo:
+
+(mouse | curse) right <number>:
+    mouse_nudge(number, 0)
+
+(mouse | curse) left <number>:
+    mouse_nudge(user.negative_int(number), 0)
+
 #todo: get this working in finder
 
 #todo: Implement option clicks
 
+## ++++++++++++++++++++++ custom drags .
 
 (option | alt) drag:
     key(alt:down)

@@ -1,7 +1,7 @@
 import math
 from typing import Iterator, Union
 
-from talon import Context, Module
+from talon import Context, Module, actions
 
 mod = Module()
 ctx = Context()
@@ -312,3 +312,9 @@ ctx.lists["user.digit"] = {
     "sero": "0",
     # "oh": "0",
 }
+
+@mod.action_class
+class Actions:
+    def negative_int(n: int):
+        """Converts a positive integer to a negative integer"""
+        return -n
