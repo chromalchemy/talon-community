@@ -172,6 +172,7 @@ hdr,header
 helo,hello
 hist,history
 http,hypertext
+https,hypertext secure
 id,identity
 ign,ignore
 img,image
