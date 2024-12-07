@@ -39,10 +39,10 @@ ide, Code
 code, Code
 hack, Code
 
-photo, Adobe Photoshop (Beta)
-photos, Adobe Photoshop (Beta)
-further, Adobe Photoshop (Beta)
-fot, Adobe Photoshop (Beta)
+photo, Adobe Photoshop 2025
+photos, Adobe Photoshop 2025
+further, Adobe Photoshop 2025
+fot, Adobe Photoshop 2025
 
 photo dev, Adobe UXP Developer Tools
 photo dev tools, Adobe UXP Developer Tools
@@ -61,5 +61,8 @@ get bit chat, zulip
 
 duck, Cyberduck
 cyber, Cyberduck 
+
+activity, Activity Monitor
+monitor, Activity Monitor
 
 
