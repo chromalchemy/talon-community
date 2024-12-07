@@ -3,8 +3,12 @@ list: user.letter
 # for common alternative spoken forms for letters, visit
 # https://talon.wiki/quickstart/improving_recognition_accuracy/#collected-alternatives-to-the-default-alphabet
 air: a
+ax: a
+acts: a
+ex: a
 brav: b
 bravo: b
+bat: b
 cap: c
 drum: d
 each: e
