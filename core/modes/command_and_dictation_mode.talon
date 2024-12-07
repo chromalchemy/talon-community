@@ -15,3 +15,7 @@ mode: dictation
   mode.disable("sleep")
   mode.enable("dictation")
   mode.enable("command")
+
+# not working
+# change engine:
+#     user.settings("speech.engine", "wav2letter")

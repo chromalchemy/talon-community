@@ -29,7 +29,7 @@ focus$: user.switcher_menu()
 #     user.switch
 #     user.switcher_focus_window("Flowstorm Debugger")
 
-(focus | go)  [app] <user.running_applications> [app]: 
+(focus | go | ghost)  [app] <user.running_applications> [app]: 
     user.switcher_focus(running_applications)
 
 # This doesn't work from another app needs a window object, not string
@@ -75,6 +75,7 @@ snap <user.window_snap_position>:
     user.snap_window(window_snap_position)
 
 ## ++++++++++++++ snap app to position .
+
 #doesnt bring to front
 snap <user.running_applications> <user.window_snap_position>:
     user.snap_app(running_applications, window_snap_position)
@@ -109,20 +110,23 @@ snap <user.running_applications> [screen] <number> <user.window_snap_position>:
 
 ## ++++++ snap with explict sreen name .
 
-snap {user.ryan.display_number.list} [screen]: 
-    number = user.string_to_int(user.ryan.display_number.list)
+# print screen number {user.ryan.display.display_number.list}: 
+#     print("{user.ryan.display.display_number.list}")
+
+snap {user.ryan.display.display_number.list} [screen]: 
+    number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
 
-snap {user.ryan.display_number.list} [screen] <user.window_snap_position>: 
-    number = user.string_to_int(user.ryan.display_number.list)
+snap {user.ryan.display.display_number.list} [screen] <user.window_snap_position>: 
+    number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
     user.snap_window(window_snap_position)
 
-snap <user.running_applications> {user.ryan.display_number.list} [screen]:
-    number = user.string_to_int(user.ryan.display_number.list)
+snap <user.running_applications> {user.ryan.display.display_number.list} [screen]:
+    number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_app_to_screen(running_applications, number)
     
-snap <user.running_applications> {user.ryan.display_number.list} [screen] <user.window_snap_position>:
-    number = user.string_to_int(user.ryan.display_number.list)
+snap <user.running_applications> {user.ryan.display.display_number.list} [screen] <user.window_snap_position>:
+    number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_app_to_screen(running_applications, number)
     user.snap_app(running_applications, window_snap_position)
