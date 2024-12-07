@@ -7,6 +7,7 @@ from typing import Union
 
 from talon import Module, actions, app, clip, registry, scope, speech_system, ui
 from talon.grammar import Phrase
+from talon.scripting.types import ListTypeFull
 
 pp = pprint.PrettyPrinter()
 
@@ -164,6 +165,10 @@ class Actions:
         for app in apps:
             pp.pprint(app.windows())
 
+    def talon_get_active_registry_list(name: str) -> ListTypeFull:
+        """Returns the active list from the Talon registry"""
+        return registry.lists[name][-1]
+    
     def talon_open_log_in_warp_window():
         """open in warp"""
         actions.key("cmd-space delete")
