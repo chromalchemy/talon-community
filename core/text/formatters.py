@@ -249,6 +249,7 @@ formatter_list = [
 formatters_dict = {f.id: f for f in formatter_list}
 
 
+
 # Mapping from spoken phrases to formatter names
 code_formatter_names = {
     "all cap": "ALL_CAPS",
@@ -259,6 +260,9 @@ code_formatter_names = {
     "dunder": "DOUBLE_UNDERSCORE",
     "hammer": "PUBLIC_CAMEL_CASE",
     "kebab": "DASH_SEPARATED",
+    "dashy": "DASH_SEPARATED",
+    "dash-out": "DASH_SEPARATED",
+    "dashed": "DASH_SEPARATED",
     "named": "NS_SLASH_SEPARATED",
     "packed": "DOUBLE_COLON_SEPARATED",
     "padded": "SPACE_SURROUNDED_STRING",
