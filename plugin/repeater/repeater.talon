@@ -4,7 +4,7 @@
 
 <number_small> times: core.repeat_command(number_small - 1)
 
-repeat that | again | twice | pop : core.repeat_command(1)
+repeat that | (again | hogan) | twice | pop : core.repeat_command(1)
 
 #headset mic not sensitive enough
 # noise(pop): core.repeat_command(1)
