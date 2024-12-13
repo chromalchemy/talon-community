@@ -131,7 +131,9 @@ clear word right:
 
 # Copy
 copy [(that | it)]: edit.copy()
-copy all: user.copy_all()
+copy all: 
+    edit.select_all()
+    edit.copy()
 copy line: user.copy_line()
 copy line start: user.copy_line_start()
 copy line end: user.copy_line_end()
