@@ -1,15 +1,16 @@
 os: mac
 app: finder
 -
+tag(): user.address
 tag(): user.file_manager
+tag(): user.navigation
 tag(): user.tabs
 
 preferences: key(cmd-,)
 options: key(cmd-j)
 
 
-
-search: key(cmd-f)
+search: key(cmd-alt-f)
 
 search <user.text>: 
     key(cmd-f)
