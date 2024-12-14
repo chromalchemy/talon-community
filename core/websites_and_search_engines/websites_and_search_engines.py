@@ -14,7 +14,7 @@ mod.list(
 @mod.action_class
 class Actions:
     def open_url(url: str):
-        """Visit the given URL."""
+        """Visit the given URL. Switches to Browser"""
         webbrowser.open(url)
 
     def search_with_search_engine(search_template: str, search_text: str):

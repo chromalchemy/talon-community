@@ -3,10 +3,11 @@
 
 tag(): user.rango_direct_clicking
 
-
-open [in] new [(tab | page)] {user.website}: 
+# switches to browser
+(browse | open [in]) new [(tab | page)] {user.website}: 
     user.open_url(website)
 
+# #bug doesnt work with localhost urls ?   
 (go | open | hope in) [(tab | page)] {user.website} [again]:
     user.switcher_focus("Google Chrome")
     sleep(300ms)
