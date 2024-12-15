@@ -161,15 +161,14 @@ fmt,format
 fgt,fortigate
 fw,framework
 freq,frequency
-func,function
-funcs,functions
+fn,function
+fns,functions
 lol,funny
 fzy,fuzzy
 gen,generate
 gen,generic
 hw,hardware
 hdr,header
-helo,hello
 hist,history
 http,hypertext
 https,hypertext secure
