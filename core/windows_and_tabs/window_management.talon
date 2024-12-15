@@ -14,6 +14,11 @@
 
 ## ++++++++++++++++ switch in-app windows .
 
+
+app (window | win) swap | swap app win: 
+    #triggers homerow #3
+    key(alt-1)
+
 app (window | win) next | next app win: app.window_next()
 app (window | win) last | last app win: app.window_previous()
 
