@@ -27,7 +27,12 @@ class Actions:
 
     def ps_command_nb(f: str):
         """execute a fn for ps repl via bb nrepl command"""
-        cmd = 'cd "/Users/ryan/dev/ps script/plugins/scittle-repl"; bb nrepl-eval "' + f + '"' 
+        code_path = '"/Users/ryan/dev/ps script/plugins/ps-scittle-repl"'
+        ps_require_str = "(require 'playground)"
+        # cljs_call =  '"' + ps_require_str + " " + f + '"'
+        cljs_call =  '"' + f + '"'
+        cmd = 'cd ' +  code_path + ' ; bb nrepl-eval ' + cljs_call
+        print(cmd)
         subprocess.Popen(cmd, shell=True)
 
     def bb_run_fn(input_text: str, bb_fn_name: str, bb_path: str) -> str:
