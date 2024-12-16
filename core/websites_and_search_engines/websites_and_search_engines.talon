@@ -3,8 +3,11 @@
 
 tag(): user.rango_direct_clicking
 
+(paste | pace | insert) {user.website} [address]: 
+    user.paste(website)
+    
 # switches to browser
-(browse | open [in]) new [(tab | page)] {user.website}: 
+(browse | open [in]) [new] [(tab | page)] Series set timer {user.website}: 
     user.open_url(website)
 
 # #bug doesnt work with localhost urls ?   
@@ -13,11 +16,17 @@ tag(): user.rango_direct_clicking
     sleep(300ms)
     user.rango_command_without_target("focusOrCreateTabByUrl", website)
 
-open [in] [new] [(tab | page)] that: 
-    user.open_url(edit.selected_text())
-    
-open [in] [new] [(tab | page)] paste: 
-    user.open_url(clip.text())
+browse that [([in] [new] (tab | page) | new)]:
+    url = edit.selected_text() 
+    user.open_url(url)
+    # user.switcher_focus("Google Chrome")
+    # sleep(300ms)
+
+open clip [in] [new] [(tab | page)]:
+    copied_url = clip.text() 
+    user.open_url(copied_url)
+    # user.switcher_focus("Google Chrome")
+    # sleep(300ms)
 
 ## +++++++++++++++++++++++ search page .
 
