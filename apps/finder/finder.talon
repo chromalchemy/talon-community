@@ -127,4 +127,4 @@ open file: key(cmd-o)
 
 close | close: key(space)
 
-get info: key(cmd-i)
+(get | file) info: key(cmd-i)

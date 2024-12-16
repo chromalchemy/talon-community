@@ -140,6 +140,7 @@ class EditActions:
         # action(edit.paragraph_start):
 
     def paste():
+        print("pasting from mac")
         actions.key("cmd-v")
 
     def paste_match_style():
