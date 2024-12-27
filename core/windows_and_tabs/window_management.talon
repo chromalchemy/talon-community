@@ -34,7 +34,7 @@ focus$: user.switcher_menu()
 #     user.switch
 #     user.switcher_focus_window("Flowstorm Debugger")
 
-(focus | go | ghost)  [app] <user.running_applications> [app]: 
+[(focus | go | ghost)]  [app] <user.running_applications> [app]: 
     user.switcher_focus(running_applications)
 
 # This doesn't work from another app needs a window object, not string
@@ -55,7 +55,6 @@ focus$: user.switcher_menu()
 
 launch <user.launch_applications>: 
     user.switcher_launch(launch_applications)
-    
 
 ## +++++++++++++++++++++++++ show running app names in talon help popup .
 
