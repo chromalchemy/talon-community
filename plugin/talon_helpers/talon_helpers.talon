@@ -89,7 +89,7 @@ key(cmd-ctrl-alt-shift-d):
     # key(cmd-k)
     # sleep(300ms)
     user.talon_sim_phrase("{phrase}")
-    user.switcher_focus("Warp")
+    user.talon_focus_warp_talon_log()
     # menu.open_log()
 
 ## +++++++++++++++++++++++++++++ debug .

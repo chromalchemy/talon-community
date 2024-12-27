@@ -181,16 +181,17 @@ class Actions:
         actions.insert("Talon Log")
         actions.key("enter")
         actions.sleep("400ms")
-        actions.user.paste("tail -f /Users/ryan/.talon/talon.log")
+        actions.user.paste("""tail -f /Users/ryan/.talon/talon.log | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} //'""")
         actions.sleep("300ms")
         actions.key("enter")
     
     def talon_focus_warp_talon_log():
         """focus warp window with talon log, minimizeg other first"""
         actions.user.switcher_focus("Warp")
-        actions.user.menu_select("Window|Minimize All")
-        actions.sleep("300ms")
-        actions.user.menu_select("Window|Talon Log")
+        actions.key("cmd-1")
+        # actions.user.menu_select("Window|Minimize All")
+        # actions.sleep("300ms")
+        # actions.user.menu_select("Window|Talon Log")
         
     def talon_relaunch():
         """Quit and relaunch the Talon app"""
