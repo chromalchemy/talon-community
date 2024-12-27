@@ -3,15 +3,17 @@
 
 tag(): user.rango_direct_clicking
 
-(paste | pace | insert) {user.website} [address]: 
+(paste | pace | insert) [((web  | website) address | url)] {user.website} : 
     user.paste(website)
     
 # switches to browser
-(browse | open [in]) [new] [(tab | page)] Series set timer {user.website}: 
+(browse | open [in]) [new] [(tab | page)] {user.website}: 
     user.open_url(website)
+    # this doesnt do anything..
+    # user.browser_open_address_in_new_tab(website)
 
 # #bug doesnt work with localhost urls ?   
-(go | open | hope in) [(tab | page)] {user.website} [again]:
+(go | (open | hope in)) [(tab | page)] {user.website} [again]:
     user.switcher_focus("Google Chrome")
     sleep(300ms)
     user.rango_command_without_target("focusOrCreateTabByUrl", website)

@@ -18,10 +18,11 @@ wikipedia: https://en.wikipedia.org/
 youtube: https://www.youtube.com/
 
 
-get bit home: https://getbitoutdoors.com/
 
 get bit blanks: https://getbitoutdoors.com/blanks/
 get bit rain shadow blanks: https://getbitoutdoors.com/rainshadow/
+
+get bit home: https://getbitoutdoors.com/
 
 get bit local home: http://localhost:3000/best-of-2020/
 get bit local: http://localhost:3000/best-of-2020/
@@ -39,6 +40,9 @@ big commerce products: https://store-7hstasnrjg.mybigcommerce.com/manage/product
 
 
 constant contact campaigns: https://app.constantcontact.com/pages/campaigns/view/list
+constant contact calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
+
+
 batson site: https://batsonenterprises.com/products
 batson site categories: https://batsonenterprises.com/products
 batson home: https://batsonenterprises.com
@@ -52,7 +56,9 @@ constant contact: https://app.constantcontact.com/pages/campaigns/view/list
 constant contact calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
 constant contact   campaigns: https://app.constantcontact.com/pages/campaigns/email-hub
 tail wind reference: https://nerdcave.com/tailwind-cheat-sheet
+
 cursorless docs: https://www.cursorless.org/docs/
+
 cursorless reference: https://www.cursorless.org/cheatsheet
 cursorless cheat sheet: https://www.cursorless.org/cheatsheet
 cursor less cheat sheet: https://www.cursorless.org/cheatsheet
@@ -60,7 +66,9 @@ cursor cheatsheet: https://www.cursorless.org/cheatsheet
 cursor cheat sheet: https://www.cursorless.org/cheatsheet
 cursor reference: https://www.cursorless.org/cheatsheet
 cursor list cheat sheet: https://www.cursorless.org/cheatsheet
+
 cursorless interactive cheatsheet: https://voicelauncherblazor.azurewebsites.net/cursorlesscheatsheetitems
 cursor less interactive cheatsheet: https://voicelauncherblazor.azurewebsites.net/cursorlesscheatsheetitems
 cursor list interactive cheatsheet: https://voicelauncherblazor.azurewebsites.net/cursorlesscheatsheetitems
+
 tailwind cheatsheet: https://nerdcave.com/tailwind-cheat-sheet
