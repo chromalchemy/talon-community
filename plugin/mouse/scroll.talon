@@ -9,27 +9,28 @@ mouse hiss down: user.hiss_scroll_down()
 
 #down
 
+
 ^((wheel | we'll) down | (tall | (slide | sled | slit)))$: 
-    user.mouse_scroll_up(1)
+    user.mouse_scroll_down(1)
 
 ^((wheel | we'll) down | (tall | (slide | sled | slit))) [<number>]: 
-    user.mouse_scroll_up(number)  
+    user.mouse_scroll_down(number)  
 
 ((wheel | we'll) down | (tall | (slide | sled | slit))) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_up()
+    user.mouse_scroll_down()
 
 #up 
 
 ^((wheel | we'll) up | (sup | (bale | bail | bill)))$: 
-    user.mouse_scroll_down(1)  
+    user.mouse_scroll_up(1)  
 
 ^((wheel | we'll) up | (sup | (bale | bail | bill))) [<number>]: 
-    user.mouse_scroll_down(number)  
+    user.mouse_scroll_up(number)  
 
 ((wheel | we'll) up | (sup | (bale | bail | bill))) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_down()
+    user.mouse_scroll_up()
 
 ## ++++++++++++++++++++++++++++++ tiny .
 
@@ -39,22 +40,22 @@ mouse hiss down: user.hiss_scroll_down()
 ((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled | slit))) [<number>]:
     n = number or 4
     na = 0.1 * n 
-    user.mouse_scroll_up(na)
+    user.mouse_scroll_down(na)
 
 ((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled | slit))) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_up(0.2)
+    user.mouse_scroll_down(0.2)
 
 #up
 
 (wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill)):
     n = number or 4
     na = 0.1 * n 
-    user.mouse_scroll_down(na)
+    user.mouse_scroll_up(na)
 
 (wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill)) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_down(0.2)
+    user.mouse_scroll_up(0.2)
 
 
 ## ++++++++++++++++++ max, all the way .
@@ -62,36 +63,36 @@ mouse hiss down: user.hiss_scroll_down()
 #down
 
 (wheel | we'll) ((max | all) down | bottom) | (tall | (slide | sled | slit)) (max | all | bottom):
-    user.mouse_scroll_up(50.0)
+    user.mouse_scroll_down(50.0)
 
 ((wheel | we'll) ((max | all) down | bottom ) | (tall | (slide | sled | slit)) (max | all | bottom)) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_up(50.0)
+    user.mouse_scroll_down(50.0)
 
 #up 
 
 (wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill)) (max | all | top):
-    user.mouse_scroll_down(50.0)
+    user.mouse_scroll_up(50.0)
 
 (((wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill))) (max | all | top)) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_down(50.0)
+    user.mouse_scroll_up(50.0)
 
 ## ++++++++++++++++++++++++ continuous .
 
 [(wheel | we'll)] flow down [<number>]: 
-    user.mouse_scroll_up_continuous(number or 1)
+    user.mouse_scroll_down_continuous(number or 1)
 
 [(wheel | we'll)] flow up [<number>]: 
-    user.mouse_scroll_down_continuous(number or 1)
+    user.mouse_scroll_up_continuous(number or 1)
 
 [(wheel | we'll)] flow down here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_up_continuous()
+    user.mouse_scroll_down_continuous()
 
 [(wheel | we'll)] flow up here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_down_continuous()
+    user.mouse_scroll_up_continuous()
 
 ## ++++++++++++++++++++++++++++++ stop .
 

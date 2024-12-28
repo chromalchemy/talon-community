@@ -66,12 +66,12 @@ class Actions:
     def mouse_scroll_up(amount: float = 1):
         """Scrolls up"""
         y = amount * settings.get("user.mouse_wheel_down_amount")
-        actions.mouse_scroll(-y)
+        actions.mouse_scroll(y)
 
     def mouse_scroll_down(amount: float = 1):
         """Scrolls down"""
         y = amount * settings.get("user.mouse_wheel_down_amount")
-        actions.mouse_scroll(y)
+        actions.mouse_scroll(-y)
 
     def mouse_scroll_left(amount: float = 1):
         """Scrolls left"""
@@ -85,11 +85,11 @@ class Actions:
 
     def mouse_scroll_up_continuous():
         """Scrolls up continuously"""
-        mouse_scroll_continuous(-1)
+        mouse_scroll_continuous(1)
 
     def mouse_scroll_down_continuous():
         """Scrolls down continuously"""
-        mouse_scroll_continuous(1)
+        mouse_scroll_continuous(-1)
 
     def mouse_gaze_scroll():
         """Starts gaze scroll"""
