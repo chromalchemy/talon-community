@@ -9,7 +9,6 @@ mouse hiss down: user.hiss_scroll_down()
 
 #down
 
-
 ^((wheel | we'll) down | (tall | (slide | sled | slit)))$: 
     user.mouse_scroll_down(1)
 
@@ -80,11 +79,11 @@ mouse hiss down: user.hiss_scroll_down()
 
 ## ++++++++++++++++++++++++ continuous .
 
-[(wheel | we'll)] flow down [<number>]: 
-    user.mouse_scroll_down_continuous(number or 1)
+[(wheel | we'll)] flow down: 
+    user.mouse_scroll_down_continuous()
 
-[(wheel | we'll)] flow up [<number>]: 
-    user.mouse_scroll_up_continuous(number or 1)
+[(wheel | we'll)] flow up: 
+    user.mouse_scroll_up_continuous()
 
 [(wheel | we'll)] flow down here:
     user.mouse_move_center_active_window()

@@ -164,7 +164,7 @@ class UserActions:
 
 def mouse_scroll_continuous(new_scroll_dir: Literal[-1, 1]):
     global scroll_job, scroll_dir, scroll_start_ts, continuous_scroll_mode
-
+    scroll_frequency = "66ms" # originally "16ms"
     if scroll_job:
         # Issuing a scroll in the same direction aborts scrolling
         if scroll_dir == new_scroll_dir:
@@ -180,20 +180,22 @@ def mouse_scroll_continuous(new_scroll_dir: Literal[-1, 1]):
         scroll_start_ts = time.perf_counter()
         continuous_scroll_mode = "scroll down continuous"
         scroll_continuous_helper()
-        scroll_job = cron.interval("16ms", scroll_continuous_helper)
+        scroll_job = cron.interval(scroll_frequency, scroll_continuous_helper)
 
         if not settings.get("user.mouse_hide_mouse_gui"):
             gui_wheel.show()
 
 
 def scroll_continuous_helper():
-    scroll_amount = settings.get("user.mouse_continuous_scroll_amount")
+    # scroll_amount = settings.get("user.mouse_continuous_scroll_amount")
+    scroll_amount = 1
     acceleration_setting = settings.get("user.mouse_continuous_scroll_acceleration")
-    acceleration_speed = (
-        1 + min((time.perf_counter() - scroll_start_ts) / 0.5, acceleration_setting - 1)
-        if acceleration_setting > 1
-        else 1
-    )
+    acceleration_speed = 1
+    # acceleration_speed = (
+    #     1 + min((time.perf_counter() - scroll_start_ts) / 0.5, acceleration_setting - 1)
+    #     if acceleration_setting > 1
+    #     else 1
+    # )
     y = scroll_amount * acceleration_speed * scroll_dir
     actions.mouse_scroll(y)
 
