@@ -14,7 +14,6 @@ mod.tag(
 ctx = Context()
 tags: set[str] = set()
 
-
 def add_tag(tag: str):
     if tag not in tags:
         tags.add(tag)
@@ -38,8 +37,9 @@ mod.setting(
 
 
 def get_editor_names():
-    names_csv = settings.get("user.draft_editor")
-    return names_csv.split(", ") if names_csv else default_names
+    # names_csv = settings.get("user.draft_editor")
+    # return names_csv.split(", ") if names_csv else default_names
+    return default_names
 
 
 def handle_app_running(_app):
