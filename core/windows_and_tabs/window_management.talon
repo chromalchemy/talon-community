@@ -120,10 +120,13 @@ snap <user.running_applications> [screen] <number> <user.window_snap_position>:
 snap {user.ryan.display.display_number.list} [screen]: 
     number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
+    sleep(200ms) 
+    user.snap_window_to_position("max")
 
 snap {user.ryan.display.display_number.list} [screen] <user.window_snap_position>: 
     number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
+    sleep(200ms)
     user.snap_window(window_snap_position)
 
 snap <user.running_applications> {user.ryan.display.display_number.list} [screen]:
