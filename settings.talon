@@ -41,7 +41,7 @@ settings():
     # user.mouse_enable_pop_click = 2
 
     # If `true`, use a hissing noise to scroll continuously
-    user.mouse_enable_hiss_scroll = true
+    user.mouse_enable_hiss_scroll = false
     
     # If `true`, hide the continuous scroll/gaze scroll GUI
     user.mouse_hide_mouse_gui = true
@@ -94,6 +94,7 @@ settings():
     # Time in seconds to wait for the clipboard to change when trying to get selected text
     # user.selected_text_timeout = 0.25
 
+
 # Uncomment to enable the curse yes/curse no commands (show/hide mouse cursor).
 # See issue #688 for more detail: https://github.com/talonhub/community/issues/688
 # tag(): user.mouse_cursor_commands_enable
@@ -113,3 +114,4 @@ settings():
 # By default you need to say "numb one" to write "1". If you uncomment this,
 # you can say "one" to write "1".
 # tag(): user.unprefixed_numbers
+
