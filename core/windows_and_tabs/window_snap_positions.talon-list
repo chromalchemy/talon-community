@@ -40,5 +40,6 @@ bottom left large: BOTTOM_LEFT_LARGE
 bottom right large: BOTTOM_RIGHT_LARGE
 bottom center small: BOTTOM_CENTER_SMALL
 center: CENTER
-full: FULL
+full: FULLSCREEN
 fullscreen: FULLSCREEN
+max: FULLSCREEN

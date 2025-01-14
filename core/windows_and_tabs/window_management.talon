@@ -123,6 +123,9 @@ snap {user.ryan.display.display_number.list} [screen]:
     sleep(200ms) 
     user.snap_window_to_position("max")
 
+grouchy <user.window_snap_position>:
+    print(window_snap_position)
+
 snap {user.ryan.display.display_number.list} [screen] <user.window_snap_position>: 
     number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
