@@ -1,4 +1,12 @@
 
+open trackpad scroll [panel]: 
+    user.run_raycast_command("pointer control")
+    sleep(5000ms)
+    key(tab)
+    repeat(9)
+    sleep(300ms)
+    # key(space)                                  
+
 ## ++++++++++++++++++++++++++++++ hiss .
 
 # To scroll with a hiss sound, set mouse_enable_hiss_scroll to true in settings.talon

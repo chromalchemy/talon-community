@@ -1,9 +1,20 @@
 
+## +++++++++++++++++ check for updates .
+
 (talon | tellin | tell in | tallin | talent) [voice] check [for] updates: 
     menu.check_for_updates()
 
+## +++++++++++++++++++++++++ open home .
+
+(talon | tellin | tell in | tallin | talent) [voice] home: 
+    menu.open_talon_home()
+
+## ++++++++++++++ open debug menu .
+
 # the debug window is only available in the talon beta
 talon open debug: menu.open_debug_window()
+
+## +++++++++++++++++++++++++ talon log .
 
 (open | launch) (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love) [tab]: 
     user.talon_open_log_in_warp_window()
@@ -18,11 +29,13 @@ key(cmd-ctrl-alt-shift-d):
     user.talon_focus_warp_talon_log()
     # menu.open_log()
 
+
+## ++++++++++++++++++++++++ talon repl .
+
 (talon | tellin | tell in | tallin | talent) [voice] [(show | open)] (rebel | repl): 
     menu.open_repl()
 
-(talon | tellin | tell in | tallin | talent) [voice] home: 
-    menu.open_talon_home()
+## ++++++++++++++++++++++ copy state .
 
 (talon | tellin | tell in | tallin | talent) [voice] copy context pie: 
     user.talon_add_context_clipboard_python()
@@ -58,7 +71,7 @@ key(cmd-ctrl-alt-shift-d):
     result = user.talon_get_active_context()
     print(result)
 
-## +++++++++++++++++++++++++++ Testing .
+## +++++++++++++++++++++++++++ Test (simulate) prhase .
 
 ^(talon | tellin | tell in | tallin | talent) [voice] (test | tests | sim | simulate)  last$:
     phrase = user.history_get(1)
@@ -81,7 +94,8 @@ key(cmd-ctrl-alt-shift-d):
     user.talon_focus_warp_talon_log()
     # menu.open_log()
 
-^(talon | tellin | tell in | tallin | talent) [voice]  (test | tests | sim | simulate)  <phrase>$: user.talon_sim_phrase(phrase)
+^(talon | tellin | tell in | tallin | talent) [voice]  (test | tests | sim | simulate)  <phrase>$: 
+    user.talon_sim_phrase(phrase)
 
 ^[(talon | tellin | tell in | tallin | talent)] [voice] [(test | tests | sim | simulate)] (log | love) <phrase>$: 
     # user.talon_focus_warp_talon_log()
@@ -92,7 +106,7 @@ key(cmd-ctrl-alt-shift-d):
     user.talon_focus_warp_talon_log()
     # menu.open_log()
 
-## +++++++++++++++++++++++++++++ debug .
+## +++++++++++++++++++++++++++++ debug helpers.
 
 ^(talon | tellin | tell in | tallin | talent) [voice] debug action {user.talon_actions}$:
     user.talon_action_find("{user.talon_actions}")
@@ -106,6 +120,8 @@ key(cmd-ctrl-alt-shift-d):
 ^(talon | tellin | tell in | tallin | talent) [voice] debug setting {user.talon_settings}$: user.talon_debug_setting(talon_settings)
 ^(talon | tellin | tell in | tallin | talent) [voice] debug all settings$: user.talon_debug_all_settings()
 
+## ++++++++++++++++++++++++ debug active app .
+
 ^(talon | tellin | tell in | tallin | talent) [voice] debug active app$:
     result = user.talon_get_active_application_info()
     print("**** Dumping active application **** ")
@@ -116,17 +132,23 @@ key(cmd-ctrl-alt-shift-d):
     result = user.talon_get_active_application_info()
     clip.set_text(result)
 
+## ++++++++++++++++++++ create context .
+
 ^(talon | tellin | tell in | tallin | talent) [voice] create app context$: user.talon_create_app_context()
 ^(talon | tellin | tell in | tallin | talent) [voice] create windows app context$: user.talon_create_app_context("win")
 ^(talon | tellin | tell in | tallin | talent) [voice] create linux app context$: user.talon_create_app_context("linux")
 ^(talon | tellin | tell in | tallin | talent) [voice] create mac app context$: user.talon_create_app_context("mac")
     
+## ++++++++++++++++++++++++ bug report .
 
 ^(talon | tellin | tell in | tallin | talent) [voice] (bug report | report bug):
     user.open_url("https://github.com/(talon | tellin | tell in | tallin | talent) [voice]hub/community/issues")
 
+## +++++++++++++++++++++ restart talon .
+
 ^(talon | tellin | tell in | tallin | talent) [voice] (relaunch  | restart): user.talon_relaunch()
 
+## +++++ open talon project and search .
 
 (hunt | hun) (talon | tellin | talin | command | tall and) [<user.text>]:
     user.system_command_nb("code '/Users/ryan/.talon/user/talon-user.code-workspace'")
@@ -141,6 +163,8 @@ key(cmd-ctrl-alt-shift-d):
     user.vscode("workbench.view.search")
     sleep(200ms)
     edit.paste()
+
+## +++++++++++++++++++ open talon binding file .
 
 (go | open) [(talon  | talin | tellin)] [voice] abbreviations: 
     key(cmd-p)
