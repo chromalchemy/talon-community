@@ -181,7 +181,7 @@ class Actions:
         actions.insert("Talon Log")
         actions.key("enter")
         actions.sleep("400ms")
-        actions.user.paste("""tail -f /Users/ryan/.talon/talon.log | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} //'""")
+        actions.user.paste(r"""tail -f /Users/ryan/.talon/talon.log | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} //'""")
         actions.sleep("300ms")
         actions.key("enter")
     
