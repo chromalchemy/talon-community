@@ -117,19 +117,19 @@ snap <user.running_applications> [screen] <number> <user.window_snap_position>:
 # print screen number {user.ryan.display.display_number.list}: 
 #     print("{user.ryan.display.display_number.list}")
 
+snap elephant [screen]: 
+    user.snap_window_to_position("FULLSCREEN")
+
 snap {user.ryan.display.display_number.list} [screen]: 
     number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
-    sleep(200ms) 
-    user.snap_window_to_position("max")
-
-grouchy <user.window_snap_position>:
-    print(window_snap_position)
+    sleep(300ms) 
+    user.snap_window_to_position("FULLSCREEN")
 
 snap {user.ryan.display.display_number.list} [screen] <user.window_snap_position>: 
     number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
-    sleep(200ms)
+    sleep(300ms)
     user.snap_window(window_snap_position)
 
 snap <user.running_applications> {user.ryan.display.display_number.list} [screen]:
