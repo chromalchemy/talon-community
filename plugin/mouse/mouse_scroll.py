@@ -164,7 +164,7 @@ class UserActions:
 
 def mouse_scroll_continuous(new_scroll_dir: Literal[-1, 1]):
     global scroll_job, scroll_dir, scroll_start_ts, continuous_scroll_mode
-    scroll_frequency = "16ms" # originally "16ms"
+    scroll_frequency = "8ms" # originally "16ms"
     if scroll_job:
         # Issuing a scroll in the same direction aborts scrolling
         if scroll_dir == new_scroll_dir:
