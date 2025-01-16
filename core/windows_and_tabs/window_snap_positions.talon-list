@@ -3,6 +3,7 @@ list: user.window_snap_positions
 
 left: LEFT
 right: RIGHT
+rate: RIGHT
 top: TOP
 bottom: BOTTOM
 center third: CENTER_THIRD
