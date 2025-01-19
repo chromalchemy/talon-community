@@ -24,9 +24,9 @@ search (name | names | file names) <user.text>:
     sleep(500ms)
     key(down enter)
 
-# exit search part and go to navigate file list
+# exit search payeahrt and go to navigate file list
 go list: 
-    key(cmd-shift-g)
+    user.address_focus()
     sleep(300ms)
     key(esc)
 
