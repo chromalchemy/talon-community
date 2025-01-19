@@ -56,11 +56,15 @@ and app.exe: positron.exe
 """
 
 ctx.matches = r"""
-app: vscode
+app.name: Code
+app.name: Cursor
+app.name: Windsurf
 """
 mac_ctx.matches = r"""
 os: mac
-app: vscode
+app.name: Code
+app.name: Cursor
+app.name: Windsurf
 """
 
 

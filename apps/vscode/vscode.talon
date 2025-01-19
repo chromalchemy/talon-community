@@ -1,5 +1,7 @@
 #custom vscode commands go here
-app: vscode
+app.name: Code
+app.name: Cursor
+app.name: Windsurf
 -
 tag(): user.find_and_replace
 tag(): user.line_commands
