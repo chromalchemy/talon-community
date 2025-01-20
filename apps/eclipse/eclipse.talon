@@ -122,22 +122,22 @@ break point: key(ctrl-shift-b)
 step over: key(f6)
 debug step into: key(f5)
 debug step out [of]: key(f7)
-#debug start: user.vscode("workbench.action.debug.start")
+#debug start: user.run_rpc_command("workbench.action.debug.start")
 #debug pause:
 #debug stopper:
 debug continue: key(f8)
 #debug restart:
 
 # Terminal
-# terminal external: user.vscode("workbench.action.terminal.openNativeConsole")
+# terminal external: user.run_rpc_command("workbench.action.terminal.openNativeConsole")
 
-# terminal new: user.vscode("workbench.action.terminal.new")
-# terminal next: user.vscode("workbench.action.terminal.focusNextPane")
-# terminal last:user.vscode("workbench.action.terminal.focusPreviousPane")
-# terminal split: user.vscode("workbench.action.terminal.split")
-# terminal trash: user.vscode("Terminal:Kill")
-# terminal scroll up: user.vscode("Terminal:ScrollUp")
-# terminal scroll down: user.vscode("Terminal:ScrollDown")
+# terminal new: user.run_rpc_command("workbench.action.terminal.new")
+# terminal next: user.run_rpc_command("workbench.action.terminal.focusNextPane")
+# terminal last:user.run_rpc_command("workbench.action.terminal.focusPreviousPane")
+# terminal split: user.run_rpc_command("workbench.action.terminal.split")
+# terminal trash: user.run_rpc_command("Terminal:Kill")
+# terminal scroll up: user.run_rpc_command("Terminal:ScrollUp")
+# terminal scroll down: user.run_rpc_command("Terminal:ScrollDown")
 
 #TODO: should this be added to linecommands?
 copy line down: key(ctrl-alt-down)

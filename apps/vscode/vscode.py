@@ -72,53 +72,53 @@ app.name: Windsurf
 class AppActions:
     # talon app actions
     def tab_open():
-        actions.user.vscode("workbench.action.files.newUntitledFile")
+        actions.user.run_rpc_command("workbench.action.files.newUntitledFile")
 
     def tab_close():
-        actions.user.vscode("workbench.action.closeActiveEditor")
+        actions.user.run_rpc_command("workbench.action.closeActiveEditor")
 
     def tab_next():
-        actions.user.vscode("workbench.action.nextEditorInGroup")
+        actions.user.run_rpc_command("workbench.action.nextEditorInGroup")
 
     def tab_previous():
-        actions.user.vscode("workbench.action.previousEditorInGroup")
+        actions.user.run_rpc_command("workbench.action.previousEditorInGroup")
 
     def tab_reopen():
-        actions.user.vscode("workbench.action.reopenClosedEditor")
+        actions.user.run_rpc_command("workbench.action.reopenClosedEditor")
 
     def window_close():
-        actions.user.vscode("workbench.action.closeWindow")
+        actions.user.run_rpc_command("workbench.action.closeWindow")
 
     def window_open():
-        actions.user.vscode("workbench.action.newWindow")
+        actions.user.run_rpc_command("workbench.action.newWindow")
 
 
 @ctx.action_class("code")
 class CodeActions:
     # talon code actions
     def toggle_comment():
-        actions.user.vscode("editor.action.commentLine")
+        actions.user.run_rpc_command("editor.action.commentLine")
 
 @ctx.action_class("edit")
 class EditActions:
     # talon edit actions
     def indent_more():
-        actions.user.vscode("editor.action.indentLines")
+        actions.user.run_rpc_command("editor.action.indentLines")
 
     def indent_less():
-        actions.user.vscode("editor.action.outdentLines")
+        actions.user.run_rpc_command("editor.action.outdentLines")
 
     def save_all():
-        actions.user.vscode("workbench.action.files.saveAll")
+        actions.user.run_rpc_command("workbench.action.files.saveAll")
 
     def save():
-        actions.user.vscode("workbench.action.files.save")
+        actions.user.run_rpc_command("workbench.action.files.save")
 
     def find_next():
-        actions.user.vscode("editor.action.nextMatchFindAction")
+        actions.user.run_rpc_command("editor.action.nextMatchFindAction")
 
     def find_previous():
-        actions.user.vscode("editor.action.previousMatchFindAction")
+        actions.user.run_rpc_command("editor.action.previousMatchFindAction")
 
     def line_swap_up():
         actions.key("alt-up")
@@ -130,19 +130,19 @@ class EditActions:
         actions.key("shift-alt-down")
 
     def line_insert_down():
-        actions.user.vscode("editor.action.insertLineAfter")
+        actions.user.run_rpc_command("editor.action.insertLineAfter")
 
     def line_insert_up():
-        actions.user.vscode("editor.action.insertLineBefore")
+        actions.user.run_rpc_command("editor.action.insertLineBefore")
 
     def jump_line(n: int):
-        actions.user.vscode("workbench.action.gotoLine")
+        actions.user.run_rpc_command("workbench.action.gotoLine")
         actions.insert(str(n))
         actions.key("enter")
         actions.edit.line_start()
 
     def zoom_reset():
-        actions.user.vscode("workbench.action.zoomReset")
+        actions.user.run_rpc_command("workbench.action.zoomReset")
 
 
 @ctx.action_class("win")
@@ -209,46 +209,46 @@ class MacUserActions:
 class UserActions:
     # splits.py support begin
     def split_clear_all():
-        actions.user.vscode("workbench.action.editorLayoutSingle")
+        actions.user.run_rpc_command("workbench.action.editorLayoutSingle")
 
     def split_clear():
-        actions.user.vscode("workbench.action.joinTwoGroups")
+        actions.user.run_rpc_command("workbench.action.joinTwoGroups")
 
     def split_flip():
-        actions.user.vscode("workbench.action.toggleEditorGroupLayout")
+        actions.user.run_rpc_command("workbench.action.toggleEditorGroupLayout")
 
     def split_maximize():
-        actions.user.vscode("workbench.action.toggleMaximizeEditorGroup")
+        actions.user.run_rpc_command("workbench.action.toggleMaximizeEditorGroup")
 
     def split_reset():
-        actions.user.vscode("workbench.action.evenEditorWidths")
+        actions.user.run_rpc_command("workbench.action.evenEditorWidths")
 
     def split_last():
-        actions.user.vscode("workbench.action.focusLeftGroup")
+        actions.user.run_rpc_command("workbench.action.focusLeftGroup")
 
     def split_next():
         actions.user.vscode_and_wait("workbench.action.focusRightGroup")
 
     def split_window_down():
-        actions.user.vscode("workbench.action.moveEditorToBelowGroup")
+        actions.user.run_rpc_command("workbench.action.moveEditorToBelowGroup")
 
     def split_window_horizontally():
-        actions.user.vscode("workbench.action.splitEditorOrthogonal")
+        actions.user.run_rpc_command("workbench.action.splitEditorOrthogonal")
 
     def split_window_left():
-        actions.user.vscode("workbench.action.moveEditorToLeftGroup")
+        actions.user.run_rpc_command("workbench.action.moveEditorToLeftGroup")
 
     def split_window_right():
-        actions.user.vscode("workbench.action.moveEditorToRightGroup")
+        actions.user.run_rpc_command("workbench.action.moveEditorToRightGroup")
 
     def split_window_up():
-        actions.user.vscode("workbench.action.moveEditorToAboveGroup")
+        actions.user.run_rpc_command("workbench.action.moveEditorToAboveGroup")
 
     def split_window_vertically():
-        actions.user.vscode("workbench.action.splitEditor")
+        actions.user.run_rpc_command("workbench.action.splitEditor")
 
     def split_window():
-        actions.user.vscode("workbench.action.splitEditor")
+        actions.user.run_rpc_command("workbench.action.splitEditor")
 
     def split_number(index: int):
         supported_ordinals = [
@@ -272,13 +272,13 @@ class UserActions:
     # multiple_cursor.py support begin
     # note: vscode has no explicit mode for multiple cursors
     def multi_cursor_add_above():
-        actions.user.vscode("editor.action.insertCursorAbove")
+        actions.user.run_rpc_command("editor.action.insertCursorAbove")
 
     def multi_cursor_add_below():
-        actions.user.vscode("editor.action.insertCursorBelow")
+        actions.user.run_rpc_command("editor.action.insertCursorBelow")
 
     def multi_cursor_add_to_line_ends():
-        actions.user.vscode("editor.action.insertCursorAtEndOfEachLineSelected")
+        actions.user.run_rpc_command("editor.action.insertCursorAtEndOfEachLineSelected")
 
     def multi_cursor_disable():
         actions.key("escape")
@@ -287,21 +287,21 @@ class UserActions:
         actions.skip()
 
     def multi_cursor_select_all_occurrences():
-        actions.user.vscode("editor.action.selectHighlights")
+        actions.user.run_rpc_command("editor.action.selectHighlights")
 
     def multi_cursor_select_fewer_occurrences():
-        actions.user.vscode("cursorUndo")
+        actions.user.run_rpc_command("cursorUndo")
 
     def multi_cursor_select_more_occurrences():
-        actions.user.vscode("editor.action.addSelectionToNextFindMatch")
+        actions.user.run_rpc_command("editor.action.addSelectionToNextFindMatch")
 
     def multi_cursor_skip_occurrence():
-        actions.user.vscode("editor.action.moveSelectionToNextFindMatch")
+        actions.user.run_rpc_command("editor.action.moveSelectionToNextFindMatch")
 
     # multiple_cursor.py support end
 
     def command_search(command: str = ""):
-        actions.user.vscode("workbench.action.showCommands")
+        actions.user.run_rpc_command("workbench.action.showCommands")
         if command != "":
             actions.insert(command)
 
@@ -321,7 +321,7 @@ class UserActions:
 
     def tab_final():
         if is_mac:
-            actions.user.vscode("workbench.action.lastEditorInGroup")
+            actions.user.run_rpc_command("workbench.action.lastEditorInGroup")
         else:
             actions.key("alt-0")
 

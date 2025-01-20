@@ -153,14 +153,14 @@ key(cmd-ctrl-alt-shift-d):
 (hunt | hun) (talon | tellin | talin | command | tall and) [<user.text>]:
     user.system_command_nb("code '/Users/ryan/.talon/user/talon-user.code-workspace'")
     sleep(600ms)
-    user.vscode("workbench.view.search")
+    user.run_rpc_command("workbench.view.search")
     sleep(200ms)
     insert(text or "")
 
 (hunt | hun) (talon | tellin | talin | command | tall and) (paste | pace):
     user.system_command_nb("code '/Users/ryan/.talon/user/talon-user.code-workspace'")
     sleep(600ms)
-    user.vscode("workbench.view.search")
+    user.run_rpc_command("workbench.view.search")
     sleep(200ms)
     edit.paste()
 
