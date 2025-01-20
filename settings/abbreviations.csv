@@ -507,7 +507,7 @@ llm, large lang model
 llm, lang model
 wysiwyg, what you see is what you get
 nrepl, network repl
-nrepl, net repl
+nrepl, net replp
 sku, skew
 nexcess, nexus
 org, organisation
@@ -515,3 +515,6 @@ gsol, groundedsol
 gsol, grounded sol 
 chatGPT, chat g 
 chatGTP, chat gpt
+rpc, remote procedure call
+rpc, remote procedure 
+rpc, remote call
