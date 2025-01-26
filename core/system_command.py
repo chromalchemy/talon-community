@@ -1,5 +1,6 @@
 import os
 import subprocess
+import shlex
 
 from talon import Module, actions
 
@@ -12,28 +13,39 @@ class Actions:
         """execute a command on the system"""
         os.system(cmd)
 
+    def system_command_run(cmd: str):
+        """execute a command on the system with subprocess.run"""
+        print(f"system_command_run: {cmd}")
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        print(result.stdout)
+
     def system_command_nb(cmd: str):
         """execute a command on the system without blocking"""
-        subprocess.Popen(cmd, shell=True)
+        print(f"system_command_nb: {cmd}")
+        process = subprocess.Popen(
+            cmd, 
+            shell=True, 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()  # Waits for the process to finish
+        print("Command completed:", stdout.decode(), stderr.decode())
+
+    def system_command_nb_cmd_segments(cmd: list[str]):
+        """execute a command on the system without blocking"""
+        print(f"system_command_nb: {shlex.join(cmd)}")
+        process = subprocess.Popen(
+            cmd, 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()  # Waits for the process to finish
+        print("Command completed:", stdout.decode(), stderr.decode())
 
     def system_command_nb_get_text(cmd: str):
         """non blocking get text"""
         subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-        # Read the output from the pipe
-        output = process.communicate()[0]
-        # Decode the output from bytes to a string
-        output = output.decode()
+        output = process.communicate()[0] # Read the output from the pipe
+        output = output.decode() # Decode the output from bytes to a string
         return output
-
-    def ps_command_nb(f: str):
-        """execute a fn for ps repl via bb nrepl command"""
-        code_path = '"/Users/ryan/dev/ps script/plugins/ps-scittle-repl"'
-        ps_require_str = "(require 'playground)"
-        # cljs_call =  '"' + ps_require_str + " " + f + '"'
-        cljs_call =  '"' + f + '"'
-        cmd = 'cd ' +  code_path + ' ; bb nrepl-eval ' + cljs_call
-        print(cmd)
-        subprocess.Popen(cmd, shell=True)
 
     def bb_run_fn(input_text: str, bb_fn_name: str, bb_path: str) -> str:
         """run a bb fn with input text"""
