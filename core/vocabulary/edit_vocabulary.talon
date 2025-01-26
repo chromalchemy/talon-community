@@ -10,6 +10,7 @@ copy name to vocab [as <phrase>]$:
 
 copy noun to vocab [as <phrase>]$:
     user.add_selection_to_vocabulary(phrase or "", "noun")
+check vocab: user.check_vocabulary_for_selection()
 
 copy to replacements as <phrase>$: user.add_selection_to_words_to_replace(phrase)
 # Automatically adds possessive form by appending "'s".

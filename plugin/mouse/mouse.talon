@@ -102,20 +102,18 @@ duke | (dub | double) (click | lick | touch):
     user.mouse_drag(1)
     # close the mouse grid
     user.grid_close()
-
 ^( end  | drop | release) drag$: user.mouse_drag_end()
 ^drag (end | drop | release)$: user.mouse_drag_end()
 ^drop$: user.mouse_drag_end()
-
-
+    
 ## +++++++++++++++++++++++++++++++ position
 
-copy mouse (position | location): user.copy_mouse_position()
-
+copy mouse position: user.copy_mouse_position()
 
 ## ++++++++++++++++++++++++++ my stuff . 
 
 # make percent of screen todo:
+
 
 (mouse | curse) right <number>:
     mouse_nudge(number, 0)
@@ -147,4 +145,10 @@ command drag:
     key(cmd:down)
     user.mouse_drag(0)
     user.grid_close()
-    
+
+
+curse no:
+    # Command added 2021-12-13, can remove after 2022-06-01
+    app.notify("Please activate the user.mouse_cursor_commands_enable tag to enable this command")
+
+
