@@ -98,11 +98,11 @@ class Actions:
 
     def mouse_scroll_up_continuous(speed_factor: Optional[int] = None):
         """Scrolls up continuously"""
-        mouse_scroll_continuous(-1, speed_factor)
+        mouse_scroll_continuous(1, speed_factor)
 
     def mouse_scroll_down_continuous(speed_factor: Optional[int] = None):
         """Scrolls down continuously"""
-        mouse_scroll_continuous(1, speed_factor)
+        mouse_scroll_continuous(-1, speed_factor)
 
     def mouse_gaze_scroll():
         """Starts gaze scroll"""

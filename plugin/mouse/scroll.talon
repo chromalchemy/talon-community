@@ -18,7 +18,7 @@ mouse hiss down: user.hiss_scroll_down()
 #down
 
 ^((wheel | we'll) down | (tall | (slide | sled | slit)))$: 
-    user.mouse_scroll_down(1)
+    user.mouse_scroll_down()
 
 ^((wheel | we'll) down | (tall | (slide | sled | slit))) [<number>]: 
     user.mouse_scroll_down(number)  
@@ -30,7 +30,7 @@ mouse hiss down: user.hiss_scroll_down()
 #up 
 
 ^((wheel | we'll) up | (sup | (bale | bail | bill)))$: 
-    user.mouse_scroll_up(1)  
+    user.mouse_scroll_up()  
 
 ^((wheel | we'll) up | (sup | (bale | bail | bill))) [<number>]: 
     user.mouse_scroll_up(number)  
@@ -90,16 +90,31 @@ mouse hiss down: user.hiss_scroll_down()
 [(wheel | we'll)] flow down: 
     user.mouse_scroll_down_continuous()
 
-[(wheel | we'll)] flow up: 
-    user.mouse_scroll_up_continuous()
+[(wheel | we'll)] flow down <number_small>: 
+    user.mouse_scroll_down_continuous(number_small)
 
 [(wheel | we'll)] flow down here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down_continuous()
 
+[(wheel | we'll)] flow down here <number_small>:
+    user.mouse_move_center_active_window()
+    user.mouse_scroll_down_continuous(number_small)
+    
+
+[(wheel | we'll)] flow up: 
+    user.mouse_scroll_up_continuous()
+
+[(wheel | we'll)] flow up <number_small>: 
+    user.mouse_scroll_up_continuous(number_small)
+    
 [(wheel | we'll)] flow up here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up_continuous()
+
+[(wheel | we'll)] flow up here <number_small>:
+    user.mouse_move_center_active_window()
+    user.mouse_scroll_up_continuous(number_small)
 
 ## ++++++++++++++++++++++++++++++ stop .
 
