@@ -4,6 +4,8 @@ zoom mouse: tracking.control_zoom_toggle()
 camera overlay: tracking.control_debug_toggle()
 run calibration: tracking.calibrate()
 
+key(cmd-ctrl-alt-shift-down):
+    mouse_scroll(1)
 
 ## ++++++++++++++++++++++++++++ clicks .
 

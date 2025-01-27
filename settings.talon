@@ -1,4 +1,6 @@
 settings():
+
+    
     # Adjust the scale of the imgui to my liking
     imgui.scale = 1.2
 
@@ -23,7 +25,10 @@ settings():
     # user.help_sort_contexts_by_specificity = false
 
     # Set the scroll amount for continuous scroll/gaze scroll
-    user.mouse_continuous_scroll_amount = 2
+    user.mouse_continuous_scroll_amount = 1
+
+    user.mouse_continuous_scroll_speed_quotient = 10
+
 
     # Set the maximum acceleration factor when scrolling continuously. 1=constant speed/no acceleration.
     user.mouse_continuous_scroll_acceleration = 1

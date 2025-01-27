@@ -39,6 +39,14 @@ mod.setting(
     default=1,
     desc="The maximum (linear) acceleration factor when scrolling continuously. 1=constant speed/no acceleration",
 )
+
+mod.setting(
+    "mouse_continuous_scroll_frequency",
+    type=int,
+    default=100,
+    desc="timeout frequency of scroll helper in ms",
+)
+
 mod.setting(
     "mouse_enable_hiss_scroll",
     type=bool,
@@ -156,14 +164,18 @@ class Actions:
     def mouse_scroll_set_speed(speed: Optional[int]):
         """Sets the continuous scrolling speed for the current scrolling"""
         global continuous_scrolling_speed_factor, scroll_start_ts
+        print(f"speed = {speed}")
         if scroll_start_ts:
             scroll_start_ts = time.perf_counter()
         if speed is None:
+            print("No speed given")
             continuous_scrolling_speed_factor = 1.0
         else:
-            continuous_scrolling_speed_factor = speed / settings.get(
-                "user.mouse_continuous_scroll_speed_quotient"
-            )
+            print(f"custom speed")
+            speed_quotient = settings.get("user.mouse_continuous_scroll_speed_quotient")
+            print(f"speed_quotient = {speed_quotient}")  
+            continuous_scrolling_speed_factor = speed / speed_quotient
+        print(f"continuous_scrolling_speed_factor = {continuous_scrolling_speed_factor}")
 
     def mouse_is_continuous_scrolling():
         """Returns whether continuous scroll is in progress"""
@@ -198,11 +210,15 @@ def mouse_scroll_continuous(
     speed_factor: Optional[int] = None,
 ):
     global scroll_job, scroll_dir, scroll_start_ts
+    print(f"speed_factor = {speed_factor}")
     actions.user.mouse_scroll_set_speed(speed_factor)
+    frequency = settings.get("user.mouse_continuous_scroll_frequency")
+    print(f"frequency = {frequency}")
 
     update_continuous_scrolling_mode(new_scroll_dir)
 
     if scroll_job:
+        print("scroll_job")
         # Issuing a scroll in the same direction aborts scrolling
         if scroll_dir == new_scroll_dir:
             actions.user.mouse_scroll_stop()
@@ -211,10 +227,11 @@ def mouse_scroll_continuous(
             scroll_dir = new_scroll_dir
             scroll_start_ts = time.perf_counter()
     else:
+        print("No scroll job")
         scroll_dir = new_scroll_dir
         scroll_start_ts = time.perf_counter()
         scroll_continuous_helper()
-        scroll_job = cron.interval("16ms", scroll_continuous_helper)
+        scroll_job = cron.interval(f"{frequency}ms", scroll_continuous_helper)
         ctx.tags = ["user.continuous_scrolling"]
 
         if not settings.get("user.mouse_hide_mouse_gui"):
@@ -234,17 +251,20 @@ def scroll_continuous_helper():
         settings.get("user.mouse_continuous_scroll_amount")
         * continuous_scrolling_speed_factor
     )
+    print(f"scroll_amount = {scroll_amount}")
     acceleration_setting = settings.get("user.mouse_continuous_scroll_acceleration")
-    # acceleration_speed = 2
+    print(f"acceleration_setting = {acceleration_setting}")
     acceleration_speed = (
         1 + min((time.perf_counter() - scroll_start_ts) / 0.5, acceleration_setting - 1)
         if acceleration_setting > 1
         else 1
     )
+    print(f"acceleration_speed = {acceleration_speed}")
 
     y = round(scroll_amount * acceleration_speed * scroll_dir)
     if y == 0:
         y = scroll_dir
+    print(f"scroll final = {y}\n")
     actions.mouse_scroll(y)
 
 
