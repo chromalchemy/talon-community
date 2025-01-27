@@ -85,7 +85,7 @@ mouse hiss down: user.hiss_scroll_down()
     user.mouse_move_center_active_window()
     user.mouse_scroll_up(50.0)
 
-## ++++++++++++++++++++++++ continuous .
+## ++++++++++++++++++++++++  continuous down
 
 [(wheel | we'll)] flow down: 
     user.mouse_scroll_down_continuous()
@@ -101,6 +101,8 @@ mouse hiss down: user.hiss_scroll_down()
     user.mouse_move_center_active_window()
     user.mouse_scroll_down_continuous(number_small)
     
+
+## ++++++++++++++++++++++++ continuous up
 
 [(wheel | we'll)] flow up: 
     user.mouse_scroll_up_continuous()
@@ -166,3 +168,23 @@ mouse hiss down: user.hiss_scroll_down()
 [(wheel | we'll)] gaze here:
     user.mouse_move_center_active_window()
     user.mouse_gaze_scroll()
+
+## ++++++++++++++++++++ homerow scroll .
+
+home scroll: 
+    key(cmd-shift-j)
+
+# scroll keys don't work in scroll focused window
+# todo: use nriley homerow code to lock in context
+
+home up: 
+    key(k)
+
+home down:
+    key(j)
+
+home down <number>:
+    key(cmd-shift-j)
+    sleep(500ms)
+    key("j:{number}")
+
