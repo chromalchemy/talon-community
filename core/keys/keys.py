@@ -4,6 +4,7 @@ mod = Module()
 mod.list("letter", desc="The spoken phonetic alphabet")
 mod.list("symbol_key", desc="All symbols from the keyboard")
 mod.list("arrow_key", desc="All arrow keys")
+mod.list("alt_arrow_key", desc="All arrow keys")
 mod.list("number_key", desc="All number keys")
 mod.list("modifier_key", desc="All modifier keys")
 mod.list("function_key", desc="All function keys")
@@ -23,9 +24,19 @@ def arrow_key(m) -> str:
     "One directional arrow key"
     return m.arrow_key
 
+@mod.capture(rule="{self.alt_arrow_key}")
+def alt_arrow_key(m) -> str:
+    "One directional arrow key"
+    return m.alt_arrow_key
+
 
 @mod.capture(rule="<self.arrow_key>+")
 def arrow_keys(m) -> str:
+    "One or more arrow keys separated by a space"
+    return str(m)
+
+@mod.capture(rule="<self.alt_arrow_key>+")
+def alt_arrow_keys(m) -> str:
     "One or more arrow keys separated by a space"
     return str(m)
 
