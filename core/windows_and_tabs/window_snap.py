@@ -334,10 +334,15 @@ class Actions:
         position_name: str, window: Optional[Window] = None
     ) -> None:
         """Move a window (defaults to the active window) to a specifically named position on its current screen, using a key from `_snap_positions`."""
+        print(f"""position_name: {position_name}""")
         position: Optional[RelativeScreenPos] = None
+        print(f"""position: {position}""")
         if position_name in _snap_positions:
             position = _snap_positions[position_name]
-            actions.user.snap_window(position, window)
+            
+            print(f"""position in _snap_positions: {position}""")
+            print(f"""window: {window}""")
+            actions.user.snap_window(position)
         else:
             # Previously this function took a spoken form, but we now have constant identifiers in `_snap_positions`.
             # If the user passed a previous spoken form instead, see if we can convert it to the new identifier.
@@ -349,6 +354,7 @@ class Actions:
                     f"snap_window_to_position('{new_key}')",
                 )
                 position = _snap_positions[new_key]
+                
                 actions.user.snap_window(position, window)
             else:
                 raise KeyError(position_name)
