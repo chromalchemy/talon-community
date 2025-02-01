@@ -244,7 +244,12 @@ elif app.platform == "mac":
 def running_applications(m) -> str:
     "Returns a single application name"
     try:
-        return m.running
+        running_application = m.running
+        print(running_application)
+        if running_application != "clippy":
+            return running_application
+        else:
+            return "No App"
     except AttributeError:
         return m.text
 
