@@ -21,6 +21,7 @@ def update_microphone_list():
     ]
 
     devices.sort()
+    print(f"microphone devices = {devices}")
     microphone_device_list += devices
 
 
