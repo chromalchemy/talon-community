@@ -4,6 +4,10 @@ from .edit_command_actions import EditAction, run_action_callback
 from .edit_command_modifiers import EditModifier, run_modifier_callback
 
 mod = Module()
+
+# providing some settings for customizing the word and line selection delay
+# talon can execute selections must faster than a human
+# resulting in unexpected or inconsistent results in applications such as visual studio code
 mod.setting(
     "edit_command_word_selection_delay",
     type=int,
@@ -39,22 +43,13 @@ def after_line_down():
     actions.edit.line_end()
 
 
-def action_handler(action):
-    if action == "selection":
-        return
-    elif action == "cutToClipboard":
-        actions.edit.cut()
-    elif action == "copyToClipboard":
-        actions.edit.copy()
-    elif action == "delete":
-        actions.edit.delete()
-
-
 def select_lines(action, direction, count):
     if direction == "lineUp":
         selection_callback = actions.edit.extend_line_up
+        extend_line_callback = actions.edit.extend_line_start
     else:
         selection_callback = actions.edit.extend_line_down
+        extend_line_callback = actions.edit.extend_line_end
 
     selection_delay = f"{settings.get('user.edit_command_line_selection_delay')}ms"
 
@@ -62,10 +57,10 @@ def select_lines(action, direction, count):
         selection_callback()
         actions.sleep(selection_delay)
 
-    # ensure we take the start of the line too!
-    actions.edit.extend_line_start()
+    # ensure we take the start/end of the line too!
+    extend_line_callback()
     actions.sleep(selection_delay)
-    action_handler(action)
+    run_action_callback(action)
 
 
 def select_words(action, direction, count):
@@ -79,7 +74,7 @@ def select_words(action, direction, count):
         selection_callback()
         actions.sleep(selection_delay)
 
-    action_handler(action)
+    run_action_callback(action)
 
 
 def word_movement_handler(action, direction, count):
@@ -110,24 +105,27 @@ custom_callbacks = {
     ("cutToClipboard", "word"): select_words,
     ("cutToClipboard", "wordLeft"): select_words,
     ("cutToClipboard", "wordRight"): select_words,
-    ("copyToClipboard", "lineDown"): select_lines,
     ("cutToClipboard", "lineUp"): select_lines,
+    ("cutToClipboard", "lineDown"): select_lines,
     # copy
     ("copyToClipboard", "word"): select_words,
     ("copyToClipboard", "wordLeft"): select_words,
     ("copyToClipboard", "wordRight"): select_words,
-    ("copyToClipboard", "lineDown"): select_lines,
     ("copyToClipboard", "lineUp"): select_lines,
+    ("copyToClipboard", "lineDown"): select_lines,
+    # select
+    ("select", "lineUp"): select_lines,
+    ("select", "lineDown"): select_lines,
 }
 
 # In other cases there already is a "compound" talon action for a given action and modifier
 compound_actions = {
-    # selection
-    ("selection", "wordLeft"): actions.edit.extend_word_left,
-    ("selection", "wordRight"): actions.edit.extend_word_right,
-    ("selection", "left"): actions.edit.extend_left,
-    ("selection", "right"): actions.edit.extend_right,
-    ("selection", "word"): actions.edit.extend_word_right,
+    # select
+    ("select", "wordLeft"): actions.edit.extend_word_left,
+    ("select", "wordRight"): actions.edit.extend_word_right,
+    ("select", "left"): actions.edit.extend_left,
+    ("select", "right"): actions.edit.extend_right,
+    ("select", "word"): actions.edit.extend_word_right,
     # Go before
     ("goBefore", "line"): actions.edit.line_start,
     ("goBefore", "lineUp"): before_line_up,
@@ -172,7 +170,7 @@ class Actions:
         count = modifier.count
 
         if key in custom_callbacks:
-            custom_callbacks[key](action.type, modifier.type, count)
+            custom_callbacks[key](action, modifier.type, count)
             return
 
         elif key in compound_actions:
