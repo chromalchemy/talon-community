@@ -1,6 +1,6 @@
 tag: user.address
 -
-go [to] <user.address>:
+go [to] <user.address> [folder]:
     user.address_navigate(address)
 
 address copy | copy path | url copy | copy address | copy url:
