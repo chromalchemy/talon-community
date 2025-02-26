@@ -246,8 +246,15 @@ clone line: edit.line_clone()
 new line above: edit.line_insert_up()
 new line below | slap: edit.line_insert_down()
 
-# Insert padding with optional symbols
-padding: user.insert_between(" ", " ")
+
+# Padding
+
+# Insert padding. Compose with next command (ex: "pad word hello")
+[(add | insert)] (pad | padding | padded): user.insert_between(" ", " ")
+[(add | insert)] pre (pad | padding | padded): user.insert_between(" ", "")
+[(add | insert)] post (pad | padding | padded): user.insert_between("", " ")
+
+# pad symbols
 (pad | padding) <user.symbol_key>+:
     insert(" ")
     user.insert_many(symbol_key_list)
@@ -273,8 +280,8 @@ padding: user.insert_between(" ", " ")
     # mimic("go to line start")
     # insert("#")
 
-round (string | rap | wrap | text) <user.prose>:
-    insert("({prose}) ")
-
+#wrap prose text in delimiter pair
+<user.delimiter_pair> (string | rap | wrap | text) <user.prose>:
+    user.delimiter_pair_wrap_text(delimiter_pair, prose)
 
 [go] line mid: user.line_middle()

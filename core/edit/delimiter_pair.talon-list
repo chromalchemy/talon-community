@@ -23,3 +23,5 @@ escaped quad: '\\" \\"'
 escaped twin:  "\\' \\'"
 escaped round: \( \)
 escaped box: \[ \]
+
+red dog: #( )

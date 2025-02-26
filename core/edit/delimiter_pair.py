@@ -25,3 +25,7 @@ class Actions:
         """Wrap selection with delimiter pair <pair>"""
         selected = actions.edit.selected_text()
         actions.insert(f"{pair[0]}{selected}{pair[1]}")
+
+    def delimiter_pair_wrap_text(pair: list[str], text: str):
+        """Wrap text <text> with delimiter pair <pair>"""
+        actions.insert(f"{pair[0]}{text}{pair[1]}")
