@@ -21,6 +21,8 @@
 (set | change) system (mic | mike | microphone) [to] {user.community.plugin.microphone_selection.microphone.list}: 
     user.system_command_nb('SwitchAudioSource -t input -s "{user.community.plugin.microphone_selection.microphone.list}"')
 
-(set | change) (mic | mike | microphone) [to] {user.community.plugin.microphone_selection.microphone.list}:
-    sound.set_microphone("{user.community.plugin.microphone_selection.microphone.list}")
-    user.system_command_nb('SwitchAudioSource -t input -s "{user.community.plugin.microphone_selection.microphone.list}"')
+((set | said) | change) (mic | mike | microphone) [to] {user.community.plugin.microphone_selection.microphone.list}:
+    target_mic = user.community.plugin.microphone_selection.microphone.list
+    app.notify("Microphone is {target_mic}")
+    sound.set_microphone(target_mic)
+    user.system_command_nb('SwitchAudioSource -t input -s "{target_mic}"')
