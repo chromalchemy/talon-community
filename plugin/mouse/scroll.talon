@@ -163,9 +163,9 @@ mouse hiss down: user.hiss_scroll_down()
 
 ## ++++++++++++++++++++++++++++++ gaze .
 
-[(wheel | we'll)] gaze: user.mouse_gaze_scroll()
+[(wheel | we'll)] gaze scroll: user.mouse_gaze_scroll()
 
-[(wheel | we'll)] gaze here:
+[(wheel | we'll)] gaze scroll here:
     user.mouse_move_center_active_window()
     user.mouse_gaze_scroll()
 
