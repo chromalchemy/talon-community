@@ -85,7 +85,6 @@ cur,current
 qt,cute
 db,database
 yyyy-mm-dd,date format
-deb,debian
 dbg,debug
 dec,decimal
 decl,declaration
@@ -501,8 +500,8 @@ talon, talon voice
 talon, talent voice
 eval, evaluate
 bb, babashka
-llm, language model
 llm, large language model
+llm, language model
 llm, large lang model
 llm, lang model
 wysiwyg, what you see is what you get
