@@ -1,16 +1,46 @@
 list: user.system_paths
 hostname: Ryans-MacBook-Pro-2
 -
+
+river: /Users/ryan/.cache/babashka/bbin/jars
+
 user: /Users/ryan
+home: /Users/ryan
+
 desktop: /Users/ryan/Desktop
 desk: /Users/ryan/Desktop
+
 documents: /Users/ryan/Documents
 docks: /Users/ryan/Documents
+
 downloads: /Users/ryan/Downloads
 music: /Users/ryan/Music
 pictures: /Users/ryan/Pictures
-videos: /Users/ryan/Videos
+movies: /Users/ryan/Movies
+videos: /Users/ryan/Movies
+
+apps: /Applications
+applications: /Applications
+
+dropbox: /Users/ryan/Dropbox
+drop box: /Users/ryan/Dropbox
+
+groundedsol: /Users/ryan/dev/groundedsol
+
+dev: /Users/ryan/dev
+
 talon home: /Users/ryan/.talon
 talon recordings: /Users/ryan/.talon/recordings
 talon user: /Users/ryan/.talon/user
 home: /Users/ryan
+
+get bit pictures: /Users/ryan/GB-Pictures
+get bit pics: /Users/ryan/GB-Pictures
+get bit photos: /Users/ryan/GB-Pictures
+get bit logos: /Users/ryan/Library/CloudStorage/GoogleDrive-ryan@getbitoutdoors.com/My Drive/Git Bit Graphic Assets/Logos
+get bit resources: /Users/ryan/dev/gbo/resources
+get bit vendors: /Users/ryan/dev/gbo/resources/vendor
+get bit media kits: /Users/ryan/Library/CloudStorage/GoogleDrive-ryan@getbitoutdoors.com/My Drive/Git Bit Graphic Assets/Media Kits
+
+
+
