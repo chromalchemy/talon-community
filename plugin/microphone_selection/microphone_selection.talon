@@ -26,3 +26,6 @@
     app.notify("Microphone is {target_mic}")
     sound.set_microphone(target_mic)
     user.system_command_nb('SwitchAudioSource -t input -s "{target_mic}"')
+
+[set] (mic | mike | microphone) [(input | and put)] (level | volume)  [to] <user.number_string>:
+    user.set_microphone_input_volume(number_string)

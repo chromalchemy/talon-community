@@ -1,5 +1,6 @@
 from talon import Module, actions, app, imgui
 from talon.lib import cubeb
+from talon.mac import applescript
 
 ctx = cubeb.Context()
 mod = Module()
@@ -63,6 +64,11 @@ class Actions:
             print(f"Activating microphone: {microphone_device_list[index - 1]}")
             app.notify(f"Activating microphone: {microphone_device_list[index - 1]}")
             gui.hide()
+            
+    def set_microphone_input_volume(volume_level: str):
+        """Sets the input volume for the microphone"""
+        print(f"Setting microphone input volume to {volume_level}")
+        applescript.run("set volume input volume " + volume_level)
 
 
 def on_ready():
