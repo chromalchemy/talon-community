@@ -14,12 +14,14 @@ ctx.matches = r"""
 app.name: Code
 app.name: Cursor
 app.name: Windsurf
+app.name: Windsurf - Next
 """
 linux_ctx.matches = r"""
 os: linux
 app.name: Code
 app.name: Cursor
 app.name: Windsurf
+app.name: Windsurf - Next
 """
 
 ctx.tags = ["user.command_client"]

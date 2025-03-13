@@ -2,6 +2,7 @@
 app.name: Code
 app.name: Cursor
 app.name: Windsurf
+app.name: Windsurf - Next
 -
 tag(): user.find_and_replace
 tag(): user.line_commands

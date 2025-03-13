@@ -63,12 +63,14 @@ ctx.matches = r"""
 app.name: Code
 app.name: Cursor
 app.name: Windsurf
+app.name: Windsurf - Next
 """
 mac_ctx.matches = r"""
 os: mac
 app.name: Code
 app.name: Cursor
 app.name: Windsurf
+app.name: Windsurf - Next
 """
 
 
