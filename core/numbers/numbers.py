@@ -318,3 +318,9 @@ class Actions:
     def negative_int(n: int):
         """Converts a positive integer to a negative integer"""
         return -n
+
+    def negative_float(n: int) -> float:
+        """Converts a positive integer to a negative float"""
+        result = float(-n)
+        # print(f"negative_float input: {n}, output: {result}")  # Debug print
+        return result

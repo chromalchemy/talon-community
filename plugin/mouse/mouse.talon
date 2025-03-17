@@ -116,12 +116,40 @@ copy mouse position: user.copy_mouse_position()
 
 # make percent of screen todo:
 
+(mouse | curse) right [<number>]:
+    amount = number or 10
+    mouse_nudge(amount, 0)
 
-(mouse | curse) right <number>:
-    mouse_nudge(number, 0)
+(mouse | curse) left [<number>]:
+    amount = number or 10
+    mouse_nudge(user.negative_float(amount), 0)
 
-(mouse | curse) left <number>:
-    mouse_nudge(user.negative_int(number), 0)
+
+(mouse | curse) down [<number>]:
+    amount = number or 10 
+    mouse_nudge(0, amount)
+
+(mouse | curse) up [<number>]:
+    amount = number or 10 
+    mouse_nudge(0, user.negative_float(amount))
+
+## +++++++++++++++++++++++++ diagnals
+
+(mouse | curse) up right [<number>]:
+    amount = number or 10 
+    mouse_nudge(amount, user.negative_float(amount))
+
+(mouse | curse) (down right | downright) [<number>]:
+    amount = number or 10 
+    mouse_nudge(amount, amount)
+
+(mouse | curse) up left [<number>]:
+    amount = number or 10 
+    mouse_nudge(user.negative_float(amount), user.negative_float(amount))
+
+(mouse | curse) down left [<number>]:
+    amount = number or 10 
+    mouse_nudge(user.negative_float(amount), amount)
 
 #todo: get this working in finder
 
@@ -152,5 +180,3 @@ command drag:
 curse no:
     # Command added 2021-12-13, can remove after 2022-06-01
     app.notify("Please activate the user.mouse_cursor_commands_enable tag to enable this command")
-
-
