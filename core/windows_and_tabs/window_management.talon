@@ -119,12 +119,6 @@ snap <user.running_applications> [screen] <number> <user.window_snap_position>:
 
 ## ++++++ snap with explict sreen name .
 
-# print screen number {user.ryan.display.display_number.list}: 
-#     print("{user.ryan.display.display_number.list}")
-
-snap elephant [screen]: 
-    user.snap_window_to_position("FULLSCREEN")
-
 snap {user.ryan.display.display_number.list} [screen]: 
     number = user.string_to_int(user.ryan.display.display_number.list)
     user.move_window_to_screen(number)
