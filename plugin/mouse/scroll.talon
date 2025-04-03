@@ -136,7 +136,7 @@ mouse hiss down: user.hiss_scroll_down()
 
 [(wheel | we'll)] left here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_right()
+    user.mouse_scroll_right(1)
 
 [(wheel | we'll)] (tiny | small | bit) left: 
     user.mouse_scroll_right(0.5)
@@ -145,6 +145,9 @@ mouse hiss down: user.hiss_scroll_down()
     user.mouse_move_center_active_window()
     user.mouse_scroll_right(0.5)
 
+(wheel | we'll | scroll | roll) left back: 
+    user.mouse_scroll_right(1000)
+
 #right
 
 (wheel | we'll) (right | write) [<number>]: 
@@ -152,7 +155,7 @@ mouse hiss down: user.hiss_scroll_down()
 
 [(wheel | we'll)] (right | write) here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_left()
+    user.mouse_scroll_left(0.5)
 
 [(wheel | we'll)] (tiny | small | bit) (right | write): 
     user.mouse_scroll_left(0.5)
@@ -160,6 +163,9 @@ mouse hiss down: user.hiss_scroll_down()
 [(wheel | we'll)] (tiny | small | bit) (right | write) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_left(0.5)
+
+(wheel | we'll | scroll | roll) right end: 
+    user.mouse_scroll_left(1000)
 
 ## ++++++++++++++++++++++++++++++ gaze .
 
