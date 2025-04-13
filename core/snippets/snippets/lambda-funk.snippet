@@ -1,0 +1,14 @@
+name: lambda-funk
+description: Clj snippet
+phrase: lambda funk
+
+$fnBody.wrapperPhrase: lambda funk
+---
+
+language: clojure
+
+$fnBody.insertionFormatter: NOOP
+-
+(fn [$params]
+    $fnBody)
+---

@@ -1,0 +1,13 @@
+name: map-destructure-no-keys
+description: Clj snippet
+phrase: map destructure no keys
+
+$mapName.wrapperPhrase: map destructure no keys
+---
+
+language: clojure
+
+$mapName.insertionFormatter: NOOP
+-
+{$1 :as $mapName}
+---

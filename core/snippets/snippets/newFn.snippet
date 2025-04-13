@@ -1,0 +1,14 @@
+name: newFn
+description: Clj snippet
+phrase: def funk
+
+$fnName.wrapperPhrase: def funk
+---
+
+language: clojure
+
+$fnName.insertionFormatter: NOOP
+-
+(defn $fnName [$params]
+  $body)
+---
