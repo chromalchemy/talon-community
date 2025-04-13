@@ -13,6 +13,9 @@ help context {user.help_contexts}$: user.help_selected_context(help_contexts)
 help help: user.help_search("help")
 help scope$: user.help_scope_toggle()
 help snip: user.help_list("user.snippet")
+help snip wrapper: user.help_list("user.snippet_wrapper")
+help snip with phrase: user.help_list("user.snippet_with_phrase")
+
 
 (help formatters | help format | format help):
     user.help_formatters(user.get_formatters_words(), false)
