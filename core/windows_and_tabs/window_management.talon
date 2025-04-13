@@ -89,9 +89,7 @@ snap <user.window_snap_position>:
 snap <user.running_applications> <user.window_snap_position>:
     user.snap_app(running_applications, window_snap_position)
 
-# <user.running_applications> is here twice to require at least two applications.
-snap <user.window_split_position> <user.running_applications> <user.running_applications>+:
-    user.snap_layout(window_split_position, running_applications_list)
+
 
 ## +++++++++++ move to another screen .
 
