@@ -87,37 +87,20 @@ mouse hiss down: user.hiss_scroll_down()
 
 ## ++++++++++++++++++++++++  continuous down
 
-[(wheel | we'll)] flow down: 
-    user.mouse_scroll_down_continuous()
+[(wheel | we'll)] [flow] {user.continuous_scrolling_direction}: 
+    user.mouse_scroll_continuous(continuous_scrolling_direction)
 
-[(wheel | we'll)] flow down <number_small>: 
-    user.mouse_scroll_down_continuous(number_small)
+[(wheel | we'll)] [flow] {user.continuous_scrolling_direction} <number_small>: 
+    user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
 
-[(wheel | we'll)] flow down here:
+[(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_down_continuous()
+    user.mouse_scroll_continuous(continuous_scrolling_direction)
 
-[(wheel | we'll)] flow down here <number_small>:
+[(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here <number_small>:
     user.mouse_move_center_active_window()
-    user.mouse_scroll_down_continuous(number_small)
+    user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
     
-
-## ++++++++++++++++++++++++ continuous up
-
-[(wheel | we'll)] flow up: 
-    user.mouse_scroll_up_continuous()
-
-[(wheel | we'll)] flow up <number_small>: 
-    user.mouse_scroll_up_continuous(number_small)
-    
-[(wheel | we'll)] flow up here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_up_continuous()
-
-[(wheel | we'll)] flow up here <number_small>:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_up_continuous(number_small)
-
 ## ++++++++++++++++++++++++++++++ stop .
 
 ^[(wheel | we'll | flow)] (stop  | stopper | stop it) [(wheel | we'll | flow)]$: 

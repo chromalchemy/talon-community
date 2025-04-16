@@ -108,6 +108,35 @@ duke | (dub | double) (click | lick | touch):
 ^drag (end | drop | release)$: user.mouse_drag_end()
 ^drop$: user.mouse_drag_end()
     
+
+## ++++++++++++++++++++++ custom drags .
+
+
+#todo: get this working in finder
+
+#todo: Implement option clicks
+
+(option | alt) drag:
+    key(alt:down)
+    user.mouse_drag(0)
+    # sleep(300ms)
+    user.grid_close()
+    
+hold option: key(alt:down)
+
+shift drag:
+    key(shift:down)
+    # sleep(300ms)
+    user.mouse_drag(0)
+    user.grid_close()
+
+command drag:
+    key(cmd:down)
+    user.mouse_drag(0)
+    user.grid_close()
+
+
+
 ## +++++++++++++++++++++++++++++++ position
 
 copy mouse position: user.copy_mouse_position()
@@ -150,33 +179,3 @@ copy mouse position: user.copy_mouse_position()
 (mouse | curse) down left [<number>]:
     amount = number or 10 
     mouse_nudge(user.negative_float(amount), amount)
-
-#todo: get this working in finder
-
-#todo: Implement option clicks
-
-## ++++++++++++++++++++++ custom drags .
-
-(option | alt) drag:
-    key(alt:down)
-    user.mouse_drag(0)
-    # sleep(300ms)
-    user.grid_close()
-    
-hold option: key(alt:down)
-
-shift drag:
-    key(shift:down)
-    # sleep(300ms)
-    user.mouse_drag(0)
-    user.grid_close()
-
-command drag:
-    key(cmd:down)
-    user.mouse_drag(0)
-    user.grid_close()
-
-
-curse no:
-    # Command added 2021-12-13, can remove after 2022-06-01
-    app.notify("Please activate the user.mouse_cursor_commands_enable tag to enable this command")
