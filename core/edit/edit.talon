@@ -62,7 +62,7 @@ go page up: edit.page_up()
 go page down: edit.page_down()
 
 # Selecting
-(select | take) (all | or): 
+(select | take) (all | al | or): 
     edit.select_all()
     key(cmd-a)
 select line: edit.select_line()
