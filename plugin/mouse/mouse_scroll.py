@@ -49,7 +49,9 @@ mod.setting(
 mod.setting(
     "mouse_continuous_scroll_frequency",
     type=int,
-    default=100,
+    default=16,
+    # my working default is 100ms
+    # community default is 16ms
     desc="timeout frequency of scroll helper in ms",
 )
 
