@@ -57,10 +57,20 @@
 (defn toggle-scroll [dir pixels-per-sec]
   (let [current-dir (read-file-safe direction-file)]
     (if (= current-dir dir)
-      (stop-scroll)
+      ;; If we're already scrolling in this direction, check if we need to change speed
+      (let [current-pid (read-file-safe pid-file)]
+        (if current-pid
+          ;; Stop the current process and start a new one with the new speed
+          (start-scroll dir pixels-per-sec)
+          ;; If no process is running, just stop
+          (stop-scroll)))
+      ;; If we're scrolling in a different direction or not scrolling, start in the new direction
       (start-scroll dir pixels-per-sec))))
 
 ;; Command line usage: bb scroll.clj toggle|start|stop [up|down] [rate]
+;; rate =  pixels per second
+;; (which gets divided by 120 for high frequency hertz)
+
 (let [[mode dir rate] *command-line-args*
       dir (or dir "down")
       rate (or rate "60")]
