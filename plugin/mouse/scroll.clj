@@ -2,39 +2,48 @@
 
 (require '[babashka.process :refer [process]]
          '[babashka.fs :as fs]
-         '[clojure.string :as str])
+         '[clojure.string :as str]
+         '[clojure.java.io :as io])
 
-(def pid-file "/Users/ryan/.talon/user/community/plugin/mouse/smoothscroll.pid")
-(def direction-file "/Users/ryan/.talon/user/community/plugin/mouse/smoothscroll.dir")
+;; State management with atoms
+(def scroll-state (atom {:scrolling false
+                         :direction nil
+                         :pid nil
+                         :rate 60}))
+
 (def scroll-binary "/Users/ryan/.talon/user/community/plugin/mouse/smoothscroll")
+(def command-pipe "/Users/ryan/.talon/user/community/plugin/mouse/scroll-command-pipe")
+(def log-file "/Users/ryan/.talon/user/community/plugin/mouse/scroll-server.log")
 
-(defn read-file-safe [f]
-  (if (fs/exists? f)
-    (try
-      (str/trim (slurp f))
-      (catch Exception _
-        ;; Optionally log error here if needed in the future
-        nil))
-    nil))
+;; Disabled logging
+(defn log [& _]
+  ;; No-op function
+  nil)
 
-(defn file-exists? [f]
-  (fs/exists? f))
+;; Create the named pipe if it doesn't exist
+(when-not (fs/exists? command-pipe)
+  (log "Creating command pipe at" command-pipe)
+  (process ["mkfifo" command-pipe]))
+
+;; Initialize log file
+(when-not (fs/exists? log-file)
+  (fs/create-file log-file))
+(log "=== Scroll server starting ===")
 
 (defn stop-scroll []
-  (println "Toggling off scroll")
-  (let [pid (when (fs/exists? pid-file) (read-file-safe pid-file))]
-    (when (and pid (not (str/blank? pid)))
-      (println "Stopping PID:" pid)
-      (try
-        (process ["kill" pid])
-        (Thread/sleep 100)
-        (catch Exception _ nil)))) ; Ignore kill errors (process might already be dead)
-  (fs/delete-if-exists pid-file)
-  (fs/delete-if-exists direction-file))
+  (log "Stopping scroll")
+  (when-let [pid (:pid @scroll-state)]
+    (log "Killing process with PID:" pid)
+    (try
+      (process ["kill" pid])
+      (Thread/sleep 100)
+      (catch Exception e
+        (log "Error killing process:" e))))
+  (swap! scroll-state assoc :scrolling false :pid nil :direction nil))
 
 (defn start-scroll [direction pixels-per-sec]
-  (println "Starting to scroll:" direction)
-  (Thread/sleep 100) ; Keep delay as it might have helped
+  (log "Starting scroll:" direction "at rate:" pixels-per-sec)
+  (Thread/sleep 100)
   (stop-scroll)
   (let [args (cond-> [scroll-binary (str pixels-per-sec)]
                (= direction "up") (conj "up"))
@@ -43,39 +52,94 @@
       (let [{:keys [out]} (process ["sh" "-c" cmd] {:out :string})
             new-pid (str/trim @out)]
         (when-not (str/blank? new-pid)
-          (try
-            (fs/create-file pid-file)
-            (spit pid-file new-pid)
-            (fs/create-file direction-file)
-            (spit direction-file direction)
-            (println "Started scroll PID:" new-pid)
-            (catch Exception e-spit
-              (println "[ERROR] Failed to write state files:" e-spit)))))
-      (catch Exception e-process
-        (println "[ERROR] Error starting background process:" e-process)))))
+          (swap! scroll-state assoc 
+                 :scrolling true 
+                 :direction direction 
+                 :pid new-pid
+                 :rate pixels-per-sec)
+          (log "Started scroll process with PID:" new-pid)))
+      (catch Exception e
+        (log "Error starting scroll process:" e)))))
 
 (defn toggle-scroll [dir pixels-per-sec]
-  (let [current-dir (read-file-safe direction-file)]
+  (log "Toggle scroll request:" dir pixels-per-sec)
+  (let [current-dir (:direction @scroll-state)]
     (if (= current-dir dir)
       ;; If we're already scrolling in this direction, check if we need to change speed
-      (let [current-pid (read-file-safe pid-file)]
-        (if current-pid
-          ;; Stop the current process and start a new one with the new speed
-          (start-scroll dir pixels-per-sec)
-          ;; If no process is running, just stop
-          (stop-scroll)))
+      (if (:scrolling @scroll-state)
+        ;; Stop the current process and start a new one with the new speed
+        (do
+          (log "Already scrolling in direction" dir "- changing speed to" pixels-per-sec)
+          (start-scroll dir pixels-per-sec))
+        ;; If no process is running, just stop
+        (stop-scroll))
       ;; If we're scrolling in a different direction or not scrolling, start in the new direction
       (start-scroll dir pixels-per-sec))))
 
-;; Command line usage: bb scroll.clj toggle|start|stop [up|down] [rate]
-;; rate =  pixels per second
-;; (which gets divided by 120 for high frequency hertz)
+(defn get-status []
+  (log "Status request")
+  (let [state @scroll-state]
+    (log "Current state:" state)
+    state))
 
-(let [[mode dir rate] *command-line-args*
-      dir (or dir "down")
-      rate (or rate "60")]
-  (case mode
-    "start"  (start-scroll dir rate)
-    "stop"   (stop-scroll)
-    "toggle" (toggle-scroll dir rate)
-    (println "Usage: bb scroll.clj toggle|start|stop [up|down] [rate]")))
+;; Command processing function
+(defn process-command [cmd-str]
+  (log "Received command:" cmd-str)
+  (try
+    (let [cmd (read-string cmd-str)]
+      (cond
+        (= cmd :stop) (stop-scroll)
+        
+        (and (vector? cmd) (= (first cmd) :toggle))
+        (let [[_ dir rate] cmd
+              dir (or dir "down")
+              rate (or rate 60)]
+          (toggle-scroll dir (str rate)))
+        
+        (and (vector? cmd) (= (first cmd) :start))
+        (let [[_ dir rate] cmd
+              dir (or dir "down")
+              rate (or rate 60)]
+          (start-scroll dir (str rate)))
+        
+        (= cmd :status) (get-status)
+        
+        :else (log "Unknown command:" cmd)))
+    (catch Exception e
+      (log "Error processing command:" e))))
+
+;; Command processing loop
+(log "Starting command listener on" command-pipe)
+(future
+  (while true
+    (try
+      (with-open [reader (io/reader command-pipe)]
+        (log "Pipe opened, waiting for commands")
+        (loop []
+          (when-let [line (.readLine reader)]
+            (when-not (str/blank? line)
+              (process-command line))
+            (recur))))
+      (catch Exception e
+        (log "Error reading from pipe:" e)
+        (Thread/sleep 1000)))))
+
+;; Command line interface for backward compatibility
+(when (seq *command-line-args*)
+  (let [[mode dir rate] *command-line-args*
+        dir (or dir "down")
+        rate (or rate "60")]
+    (case mode
+      "start"  (process-command (str [:start dir rate]))
+      "stop"   (process-command ":stop")
+      "toggle" (process-command (str [:toggle dir rate]))
+      "daemon" (log "Running in daemon mode")
+      (log "Usage: bb scroll.clj toggle|start|stop|daemon [up|down] [rate]"))))
+
+;; Keep the process running if no command line args or daemon mode
+(when (or (empty? *command-line-args*) 
+          (= (first *command-line-args*) "daemon"))
+  (log "Server running in daemon mode. Use the following to control:"
+       "\necho ':stop' > " command-pipe
+       "\necho '[:toggle \"down\" 60]' > " command-pipe)
+  @(promise))
