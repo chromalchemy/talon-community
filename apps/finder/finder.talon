@@ -144,7 +144,7 @@ show hidden folders: key(ctrl-shift-period)
 
 ## ++++++++++++++++++++++++ open file .
 
-open file: key(cmd-o)
+(open | hope in) file: key(cmd-o)
 
 ## +++++++++++++++++++++++++++ close .
 
