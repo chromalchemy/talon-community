@@ -55,12 +55,12 @@ mouse hiss down: user.hiss_scroll_down()
 
 #up
 
-(wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill)):
+((wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill))) [<number>]:
     n = number or 4
     na = 0.1 * n 
     user.mouse_scroll_up(na)
 
-(wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill)) here:
+((wheel | we'll) (tiny | small | bit) up | (tiny | small | bit) (sup | (bale | bail | bill))) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up(0.2)
 
@@ -79,13 +79,14 @@ mouse hiss down: user.hiss_scroll_down()
 #up 
 
 (wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill)) (max | all | top):
+
     user.mouse_scroll_up(50.0)
 
 (((wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill))) (max | all | top)) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up(50.0)
 
-## ++++++++++++++++++++++++  continuous down
+## ++++++++++++++++++++++++  continuous 
 
 [(wheel | we'll)] [flow] {user.continuous_scrolling_direction}: 
     user.mouse_scroll_continuous(continuous_scrolling_direction)
@@ -133,6 +134,9 @@ mouse hiss down: user.hiss_scroll_down()
 
 #right
 
+
+
+
 (wheel | we'll) (right | write) [<number>]: 
     user.mouse_scroll_left(number or 1)
 
@@ -177,3 +181,37 @@ home down <number>:
     sleep(500ms)
     key("j:{number}")
 
+## +++++++++++++++ swift impementation .
+
+
+## ++++++++++++++++++++++++  swift continuous scroll
+
+(smooth) (flow | scroll) {user.continuous_scrolling_direction}: 
+    user.smooth_scroll_continuous(continuous_scrolling_direction)
+
+(smooth) (flow | scroll) {user.continuous_scrolling_direction} <number>: 
+    user.smooth_scroll_continuous(continuous_scrolling_direction, number)
+    
+(smooth) (flow | scroll) (stop | stopper): 
+    user.smooth_scroll_stop()
+
+# [(wheel | we'll)] [flow] {user.continuous_scrolling_direction} <number_small>: 
+#     user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
+
+# [(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here:
+#     user.mouse_move_center_active_window()
+#     user.mouse_scroll_continuous(continuous_scrolling_direction)
+
+# [(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here <number_small>:
+#     user.mouse_move_center_active_window()
+#     user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
+    
+# ## ++++++++++++++++++++++++++++++ stop .
+
+# ^[(wheel | we'll | flow)] (stop  | stopper | stop it) [(wheel | we'll | flow)]$: 
+#     user.mouse_scroll_stop()
+
+# [(wheel | we'll | flow)] (stop | stopper | stop it) here:
+#     user.mouse_move_center_active_window()
+#     user.mouse_scroll_stop()
+    

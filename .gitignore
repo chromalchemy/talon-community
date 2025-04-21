@@ -17,3 +17,6 @@ __pycache__
 [._]*.swp
 plugin/mouse/smoothscroll.dir
 plugin/mouse/smoothscroll.pid
+plugin/mouse/scroll-daemon-stderr.log
+plugin/mouse/scroll-daemon-stdout.log
+plugin/mouse/scroll-server.log
