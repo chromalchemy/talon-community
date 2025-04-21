@@ -10,14 +10,14 @@
                          :direction nil
                          :pid nil
                          :rate 60}))
+(def scroll-proc (atom nil)) ; Atom to hold the process object
 
 (def scroll-binary "/Users/ryan/.talon/user/community/plugin/mouse/smoothscroll")
 (def command-pipe "/Users/ryan/.talon/user/community/plugin/mouse/scroll-command-pipe")
 (def log-file "/Users/ryan/.talon/user/community/plugin/mouse/scroll-server.log")
 
-;; Disabled logging
-(defn log [& _]
-  ;; No-op function
+(defn log [& args]
+  #_(spit log-file (str (java.time.LocalDateTime/now) " " (str/join " " args) "\n") :append true)
   nil)
 
 ;; Create the named pipe if it doesn't exist
@@ -32,32 +32,36 @@
 
 (defn stop-scroll []
   (log "Stopping scroll")
-  (when-let [pid (:pid @scroll-state)]
-    (log "Killing process with PID:" pid)
+  ;; Prefer process object for killing
+  (when-let [proc @scroll-proc]
     (try
-      (process ["kill" pid])
-      (Thread/sleep 100)
+      (babashka.process/destroy-tree proc)
+      (reset! scroll-proc nil)
       (catch Exception e
-        (log "Error killing process:" e))))
+        (log "Error destroying process tree:" e))))
+  ;; Fallback: kill by PID if process object missing
+  (when-let [pid (:pid @scroll-state)]
+    (try
+      (process ["kill" (str pid)])
+      (catch Exception e
+        (log "Error killing process by PID:" e))))
   (swap! scroll-state assoc :scrolling false :pid nil :direction nil))
 
 (defn start-scroll [direction pixels-per-sec]
   (log "Starting scroll:" direction "at rate:" pixels-per-sec)
-  (Thread/sleep 100)
   (stop-scroll)
   (let [args (cond-> [scroll-binary (str pixels-per-sec)]
-               (= direction "up") (conj "up"))
-        cmd (str "nohup " (str/join " " args) " > /dev/null 2>&1 & echo $!")]
+               (= direction "up") (conj "up"))]
     (try
-      (let [{:keys [out]} (process ["sh" "-c" cmd] {:out :string})
-            new-pid (str/trim @out)]
-        (when-not (str/blank? new-pid)
-          (swap! scroll-state assoc 
-                 :scrolling true 
-                 :direction direction 
-                 :pid new-pid
-                 :rate pixels-per-sec)
-          (log "Started scroll process with PID:" new-pid)))
+      (let [proc (process args {:inherit true :shutdown "destroy" :start true})
+            pid (:pid proc)]
+        (reset! scroll-proc proc)
+        (swap! scroll-state assoc
+               :scrolling true
+               :direction direction
+               :pid pid
+               :rate pixels-per-sec)
+        (log "Started scroll process with PID:" pid))
       (catch Exception e
         (log "Error starting scroll process:" e)))))
 
@@ -84,29 +88,32 @@
 
 ;; Command processing function
 (defn process-command [cmd-str]
-  (log "Received command:" cmd-str)
+  (log "Received command (raw):" (pr-str cmd-str))
   (try
     (let [cmd (read-string cmd-str)]
+      (log "Parsed command:" (pr-str cmd))
       (cond
-        (= cmd :stop) (stop-scroll)
-        
+        (= cmd :stop) (do (log "Stopping scroll via :stop command") (stop-scroll))
+
         (and (vector? cmd) (= (first cmd) :toggle))
         (let [[_ dir rate] cmd
               dir (or dir "down")
               rate (or rate 60)]
+          (log "Toggling scroll:" dir rate)
           (toggle-scroll dir (str rate)))
-        
+
         (and (vector? cmd) (= (first cmd) :start))
         (let [[_ dir rate] cmd
               dir (or dir "down")
               rate (or rate 60)]
+          (log "Starting scroll:" dir rate)
           (start-scroll dir (str rate)))
-        
-        (= cmd :status) (get-status)
-        
-        :else (log "Unknown command:" cmd)))
+
+        (= cmd :status) (do (log "Status requested") (get-status))
+
+        :else (log "Unknown command after parsing:" (pr-str cmd))))
     (catch Exception e
-      (log "Error processing command:" e))))
+      (log "Error processing command:" e "for input:" (pr-str cmd-str) "\n" (.getMessage e)))))
 
 ;; Command processing loop
 (log "Starting command listener on" command-pipe)
