@@ -1,24 +1,30 @@
 list: user.website
 -
+#talon 
 talon home page: http://talonvoice.com
 talon slack: http://talonvoice.slack.com/messages/help
 talon wiki: https://talon.wiki/
 talon practice: https://chaosparrot.github.io/talon_practice/
 talon repository search: https://search.talonvoice.com/search/
+
+#general 
+
 amazon: https://www.amazon.com/
 dropbox: https://dropbox.com/
-google: https://www.google.com/
-google calendar: https://calendar.google.com
-google maps: https://maps.google.com/
-google scholar: https://scholar.google.com/
-gmail: https://mail.google.com/
 github: https://github.com/
 gist: https://gist.github.com/
 wikipedia: https://en.wikipedia.org/
 youtube: https://www.youtube.com/
 
 
+#google 
+google: https://www.google.com/
+google calendar: https://calendar.google.com
+google maps: https://maps.google.com/
+google scholar: https://scholar.google.com/
+gmail: https://mail.google.com/
 
+# gb frontend
 get bit blanks: https://getbitoutdoors.com/blanks/
 get bit rain shadow blanks: https://getbitoutdoors.com/rainshadow/
 
@@ -28,6 +34,7 @@ get bit local home: http://localhost:3000/best-of-2020/
 get bit local: http://localhost:3000/best-of-2020/
 get bit home local: http://localhost:3000/best-of-2020/
 
+# bc cp
 big commerce cats: https://store-7hstasnrjg.mybigcommerce.com/manage/products/categories
 categories: https://store-7hstasnrjg.mybigcommerce.com/manage/products/categories
 bc categories: https://store-7hstasnrjg.mybigcommerce.com/manage/
@@ -38,29 +45,36 @@ wholesale list: https://store-7hstasnrjg.mybigcommerce.com/manage/products/price
 bc products: https://store-7hstasnrjg.mybigcommerce.com/manage/products
 big commerce products: https://store-7hstasnrjg.mybigcommerce.com/manage/products
 
-
 shipping setup: https://store-7hstasnrjg.mybigcommerce.com/manage/app/4869
 
+# constant contact
 constant contact campaigns: https://app.constantcontact.com/pages/campaigns/view/list
 constant contact calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
 
+constant contact: https://app.constantcontact.com/pages/campaigns/view/list
+constant contact calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
+constant contact campaigns: https://app.constantcontact.com/pages/campaigns/email-hub
 
+#batson site
 batson site: https://batsonenterprises.com/products
 batson site categories: https://batsonenterprises.com/products
 batson home: https://batsonenterprises.com
+
+# 4p
 fourp inventory: https://www.4psitelink.com/reports/invStatus.php
 four p inventory: https://www.4psitelink.com/reports/invStatus.php
 fourp inventory import: https://www.4psitelink.com/backoffice/loadInv.php
 four p inventory import: https://www.4psitelink.com/backoffice/loadInv.php
 fourp inventory export: https://www.4psitelink.com/backoffice/loadInv.php
 four p inventory export: https://www.4psitelink.com/backoffice/loadInv.php
-constant contact: https://app.constantcontact.com/pages/campaigns/view/list
-constant contact calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
-constant contact   campaigns: https://app.constantcontact.com/pages/campaigns/email-hub
+
+# cheatsheets
 tail wind reference: https://nerdcave.com/tailwind-cheat-sheet
+tailwind cheatsheet: https://nerdcave.com/tailwind-cheat-sheet
 
+
+#cursorless 
 cursorless docs: https://www.cursorless.org/docs/
-
 cursorless reference: https://www.cursorless.org/cheatsheet
 cursorless cheat sheet: https://www.cursorless.org/cheatsheet
 cursor less cheat sheet: https://www.cursorless.org/cheatsheet
@@ -68,9 +82,6 @@ cursor cheatsheet: https://www.cursorless.org/cheatsheet
 cursor cheat sheet: https://www.cursorless.org/cheatsheet
 cursor reference: https://www.cursorless.org/cheatsheet
 cursor list cheat sheet: https://www.cursorless.org/cheatsheet
-
 cursorless interactive cheatsheet: https://voicelauncherblazor.azurewebsites.net/cursorlesscheatsheetitems
 cursor less interactive cheatsheet: https://voicelauncherblazor.azurewebsites.net/cursorlesscheatsheetitems
 cursor list interactive cheatsheet: https://voicelauncherblazor.azurewebsites.net/cursorlesscheatsheetitems
-
-tailwind cheatsheet: https://nerdcave.com/tailwind-cheat-sheet
