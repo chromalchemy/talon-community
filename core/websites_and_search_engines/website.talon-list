@@ -27,12 +27,16 @@ gmail: https://mail.google.com/
 # gb frontend
 get bit blanks: https://getbitoutdoors.com/blanks/
 get bit rain shadow blanks: https://getbitoutdoors.com/rainshadow/
-
 get bit home: https://getbitoutdoors.com/
+get bit cart: https://getbitoutdoors.com/cart.php
+
+
+#gb local frontend
 
 get bit local home: http://localhost:3000/best-of-2020/
 get bit local: http://localhost:3000/best-of-2020/
 get bit home local: http://localhost:3000/best-of-2020/
+
 
 # bc cp
 big commerce cats: https://store-7hstasnrjg.mybigcommerce.com/manage/products/categories
