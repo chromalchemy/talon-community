@@ -53,11 +53,12 @@ shipping setup: https://store-7hstasnrjg.mybigcommerce.com/manage/app/4869
 
 # constant contact
 constant contact campaigns: https://app.constantcontact.com/pages/campaigns/view/list
-constant contact calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
+newsletters: https://app.constantcontact.com/pages/campaigns/view/list
+newsletter campaigns: https://app.constantcontact.com/pages/campaigns/view/list
 
-constant contact: https://app.constantcontact.com/pages/campaigns/view/list
 constant contact calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
-constant contact campaigns: https://app.constantcontact.com/pages/campaigns/email-hub
+newsletter calendar: https://app.constantcontact.com/pages/campaigns/view/calendar/month
+
 
 #batson site
 batson site: https://batsonenterprises.com/products
