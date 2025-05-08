@@ -1,7 +1,12 @@
 
 
 
-remove (link | url) (parameters | params) | (paste | pace) (link | url) (without | no) (parameters | params):
+(remove | chuck) (link | url) (parameters | params) [on] [that]:
+    x = edit.selected_text()
+    s = user.bb_run_fn(x, "string-transforms/remove-url-params!", "ryan/clojure/string-fns/")
+    user.paste(s)
+
+(paste | pace) (link | url) ((without | no) (parameters | params) | base | root):
     x = clip.text() 
     s = user.bb_run_fn(x, "string-transforms/remove-url-params!", "ryan/clojure/string-fns/")
     user.paste(s)
