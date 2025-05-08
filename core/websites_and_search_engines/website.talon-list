@@ -45,6 +45,7 @@ bc categories: https://store-7hstasnrjg.mybigcommerce.com/manage/
 products/categories
 
 wholesale list: https://store-7hstasnrjg.mybigcommerce.com/manage/products/pricelists/1/edit
+bc wholesale: https://store-7hstasnrjg.mybigcommerce.com/manage/products/pricelists/1/edit
 
 bc products: https://store-7hstasnrjg.mybigcommerce.com/manage/products
 big commerce products: https://store-7hstasnrjg.mybigcommerce.com/manage/products
@@ -66,12 +67,21 @@ batson site categories: https://batsonenterprises.com/products
 batson home: https://batsonenterprises.com
 
 # 4p
-fourp inventory: https://www.4psitelink.com/reports/invStatus.php
+fourp: https://www.4psitelink.com/reports/invStatus.php
+inventory: https://www.4psitelink.com/reports/invStatus.php
 four p inventory: https://www.4psitelink.com/reports/invStatus.php
+four p inventory: https://www.4psitelink.com/reports/invStatus.php
+
 fourp inventory import: https://www.4psitelink.com/backoffice/loadInv.php
 four p inventory import: https://www.4psitelink.com/backoffice/loadInv.php
 fourp inventory export: https://www.4psitelink.com/backoffice/loadInv.php
 four p inventory export: https://www.4psitelink.com/backoffice/loadInv.php
+
+# gb social media
+get bit youtube: https://studio.youtube.com/channel/UC0O5yWgCM28LD_02_RUh14w/videos/
+get bit youtube shorts: https://studio.youtube.com/channel/UC0O5yWgCM28LD_02_RUh14w/videos/short
+get bit facebook: https://www.facebook.com/GetBitOutdoors
+
 
 # cheatsheets
 tail wind reference: https://nerdcave.com/tailwind-cheat-sheet

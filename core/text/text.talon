@@ -37,11 +37,12 @@ phrase <user.text> {user.phrase_ender}:
 proud <user.word>: 
     user.insert_formatted(word, "CAPITALIZE_FIRST_WORD")
 
-recent list: 
+recent list | recent phrase (bar | panel): 
     user.toggle_phrase_history()
 
 recent close: 
     user.phrase_history_hide()
+
 recent repeat <number_small>:
     recent_phrase = user.get_recent_phrase(number_small)
     user.add_phrase_to_history(recent_phrase)
@@ -52,11 +53,11 @@ recent copy <number_small>:
 
 select that: 
     user.select_last_phrase()
-
+ 
 before that: 
     user.before_last_phrase()
 
-nope that | scratch that: 
+(nope | scratch) that: 
     user.clear_last_phrase()
 
 nope that was <user.formatters>: 
