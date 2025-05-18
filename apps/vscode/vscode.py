@@ -264,7 +264,7 @@ class UserActions:
         actions.user.run_rpc_command("workbench.action.focusLeftGroup")
 
     def split_next():
-        actions.user.vscode_and_wait("workbench.action.focusRightGroup")
+        actions.user.vscode("workbench.action.focusRightGroup")
 
     def split_window_down():
         actions.user.run_rpc_command("workbench.action.moveEditorToBelowGroup")

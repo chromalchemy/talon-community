@@ -59,6 +59,10 @@ key(cmd-ctrl-alt-shift-d):
     title = win.title()
     clip.set_text(title)
 
+(talon | tellin | tell in | tallin | talent) [voice] copy class:
+    class_name = user.talon_get_active_window_class_name()
+    clip.set_text(class_name)
+
 (talon | tellin | tell in | tallin | talent) [voice] dump version:
     result = user.talon_version_info()
     print(result)

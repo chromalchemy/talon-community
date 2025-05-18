@@ -1,3 +1,5 @@
+app (preferences | prefs | settings): app.preferences()
+
 
 ## ++++ swap app (not necessarily window) .
 
