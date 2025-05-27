@@ -52,6 +52,7 @@ chld,child
 cn,china
 cls,class
 cli,client
+cli,command line interface
 col,column
 cmd,command
 cmds,commands
@@ -519,3 +520,5 @@ rpc, remote procedure
 rpc, remote call
 ergo, ergonomics
 loc, lines of code
+oz, ounce
+oz, ounces
