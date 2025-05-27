@@ -1,6 +1,10 @@
 list: user.continuous_scrolling_direction
 -
 upper: UP
+up or: UP
 downer: DOWN
+down or: DOWN
 righter: RIGHT
+right or: RIGHT
 lefter: LEFT
+left or: LEFT
