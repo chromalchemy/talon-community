@@ -88,26 +88,26 @@ mouse hiss down: user.hiss_scroll_down()
 
 ## ++++++++++++++++++++++++  continuous 
 
-[(wheel | we'll)] [flow] {user.continuous_scrolling_direction}: 
+(wheel | we'll) {user.continuous_scrolling_direction}: 
     user.mouse_scroll_continuous(continuous_scrolling_direction)
 
-[(wheel | we'll)] [flow] {user.continuous_scrolling_direction} <number_small>: 
+(wheel | we'll) {user.continuous_scrolling_direction} <number_small>: 
     user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
 
-[(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here:
+(wheel | we'll) {user.continuous_scrolling_direction} here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_continuous(continuous_scrolling_direction)
 
-[(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here <number_small>:
+(wheel | we'll) {user.continuous_scrolling_direction} here <number_small>:
     user.mouse_move_center_active_window()
     user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
     
 ## ++++++++++++++++++++++++++++++ stop .
 
-^[(wheel | we'll | flow)] (stop  | stopper | stop it) [(wheel | we'll | flow)]$: 
+(wheel | we'll) (stop  | stopper | dapper | stop it): 
     user.mouse_scroll_stop()
 
-[(wheel | we'll | flow)] (stop | stopper | stop it) here:
+[(wheel | we'll)] (stop  | stopper | dapper | stop it) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_stop()
     
@@ -133,8 +133,6 @@ mouse hiss down: user.hiss_scroll_down()
     user.mouse_scroll_right(1000)
 
 #right
-
-
 
 
 (wheel | we'll) (right | write) [<number>]: 
@@ -186,32 +184,13 @@ home down <number>:
 
 ## ++++++++++++++++++++++++  swift continuous scroll
 
-(smooth) (flow | scroll) {user.continuous_scrolling_direction}: 
+[(smooth | flow | slow | float | scroll)] {user.continuous_scrolling_direction}: 
     user.smooth_scroll_continuous(continuous_scrolling_direction)
 
-(smooth) (flow | scroll) {user.continuous_scrolling_direction} <number>: 
+[(smooth | flow | slow | float | scroll)] {user.continuous_scrolling_direction} <number>: 
     user.smooth_scroll_continuous(continuous_scrolling_direction, number)
     
-(smooth) (flow | scroll) (stop | stopper): 
+[(smooth | flow | slow | float | scroll)] (stop | stopper | stop her | dapper | stop it) | halt: 
     user.smooth_scroll_stop()
 
-# [(wheel | we'll)] [flow] {user.continuous_scrolling_direction} <number_small>: 
-#     user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
-
-# [(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here:
-#     user.mouse_move_center_active_window()
-#     user.mouse_scroll_continuous(continuous_scrolling_direction)
-
-# [(wheel | we'll)] [flow] {user.continuous_scrolling_direction} here <number_small>:
-#     user.mouse_move_center_active_window()
-#     user.mouse_scroll_continuous(continuous_scrolling_direction, number_small)
-    
-# ## ++++++++++++++++++++++++++++++ stop .
-
-# ^[(wheel | we'll | flow)] (stop  | stopper | stop it) [(wheel | we'll | flow)]$: 
-#     user.mouse_scroll_stop()
-
-# [(wheel | we'll | flow)] (stop | stopper | stop it) here:
-#     user.mouse_move_center_active_window()
-#     user.mouse_scroll_stop()
     
