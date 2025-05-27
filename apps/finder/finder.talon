@@ -138,9 +138,9 @@ remove [file] tags: key(ctrl-0)
 
 ## ++++++++++++++++++++++ hidden files .
 
-show hidden files: key(cmd-shift-.)
+(show | hide) (hidden | invisible) files: key(cmd-shift-.)
 
-show hidden folders: key(ctrl-shift-period)
+(show | hide) (hidden | invisible) folders: key(ctrl-shift-period)
 
 ## ++++++++++++++++++++++++ open file .
 
@@ -153,3 +153,16 @@ close | close: key(space)
 ## +++++++++++++++++++++++++ file info .
 
 (get | file) info: key(cmd-i)
+
+
+
+## +++++++++++++++++++++++++ misc .
+
+duplicate file: 
+    user.menu_select('File|Duplicate')
+
+rename (file | files):
+    user.menu_select('File|Rename…')
+
+new (finder | files | file) window:
+    user.menu_select('File|New Finder Window')
