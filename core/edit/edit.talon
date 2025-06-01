@@ -2,20 +2,24 @@
 
 
 (remove | chuck) (link | url) (parameters | params) [on] [that]:
-    x = edit.selected_text()
-    s = user.bb_run_fn(x, "string-transforms/remove-url-params!", "ryan/clojure/string-fns/")
-    user.paste(s)
+    url = edit.selected_text()
+    url_base = user.bb_run_fn(url, "string-transforms/remove-url-params!", "ryan/clojure/string-fns/")
+    user.paste(url_base)
 
 (paste | pace) (link | url) ((without | no) (parameters | params) | base | root):
-    x = clip.text() 
-    s = user.bb_run_fn(x, "string-transforms/remove-url-params!", "ryan/clojure/string-fns/")
-    user.paste(s)
+    url = clip.text() 
+    url_base = user.bb_run_fn(url, "string-transforms/remove-url-params!", "ryan/clojure/string-fns/")
+    user.paste(url_base)
 
+(paste | pace) (link | url) path [only]:
+    url = clip.text() 
+    url_path = user.bb_run_fn(url, "string-transforms/url-path-only!", "ryan/clojure/string-fns/")
+    user.paste(url_path)
+    
 custom paste upper:
     clip_text = clip.text()
-    transformed_text = user.bb_transform_text(clip_text, "string-transforms/uppercase!")
-    # user.print_type(y)
-    user.paste(transformed_text)
+    uppercase_text = user.bb_transform_text(clip_text, "string-transforms/uppercase!")
+    user.paste(uppercase_text)
 
     
 # Compound of action(select, clear, copy, cut, paste, etc.) and modifier(word, line, etc.) commands for editing text.
