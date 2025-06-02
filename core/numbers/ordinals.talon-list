@@ -1,0 +1,62 @@
+# Ordinal numbers list for Talon Voice
+# Provides multiple optional words to represent ordinal numbers
+# Python is loading this as a static resource file instead of using it dynamically?, need to restart talon for changes to take effect
+# Single-digit ordinals
+zeroed: 0
+zeroth: 0
+
+first: 1
+
+second: 2
+
+third: 3
+
+fourth: 4
+
+fiver: 5
+fifth: 5
+
+sixer: 6
+sixth: 6
+
+seventh: 7
+
+niner: 9
+ninth: 9
+
+tenth: 10
+
+eleventh: 11
+
+twelfth: 12
+
+thirteenth: 13
+
+fourteenth: 14
+
+fifteenth: 15
+
+sixteenth: 16
+
+seventeenth: 17
+
+eighteenth: 18
+
+nineteenth: 19
+
+# Tens ordinals
+twentieth: 20
+
+thirtieth: 30
+
+fortieth: 40
+
+fiftieth: 50
+
+sixtieth: 60
+
+seventieth: 70
+
+eightieth: 80
+
+ninetieth: 90
