@@ -408,6 +408,7 @@ class Actions:
 
     def insert_formatted(phrase: Union[str, Phrase], formatters: str):
         """Inserts a phrase formatted according to formatters. Formatters is a comma separated list of formatters (e.g. 'CAPITALIZE_ALL_WORDS,DOUBLE_QUOTED_STRING')"""
+        print(f"inserting formatted: {phrase} with formatters: {formatters}")
         actions.insert(format_phrase(phrase, formatters))
 
     def insert_with_history(text: str):

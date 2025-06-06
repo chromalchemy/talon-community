@@ -10,6 +10,12 @@ phrase <user.text> {user.phrase_ender}:
 {user.prose_formatter} <user.prose>$: 
     user.insert_formatted(prose, prose_formatter)
 
+viper <user.text>$:
+    txt = user.formatted_text(text, "NOOP")
+    print(txt)
+    print(text)
+
+
 {user.prose_formatter} <user.prose> {user.phrase_ender}:
     user.insert_formatted(prose, prose_formatter)
     insert(phrase_ender)
@@ -29,7 +35,7 @@ phrase <user.text> {user.phrase_ender}:
 
 <user.formatters> (pace | paste): 
     user.insert_formatted(clip.text(), formatters)
-
+    
 (word | were it) <user.word>:
     user.add_phrase_to_history(word)
     insert(word)
