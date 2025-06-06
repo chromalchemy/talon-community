@@ -2,7 +2,7 @@ from talon import Context, Module, fs
 import os
 
 # Load ordinals from the talon-list file
-ordinals_list_path = os.path.expanduser('~/.talon/user/ryan/ordinals.talon-list')
+ordinals_list_path = os.path.expanduser('~/.talon/user/community/core/numbers/ordinals.talon-list')
 
 # Create inverse mapping: number -> word
 ordinal_words = {}
