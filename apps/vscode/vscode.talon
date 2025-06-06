@@ -524,8 +524,11 @@ skip word:
 install local: 
     user.run_rpc_command("workbench.extensions.action.installVSIX")
 
-preview markdown: 
+preview markdown | (open | show) markdown preview: 
     user.run_rpc_command("markdown.showPreview")
+
+(preview markdown | (open | show) markdown preview) (to side | [to] right): 
+    user.run_rpc_command("markdown.showPreviewToSide")
 
 imports fix:
     user.vscode_add_missing_imports()
