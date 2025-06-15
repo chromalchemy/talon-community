@@ -166,3 +166,7 @@ rename (file | files):
 
 new (finder | files | file) window:
     user.menu_select('File|New Finder Window')
+
+
+# my [to] {user.system_paths} [folder]:
+#     user.file_manager_open_directory(system_paths)

@@ -2,14 +2,15 @@ Spoken form, App name (or list an app name by itself on a line to exclude it)
 
 grip, DataGrip
 
-term, iTerm2
-termy, iTerm2
+clod, Claude
+claude, Claude
 
+iterm, warp
+terminal, warp
+term, warp
+termy, warp
 warp term, warp
 warp, warp
-term, warp
-terminal, warp
-
 jet, IntelliJ IDEA
 
 

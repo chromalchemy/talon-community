@@ -522,3 +522,6 @@ ergo, ergonomics
 loc, lines of code
 oz, ounce
 oz, ounces
+clojure-mcp, clojure mcp
+mcp, model context protocol
+mcp, model protocol
