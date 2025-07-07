@@ -1,7 +1,6 @@
 list: user.system_paths
-hostname: Ryans-MacBook-Pro-2
+hostname: ryans-macbook
 -
-
 
 river: /Users/ryan/.cache/babashka/bbin/jars
 
