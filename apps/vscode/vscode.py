@@ -17,6 +17,8 @@ and app.bundle: com.microsoft.VSCodeInsiders
 os: mac
 and app.bundle: com.vscodium
 os: mac
+and app.bundle: co.posit.positron
+os: mac
 and app.bundle: com.visualstudio.code.oss
 os: mac
 and app.bundle: com.todesktop.230313mzl4w4u92
@@ -34,6 +36,8 @@ os: linux
 and app.name: Codium
 os: linux
 and app.name: Cursor
+os: linux
+and app.name: Positron
 """
 mod.apps.vscode = r"""
 os: windows
@@ -58,6 +62,8 @@ os: windows
 and app.exe: positron.exe
 os: windows
 and app.exe: /^cursor\.exe$/i
+os: windows
+and app.exe: /^positron\.exe$/i
 """
 
 ctx.matches = r"""
@@ -448,3 +454,6 @@ class UserActions:
 
     def insert_snippet(body: str):
         actions.user.run_rpc_command("editor.action.insertSnippet", {"snippet": body})
+
+    def move_cursor_to_next_snippet_stop():
+        actions.user.vscode("jumpToNextSnippetPlaceholder")

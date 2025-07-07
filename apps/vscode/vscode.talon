@@ -230,7 +230,7 @@ problem last:
 problem fix:
 	 user.vscode("problems.action.showQuickFixes")
 
-rename that:
+rename that | refactor rename:
 	 user.vscode("editor.action.rename")
 
 refactor (that | this):
@@ -267,6 +267,7 @@ pick recent project [folder] [<user.text>]:
     user.vscode("workbench.action.openRecent")
     sleep(50ms)
     insert(text or "")
+    sleep(250ms)
 
 go edit: user.vscode("workbench.action.navigateToLastEditLocation")
 
