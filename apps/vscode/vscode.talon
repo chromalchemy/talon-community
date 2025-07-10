@@ -73,7 +73,7 @@ panel problems:
 panel switch: 
     user.vscode("workbench.action.togglePanel")
 
-(panel | go | open | show) (terminal | term): 
+(panel | open | show) (terminal | term): 
     user.vscode("workbench.action.terminal.focus")
 
 focus editor: 
