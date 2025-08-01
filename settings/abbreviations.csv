@@ -30,7 +30,6 @@ authz,authorization
 augroup,auto group
 avg,average
 afk,away from keyboard
-bkp,backup
 brb,be right back
 bin,binary
 blk,block
@@ -449,7 +448,8 @@ gbo,get bit outdoors
 getbitoutdoors,get bit outdoors long   
 getbitoutdoors,get bit outdoors full
 getbitoutdoors,get bit  long   
-getbitoutdoors,get bit  full   
+getbitoutdoors,get bit  full
+getbitoutdoors.com,get bit domain
 otg,on the go
 osx,mac os
 ps,photoshop
@@ -525,3 +525,5 @@ oz, ounces
 clojure-mcp, clojure mcp
 mcp, model context protocol
 mcp, model protocol
+cloudhost-3267334.us-midwest-1.nxcli.net, get bit email server
+cloudhost-3267334.us-midwest-1.nxcli.net, get bit mail server

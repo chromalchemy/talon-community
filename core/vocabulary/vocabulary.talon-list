@@ -154,3 +154,6 @@ clojure mcp: clojure-mcp
 clojure MCP: clojure-mcp
 closure mpc: clojure-mcp
 closure npc: clojure-mcp
+fast mail: fastmail
+nexus host: nexcess
+nexus server: nexcess
