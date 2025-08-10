@@ -2,6 +2,8 @@ list: user.website
 -
 
 browser tabs: chrome://inspect/#pages
+chrome password manager: chrome://password-manager/passwords
+chrome passwords: chrome://password-manager/passwords
 
 #talon 
 talon home page: http://talonvoice.com
