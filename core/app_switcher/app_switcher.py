@@ -313,6 +313,7 @@ def update_overrides(name, flags):
                     excludes.add(line[0].strip())
 
         update_running_list()
+        update_launch_list()
 
 
 @mod.action_class
@@ -442,9 +443,37 @@ def update_launch_list():
 
     # actions.user.talon_pretty_print(launch)
 
-    ctx.lists["self.launch"] = actions.user.create_spoken_forms_from_map(
-        launch, words_to_exclude
+    # Create a dictionary to store app name to path mapping for overrides
+    launch_app_dict = {}
+    for app_name, app_path in launch.items():
+        launch_app_dict[app_name.lower()] = app_path
+
+    # Filter out excluded and overridden apps from auto-generated spoken forms
+    override_apps = excludes.union(overrides.values())
+    filtered_launch = {
+        app_name: app_path
+        for app_name, app_path in launch.items()
+        if app_name.lower() not in [override_app.lower() for override_app in override_apps]
+    }
+
+    # Generate spoken forms for non-overridden apps
+    launch_spoken_forms = actions.user.create_spoken_forms_from_map(
+        filtered_launch, words_to_exclude
     )
+
+    # Add custom overrides from CSV file
+    for spoken_form, full_application_name in overrides.items():
+        # Look for the app in our launch dictionary (case-insensitive)
+        app_path = None
+        for app_name, path in launch.items():
+            if app_name.lower() == full_application_name.lower():
+                app_path = path
+                break
+        
+        if app_path:
+            launch_spoken_forms[spoken_form] = app_path
+
+    ctx.lists["self.launch"] = launch_spoken_forms
 
 
 def ui_event(event, arg):
