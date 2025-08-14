@@ -113,8 +113,8 @@ dedent | (unindent | un indent) [that]:
 
 
 # Delete
-clear left: edit.delete()
-clear right | delete forward: user.delete_right()
+(clear | chuck) [left]: edit.delete()
+(clear | chuck) right | delete forward : user.delete_right()
 
 clear up:
     edit.extend_line_up()

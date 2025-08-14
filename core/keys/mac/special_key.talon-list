@@ -17,5 +17,4 @@ tab: tab
 insert: insert
 wipe: backspace
 delete: backspace
-chuck: backspace
 forward delete: delete
