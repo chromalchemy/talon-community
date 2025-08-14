@@ -157,3 +157,4 @@ closure npc: clojure-mcp
 fast mail: fastmail
 nexus host: nexcess
 nexus server: nexcess
+data star: datastar
