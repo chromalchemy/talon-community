@@ -47,8 +47,7 @@ get bit home local: http://localhost:3000/best-of-2020/
 # bc cp
 big commerce cats: https://store-7hstasnrjg.mybigcommerce.com/manage/products/categories
 categories: https://store-7hstasnrjg.mybigcommerce.com/manage/products/categories
-bc categories: https://store-7hstasnrjg.mybigcommerce.com/manage/
-products/categories
+bc categories: https://store-7hstasnrjg.mybigcommerce.com/manage/products/categories
 
 wholesale list: https://store-7hstasnrjg.mybigcommerce.com/manage/products/pricelists/1/edit
 bc wholesale: https://store-7hstasnrjg.mybigcommerce.com/manage/products/pricelists/1/edit

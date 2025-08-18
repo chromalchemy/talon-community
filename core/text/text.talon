@@ -27,7 +27,7 @@ viper <user.text>$:
     user.insert_many(format_code_list)
     insert(phrase_ender)
 
-<user.formatters> that: 
+<user.formatters> (that | vet): 
     user.formatters_reformat_selection(user.formatters)
 
 {user.word_formatter} <user.word>: 
