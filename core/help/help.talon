@@ -21,6 +21,8 @@ help snip with phrase: user.help_list("user.snippet_with_phrase")
 help operators: user.help_operators()
 help keywords: user.help_list("user.code_keyword")
 help keywords unprefixed: user.help_list("user.code_keyword_unprefixed")
+help common methods: user.help_list("user.code_common_method")
+help pairs: user.help_list("user.delimiter_pair")
 
 (help formatters | help format | format help):
     user.help_formatters(user.get_formatters_words(), false)
