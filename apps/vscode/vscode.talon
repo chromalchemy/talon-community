@@ -120,7 +120,7 @@ centered switch:
 fullscreen switch: 
     user.vscode("workbench.action.toggleFullScreen")
 
-theme switch | color theme: 
+theme switch | (switch | change) color theme: 
     user.vscode("workbench.action.selectTheme")
 
 wrap switch: 
