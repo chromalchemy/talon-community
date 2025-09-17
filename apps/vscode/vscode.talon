@@ -35,8 +35,8 @@ bar outline:
 bar run: 
     user.vscode("workbench.view.debug")
 
-bar search: 
-    user.vscode("workbench.view.search")
+# bar search: 
+#     user.vscode("workbench.view.search")
 
 bar source: 
     user.vscode("workbench.view.scm")
