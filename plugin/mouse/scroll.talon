@@ -17,13 +17,13 @@ mouse hiss down: user.hiss_scroll_down()
 
 #down
 
-^((wheel | we'll) down | (tall | (slide | sled | slit)))$: 
+^((wheel | we'll) down | (tall | (slide | sled )))$: 
     user.mouse_scroll_down()
 
-^((wheel | we'll) down | (tall | (slide | sled | slit))) [<number>]: 
+^((wheel | we'll) down | (tall | (slide | sled ))) [<number>]: 
     user.mouse_scroll_down(number)  
 
-((wheel | we'll) down | (tall | (slide | sled | slit))) here:
+((wheel | we'll) down | (tall | (slide | sled ))) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down()
 
@@ -44,12 +44,12 @@ mouse hiss down: user.hiss_scroll_down()
 
 #down  
   
-((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled | slit))) [<number>]:
+((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled ))) [<number>]:
     n = number or 4
     na = 0.1 * n 
     user.mouse_scroll_down(na)
 
-((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled | slit))) here:
+((wheel | we'll) (tiny | small | bit) down | (tiny | small | bit) (tall | (slide | sled ))) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down(0.2)
 
@@ -69,10 +69,10 @@ mouse hiss down: user.hiss_scroll_down()
 
 #down
 
-(wheel | we'll) ((max | all) down | bottom) | (tall | (slide | sled | slit)) (max | all | bottom):
+(wheel | we'll) ((max | all) down | bottom) | (tall | (slide | sled)) (max | all | bottom):
     user.mouse_scroll_down(50.0)
 
-((wheel | we'll) ((max | all) down | bottom ) | (tall | (slide | sled | slit)) (max | all | bottom)) here:
+((wheel | we'll) ((max | all) down | bottom ) | (tall | (slide | sled )) (max | all | bottom)) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_down(50.0)
 
