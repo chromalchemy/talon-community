@@ -114,7 +114,7 @@ dedent | (unindent | un indent) [that]:
 
 # Delete
 (clear | chuck) [left]: edit.delete()
-(clear | chuck) right | delete forward : user.delete_right()
+(clear | chuck) right | (delete | to lead) forward : user.delete_right()
 
 clear up:
     edit.extend_line_up()
@@ -145,7 +145,7 @@ clear word right:
     
 
 # Copy
-copy [(that | it)]: edit.copy()
+(copy | can't be) [(that | it)]: edit.copy()
 copy all: 
     edit.select_all()
     edit.copy()
