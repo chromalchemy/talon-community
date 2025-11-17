@@ -232,12 +232,38 @@ elif app.platform == "mac":
         items = {}
         for base in mac_application_directories:
             base = os.path.expanduser(base)
-            if os.path.isdir(base):
-                for name in os.listdir(base):
-                    path = os.path.join(base, name)
-                    name = name.rsplit(".", 1)[0].lower()
-                    items[name] = path
+            if not os.path.isdir(base):
+                continue
+
+            for root, dirs, _ in os.walk(base):
+                # Avoid walking into .app bundles after recording them.
+                bundle_dirs = [d for d in dirs if d.endswith(".app")]
+                for bundle in bundle_dirs:
+                    bundle_path = os.path.join(root, bundle)
+                    app_name = bundle.rsplit(".", 1)[0].lower()
+                    items[app_name] = bundle_path
+                    dirs.remove(bundle)
+
         return items
+
+    def find_mac_app_path(app_name: str):
+        """Best-effort lookup for .app bundles that may live inside folders."""
+        app_name = app_name.strip()
+        if not app_name:
+            return None
+
+        candidate_bundle = f"{app_name}.app"
+        for base in mac_application_directories:
+            base_path = os.path.expanduser(base)
+            direct_path = os.path.join(base_path, candidate_bundle)
+            if os.path.exists(direct_path):
+                return direct_path
+
+            nested_path = os.path.join(base_path, app_name, candidate_bundle)
+            if os.path.exists(nested_path):
+                return nested_path
+
+        return None
 
 
 @mod.capture(rule="{self.running}")  # | <user.text>)")
@@ -306,11 +332,13 @@ def update_overrides(name, flags):
         with open(override_file_path) as f:
             for line in f:
                 line = line.rstrip().lower()
-                line = line.split(",")
-                if len(line) == 2 and line[0] != "Spoken form":
-                    overrides[line[0]] = line[1].strip()
-                if len(line) == 1:
-                    excludes.add(line[0].strip())
+                if not line:
+                    continue
+                line = [part.strip() for part in line.split(",")]
+                if len(line) == 2 and line[0] != "spoken form":
+                    overrides[line[0]] = line[1]
+                elif len(line) == 1 and line[0]:
+                    excludes.add(line[0])
 
         update_running_list()
         update_launch_list()
@@ -443,17 +471,18 @@ def update_launch_list():
 
     # actions.user.talon_pretty_print(launch)
 
-    # Create a dictionary to store app name to path mapping for overrides
+    # Create a dictionary to store normalized app name to path mapping
     launch_app_dict = {}
     for app_name, app_path in launch.items():
         launch_app_dict[app_name.lower()] = app_path
 
     # Filter out excluded and overridden apps from auto-generated spoken forms
     override_apps = excludes.union(overrides.values())
+    normalized_override_apps = {override_app.lower() for override_app in override_apps}
     filtered_launch = {
         app_name: app_path
         for app_name, app_path in launch.items()
-        if app_name.lower() not in [override_app.lower() for override_app in override_apps]
+        if app_name.lower() not in normalized_override_apps
     }
 
     # Generate spoken forms for non-overridden apps
@@ -463,13 +492,17 @@ def update_launch_list():
 
     # Add custom overrides from CSV file
     for spoken_form, full_application_name in overrides.items():
-        # Look for the app in our launch dictionary (case-insensitive)
-        app_path = None
-        for app_name, path in launch.items():
-            if app_name.lower() == full_application_name.lower():
-                app_path = path
-                break
-        
+        normalized_name = full_application_name.lower()
+        app_path = launch_app_dict.get(normalized_name)
+
+        if not app_path:
+            expanded_path = os.path.expanduser(full_application_name)
+            if os.path.exists(expanded_path):
+                app_path = expanded_path
+
+        if not app_path and app.platform == "mac":
+            app_path = find_mac_app_path(full_application_name)
+
         if app_path:
             launch_spoken_forms[spoken_form] = app_path
 
