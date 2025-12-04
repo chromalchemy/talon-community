@@ -112,6 +112,7 @@ diff
 flowstorm
 babashka
 nrepl
+end repl: nrepl
 chat gpt
 gpt
 bc
@@ -164,3 +165,4 @@ eca
 ai
 PVC
 date elevin: datalevin
+

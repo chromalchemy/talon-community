@@ -13,14 +13,16 @@
 ^(microphone | mic | mice) [(choose | pick)] <number_small>$: 
     user.microphone_select(number_small)
 
-# set talon mic, still need to set on system    
+# set talon mic 
 (set | change) talon (mic | mike | microphone) [to] {user.community.plugin.microphone_selection.microphone.list}: 
     print("manually setting microphone to {user.community.plugin.microphone_selection.microphone.list}")
     sound.set_microphone("{user.community.plugin.microphone_selection.microphone.list}")
 
+# set system mic   
 (set | change) system (mic | mike | microphone) [to] {user.community.plugin.microphone_selection.microphone.list}: 
     user.system_command_nb('SwitchAudioSource -t input -s "{user.community.plugin.microphone_selection.microphone.list}"')
 
+# set both talon and systemmic
 ((set | said) | change) (mic | mike | microphone) [to] {user.community.plugin.microphone_selection.microphone.list}:
     target_mic = user.community.plugin.microphone_selection.microphone.list
     app.notify("Microphone is {target_mic}")
