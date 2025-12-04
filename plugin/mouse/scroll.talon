@@ -1,3 +1,6 @@
+key(cmd-ctrl-alt-shift-down):
+    mouse_scroll(1)
+
 
 open trackpad scroll [panel]: 
     user.run_raycast_command("pointer control")

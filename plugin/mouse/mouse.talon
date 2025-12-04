@@ -1,11 +1,89 @@
-control mouse: tracking.control_toggle()
-control off: user.mouse_sleep()
-zoom mouse: tracking.control_zoom_toggle()
-camera overlay: tracking.control_debug_toggle()
-run calibration: tracking.calibrate()
+[toggle] control mouse | tracking: 
+    tracking.control_toggle()
 
-key(cmd-ctrl-alt-shift-down):
-    mouse_scroll(1)
+(track | tracking | control mouse) on: 
+    user.mouse_control_toggle(true)
+
+(track | tracking | control mouse) off: 
+    user.mouse_control_toggle(false)
+
+# Disables control mouse, zoom mouse, and re-enables cursor
+control off:  
+    user.mouse_sleep()
+
+## ++++++++++++++++++++++++ zoom mouse .
+
+[toggle] zoom mouse | track zoom: 
+    tracking.control_zoom_toggle()
+    
+zoom mouse on: 
+    tracking.control_zoom_toggle(true)
+
+zoom mouse off: 
+    tracking.control_zoom_toggle(false)
+
+# missing todo: implement head jump and gaze focus
+# Head jump
+#use axkit? copy menu command doesnt work
+
+## +++++++++++++++++ toggle track gaze .
+
+[toggle] gaze: 
+    tracking.control_gaze_toggle()
+
+track head | gaze off : 
+    tracking.control_gaze_toggle(false)
+
+track gaze | gaze on: 
+    tracking.control_gaze_toggle(true)
+
+## +++++++++++++++++ toggle gaze focus .
+
+[toggle] gaze focus: 
+    tracking.control_gaze_focus_toggle()
+
+gaze focus off : 
+    tracking.control_gaze_focus_toggle(false)
+
+gaze focus on: 
+    tracking.control_gaze_focus_toggle(true)
+
+## ++++++++++++++ toggle head tracking .
+
+[toggle] head tracking:
+    tracking.control_head_toggle()
+
+head tracking on: 
+    tracking.control_head_toggle(true)
+
+head tracking off: 
+    tracking.control_head_toggle(false)
+
+## +++++++++++++++++ toggle mouse jump .
+
+[toggle] mouse jump: 
+    tracking.control_mouse_jump_toggle()
+
+mouse jump on: 
+    tracking.control_mouse_jump_toggle(true)
+
+mouse jump off: 
+    tracking.control_mouse_jump_toggle(false)
+
+## ++++++++++++++++++++ debug tracking .
+
+camera overlay | track debug | debug tracking: 
+    tracking.control_debug_toggle()
+
+run calibration | calibrate [eye | head] tracking: 
+    tracking.calibrate()
+
+
+# Cursor
+cursor center:              user.mouse_move_center_window()
+cursor print:               print("{mouse_x()}, {mouse_y()}")
+cursor copy:                clip.set_text("{mouse_x()}, {mouse_y()}")
+
 
 ## ++++++++++++++++++++++++++++ clicks .
 
