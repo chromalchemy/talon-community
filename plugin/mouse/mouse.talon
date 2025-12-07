@@ -1,11 +1,19 @@
+
+# toggle "Control Mouse" (newer implementation)
+
 [toggle] control mouse | tracking: 
     tracking.control_toggle()
 
-(track | tracking | control mouse) on: 
-    user.mouse_control_toggle(true)
+(track | tracking | tracker | control mouse) on: 
+    tracking.control_toggle(true)
 
-(track | tracking | control mouse) off: 
-    user.mouse_control_toggle(false)
+(track | tracking | tracker | control mouse) off: 
+    tracking.control_toggle(false)
+
+# legacy control mouse
+[(toggle | use)] (legacy | old) (control mouse | tracking):
+    tracking.control1_toggle()
+
 
 # Disables control mouse, zoom mouse, and re-enables cursor
 control off:  
@@ -28,13 +36,13 @@ zoom mouse off:
 
 ## +++++++++++++++++ toggle track gaze .
 
-[toggle] gaze: 
+[toggle] gaze [control]: 
     tracking.control_gaze_toggle()
 
-track head | gaze off : 
+track head | gaze [control] off : 
     tracking.control_gaze_toggle(false)
 
-track gaze | gaze on: 
+track gaze | gaze [control] on: 
     tracking.control_gaze_toggle(true)
 
 ## +++++++++++++++++ toggle gaze focus .
@@ -72,10 +80,10 @@ mouse jump off:
 
 ## ++++++++++++++++++++ debug tracking .
 
-camera overlay | track debug | debug tracking: 
+[toggle] (camera overlay | (tracking | tracker | track) debug | debug (tracking | tracker)): 
     tracking.control_debug_toggle()
 
-run calibration | calibrate [eye | head] tracking: 
+run calibration | calibrate [eye | head] (tracking | tracker): 
     tracking.calibrate()
 
 
