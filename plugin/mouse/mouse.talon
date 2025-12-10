@@ -1,4 +1,3 @@
-
 # toggle "Control Mouse" (newer implementation)
 
 [toggle] control mouse | tracking: 
@@ -7,7 +6,7 @@
 (track | tracking | tracker | control mouse) on: 
     tracking.control_toggle(true)
 
-(track | tracking | tracker | control mouse) off: 
+[all] (track | tracking | tracker | control mouse) off: 
     tracking.control_toggle(false)
 
 # legacy control mouse
@@ -18,6 +17,20 @@
 # Disables control mouse, zoom mouse, and re-enables cursor
 control off:  
     user.mouse_sleep()
+
+
+# this doesnt work, deadlocks
+# user.status_menu_select_by_title("Talon")
+
+tracking left eye:
+    user.select_talon_menu_item("Eye Tracking", "Only Left Eye")
+
+tracking right eye:
+    user.select_talon_menu_item("Eye Tracking", "Only Right Eye")
+
+tracking both eyes:
+    user.select_talon_menu_item("Eye Tracking", "Use Both Eyes")
+
 
 ## ++++++++++++++++++++++++ zoom mouse .
 
@@ -30,9 +43,6 @@ zoom mouse on:
 zoom mouse off: 
     tracking.control_zoom_toggle(false)
 
-# missing todo: implement head jump and gaze focus
-# Head jump
-#use axkit? copy menu command doesnt work
 
 ## +++++++++++++++++ toggle track gaze .
 
@@ -67,6 +77,17 @@ head tracking on:
 head tracking off: 
     tracking.control_head_toggle(false)
 
+## +++++++++++++++++++++++++ head jump .
+
+[toggle] head jump: 
+    tracking.control_head_jump_toggle()
+
+head jump on: 
+    tracking.control_head_jump_toggle(true)
+
+head jump off: 
+    tracking.control_head_jump_toggle(false)
+
 ## +++++++++++++++++ toggle mouse jump .
 
 [toggle] mouse jump: 
@@ -77,6 +98,21 @@ mouse jump on:
 
 mouse jump off: 
     tracking.control_mouse_jump_toggle(false)
+
+## +++++++++++++++++ combined modes .
+
+# only mouse jump    
+secret [control mouse] mode | mouse jump only:
+    tracking.control_gaze_toggle(false)
+    tracking.control_head_toggle(false)
+    tracking.control_mouse_jump_toggle(true)
+
+all tracking [on] | tracking all:
+    tracking.control_toggle(true)
+    tracking.control_gaze_toggle(true)
+    tracking.control_head_toggle(true)
+    tracking.control_head_jump_toggle(true)
+    tracking.control_mouse_jump_toggle(true) 
 
 ## ++++++++++++++++++++ debug tracking .
 
