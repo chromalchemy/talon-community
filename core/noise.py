@@ -7,6 +7,31 @@ from talon import Module, actions, cron, noise, settings
 mod = Module()
 hiss_cron = None
 
+
+_noise_pop_active = False
+
+
+try:
+    from talon.plugins import eye_zoom_mouse as _eye_zoom_mouse
+
+    if hasattr(_eye_zoom_mouse, "zoom_mouse") and hasattr(_eye_zoom_mouse.zoom_mouse, "on_pop"):
+        _zoom_mouse_on_pop_original = _eye_zoom_mouse.zoom_mouse.on_pop
+
+        def _zoom_mouse_on_pop_wrapped(state):
+            try:
+                if (
+                    _noise_pop_active
+                    and _eye_zoom_mouse.zoom_mouse.state == _eye_zoom_mouse.STATE_IDLE
+                ):
+                    return
+            except Exception:
+                pass
+            return _zoom_mouse_on_pop_original(state)
+
+        _eye_zoom_mouse.zoom_mouse.on_pop = _zoom_mouse_on_pop_wrapped
+except Exception:
+    pass
+
 mod.setting(
     "hiss_scroll_debounce_time",
     type=int,
@@ -47,5 +72,17 @@ def noise_trigger_hiss_debounce(active: bool):
         actions.user.noise_trigger_hiss(active)
 
 
+def noise_trigger_pop_blocker(_):
+    global _noise_pop_active
+    _noise_pop_active = True
+
+    def _clear():
+        global _noise_pop_active
+        _noise_pop_active = False
+
+    cron.after("50ms", _clear)
+
+
 noise.register("pop", lambda _: actions.user.noise_trigger_pop())
+noise.register("pop", noise_trigger_pop_blocker)
 noise.register("hiss", noise_trigger_hiss_debounce)

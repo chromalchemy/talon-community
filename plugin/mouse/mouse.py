@@ -44,6 +44,54 @@ class Actions:
         )
         actions.tracking.zoom_cancel()
 
+    def zoom_overlay() -> None:
+        """Open the zoom mouse overlay (capture screen region) using Talon's built-in zoom mouse."""
+        try:
+            actions.tracking.control_zoom_toggle(True)
+        except Exception:
+            pass
+
+        try:
+            from talon.plugins import eye_zoom_mouse
+
+            try:
+                print(
+                    "user.zoom_overlay: enabled=",
+                    getattr(eye_zoom_mouse.zoom_mouse, "enabled", None),
+                    "state=",
+                    getattr(eye_zoom_mouse.zoom_mouse, "state", None),
+                )
+            except Exception:
+                pass
+
+            try:
+                if hasattr(eye_zoom_mouse, "toggle_zoom_mouse"):
+                    eye_zoom_mouse.toggle_zoom_mouse(True)
+            except Exception:
+                pass
+
+            if not eye_zoom_mouse.zoom_mouse.enabled:
+                eye_zoom_mouse.zoom_mouse.enable()
+            eye_zoom_mouse.zoom_mouse.capture()
+
+            try:
+                print(
+                    "user.zoom_overlay after capture: enabled=",
+                    getattr(eye_zoom_mouse.zoom_mouse, "enabled", None),
+                    "state=",
+                    getattr(eye_zoom_mouse.zoom_mouse, "state", None),
+                )
+            except Exception:
+                pass
+
+            try:
+                if eye_zoom_mouse.zoom_mouse.state == eye_zoom_mouse.STATE_IDLE:
+                    actions.tracking.zoom()
+            except Exception:
+                pass
+        except Exception as e:
+            print(f"user.zoom_overlay failed: {e}")
+
     def mouse_wake():
         """Enable control mouse, zoom mouse, and disables cursor"""
         actions.tracking.control_zoom_toggle(True)
@@ -123,13 +171,18 @@ class UserActions:
             or actions.tracking.control1_enabled()
         )
 
-        should_click = (
-            setting_val == 2 and not actions.tracking.control_zoom_enabled()
-        ) or (
-            setting_val == 1
-            and is_using_eye_tracker
-            and not actions.tracking.control_zoom_enabled()
-        )
+        is_zoom_overlay_active = False
+        if actions.tracking.control_zoom_enabled():
+            try:
+                from talon.plugins import eye_zoom_mouse
 
-        if should_click:
+                is_zoom_overlay_active = (
+                    eye_zoom_mouse.zoom_mouse.state == eye_zoom_mouse.STATE_OVERLAY
+                )
+            except Exception:
+                pass
+
+        should_click = (setting_val == 2) or (setting_val == 1 and is_using_eye_tracker)
+
+        if should_click and not is_zoom_overlay_active:
             ctrl.mouse_click(button=0, hold=16000)

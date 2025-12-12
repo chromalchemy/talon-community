@@ -22,22 +22,25 @@ control off:
 # this doesnt work, deadlocks
 # user.status_menu_select_by_title("Talon")
 
-tracking left eye:
+(tracking | track) left eye [only]:
     user.select_talon_menu_item("Eye Tracking", "Only Left Eye")
 
-tracking right eye:
+(tracking | track) right eye [only]:
     user.select_talon_menu_item("Eye Tracking", "Only Right Eye")
 
-tracking both eyes:
+(tracking | track) both (eyes | eye):
     user.select_talon_menu_item("Eye Tracking", "Use Both Eyes")
 
 
 ## ++++++++++++++++++++++++ zoom mouse .
 
-[toggle] zoom mouse | track zoom: 
+zoom (curse | cursor):
+    user.zoom_overlay()
+
+[toggle] zoom mouse | track zoom:
     tracking.control_zoom_toggle()
     
-zoom mouse on: 
+zoom mouse on:
     tracking.control_zoom_toggle(true)
 
 zoom mouse off: 
@@ -71,13 +74,17 @@ gaze focus on:
 [toggle] head tracking:
     tracking.control_head_toggle()
 
-head tracking on: 
+head [tracking] on: 
     tracking.control_head_toggle(true)
 
-head tracking off: 
+head [tracking] off: 
     tracking.control_head_toggle(false)
 
 ## +++++++++++++++++++++++++ head jump .
+
+jump [(curse | cursor)] | (curse | cursor) jump:
+    tracking.jump()
+
 
 [toggle] head jump: 
     tracking.control_head_jump_toggle()
