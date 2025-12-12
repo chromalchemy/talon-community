@@ -40,16 +40,28 @@ get bit photos: /Volumes/Scratchy/GB/GB-Pictures
 get bit logos: /Volumes/Scratchy/GB/Logos
 get bit resources: /Users/ryan/dev/gbo/resources
 get bit vendors: /Users/ryan/dev/gbo/resources/vendor
+get bit vendor: /Users/ryan/dev/gbo/resources/vendor
 get bit media kits: /Volumes/Scratchy/GB/Media Kits
 get bit out: /Users/ryan/dev/gbo/resources/out
 get bit out folder: /Users/ryan/dev/gbo/resources/out
 
-next level light green logo: /Volumes/Scratchy/GB/GB-Pictures/Next Level Rod Finish/Next Level Light Logo.psd 
-next level light logo: /Volumes/Scratchy/GB/GB-Pictures/Next Level Rod Finish/Next Level Light Logo.psd 
-next level light blue logo: /Volumes/Scratchy/GB/GB-Pictures/Next Level Rod Finish/Next Level Light Logo Blue.psd
-next level light logo blue: /Volumes/Scratchy/GB/GB-Pictures/Next Level Rod Finish/Next Level Light Logo Blue.psd
-next level light green air: /Volumes/Scratchy/GB/GB-Pictures/Next Level Rod Finish/Lite Green A.psb 
+remote get bit: /Volumes/Scratchy/GB
+external get bit: /Volumes/Scratchy/GB
+get bit remote: /Volumes/Scratchy/GB
+get bit external: /Volumes/Scratchy/GB
+
+media kits: /Volumes/Scratchy/GB/Media Kits
+get bit media kits: /Volumes/Scratchy/GB/Media Kits
 
 batson media: /Volumes/Scratchy/GB/Media Kits/Batson
-
+batson media kit: /Volumes/Scratchy/GB/Media Kits/Batson
+batson: /Users/ryan/dev/gbo/resources/vendor/batson
 batson data: /Users/ryan/dev/gbo/resources/vendor/batson
+batson vendor: /Users/ryan/dev/gbo/resources/vendor/batson
+
+
+fuji vendor: /Users/ryan/dev/gbo/resources/vendor/fuji
+fuji data: /Users/ryan/dev/gbo/resources/vendor/fuji
+fuji: /Users/ryan/dev/gbo/resources/vendor/fuji
+fuji media: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
+fuji media kit: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
