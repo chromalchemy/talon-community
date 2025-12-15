@@ -156,6 +156,10 @@ clojure mcp: clojure-mcp
 clojure MCP: clojure-mcp
 closure mpc: clojure-mcp
 closure npc: clojure-mcp
+clojure mcp light: clojure-mcp-light
+clojure MCP light: clojure-mcp-light
+closure mpc light: clojure-mcp-light
+closure npc light: clojure-mcp-light
 fast mail: fastmail
 nexus host: nexcess
 nexus server: nexcess
@@ -165,4 +169,4 @@ eca
 ai
 PVC
 date elevin: datalevin
-
+basil lisp: basilisp
