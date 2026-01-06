@@ -71,18 +71,81 @@ batson site: https://batsonenterprises.com/products
 batson site categories: https://batsonenterprises.com/products
 batson home: https://batsonenterprises.com
 
-# 4p
-fourp: https://www.4psitelink.com/reports/invStatus.php
-inventory: https://www.4psitelink.com/reports/invStatus.php
-four p inventory: https://www.4psitelink.com/reports/invStatus.php
-four p inventory: https://www.4psitelink.com/reports/invStatus.php
+#linnworks
 
-fourp inventory import: https://www.4psitelink.com/backoffice/loadInv.php
-four p inventory import: https://www.4psitelink.com/backoffice/loadInv.php
-fourp inventory export: https://www.4psitelink.com/backoffice/loadInv.php
-four p inventory export: https://www.4psitelink.com/backoffice/loadInv.php
+linn inventory: https://www.linnworks.net/#/app/MyInventory
+linnworks inventory: https://www.linnworks.net/#/app/MyInventory
 
-four p kits: https://www.4psitelink.com/reports/kits_list.php
+Linn po: https://www.linnworks.net/#/app/PurchaseOrder
+Lin po: https://www.linnworks.net/#/app/PurchaseOrder
+lynn po: https://www.linnworks.net/#/app/PurchaseOrder
+Linnworks po: https://www.linnworks.net/#/app/PurchaseOrder
+Linn purchase order: https://www.linnworks.net/#/app/PurchaseOrder
+Lin purchase order: https://www.linnworks.net/#/app/PurchaseOrder
+Lynn purchase order: https://www.linnworks.net/#/app/PurchaseOrder
+Linnworks purchase order: https://www.linnworks.net/#/app/PurchaseOrder
+Linn purchase orders: https://www.linnworks.net/#/app/PurchaseOrder
+Lin purchase orders: https://www.linnworks.net/#/app/PurchaseOrder
+Lynn purchase orders: https://www.linnworks.net/#/app/PurchaseOrder
+Linnworks purchase orders: https://www.linnworks.net/#/app/PurchaseOrder
+
+linn orders: https://www.linnworks.net/#/app/OrdersBeta
+lin orders: https://www.linnworks.net/#/app/OrdersBeta
+lynn orders: https://www.linnworks.net/#/app/OrdersBeta
+linn open orders: https://www.linnworks.net/#/app/OrdersBeta
+lin open orders: https://www.linnworks.net/#/app/OrdersBeta
+lynn open orders: https://www.linnworks.net/#/app/OrdersBeta
+linnworks orders: https://www.linnworks.net/#/app/OrdersBeta
+linnworks open orders: https://www.linnworks.net/#/app/OrdersBeta
+
+linn processed orders: https://www.linnworks.net/#/app/ProcessedOrders
+lin processed orders: https://www.linnworks.net/#/app/ProcessedOrders
+lynn processed orders: https://www.linnworks.net/#/app/ProcessedOrders
+linnworks processed orders: https://www.linnworks.net/#/app/ProcessedOrders
+linn closed orders: https://www.linnworks.net/#/app/ProcessedOrders
+lin closed orders: https://www.linnworks.net/#/app/ProcessedOrders
+lynn closed orders: https://www.linnworks.net/#/app/ProcessedOrders
+linnworks closed orders: https://www.linnworks.net/#/app/ProcessedOrders
+linn close orders: https://www.linnworks.net/#/app/ProcessedOrders
+lin close orders: https://www.linnworks.net/#/app/ProcessedOrders
+lynn close orders: https://www.linnworks.net/#/app/ProcessedOrders
+linnworks close orders: https://www.linnworks.net/#/app/ProcessedOrders
+linn close doors: https://www.linnworks.net/#/app/ProcessedOrders
+lin close doors: https://www.linnworks.net/#/app/ProcessedOrders
+lynn close doors: https://www.linnworks.net/#/app/ProcessedOrders
+linnworks close doors: https://www.linnworks.net/#/app/ProcessedOrders
+
+linn import: https://www.linnworks.net/#/app/import-data
+linnworks import: https://www.linnworks.net/#/app/import-data
+
+linn templates: https://www.linnworks.net/#/app/TemplatesDesigner
+linnworks templates: https://www.linnworks.net/#/app/TemplatesDesigner
+
+linn email templates: https://www.linnworks.net/#/app/EmailAccounts
+linnworks email templates: https://www.linnworks.net/#/app/EmailAccounts
+
+linn variations: https://www.linnworks.net/#/app/StockVariations
+linnworks variations: https://www.linnworks.net/#/app/StockVariations
+
+linn channel integration: https://www.linnworks.net/#/app/ChannelIntegration
+linn channel settings: https://www.linnworks.net/#/app/ChannelIntegration
+linn channel config: https://www.linnworks.net/#/app/ChannelIntegration
+linn bc config: https://www.linnworks.net/#/app/ChannelIntegration
+linn bigcommerce config: https://www.linnworks.net/#/app/ChannelIntegration
+linnworks channel integration: https://www.linnworks.net/#/app/ChannelIntegration
+linnworks channel settings: https://www.linnworks.net/#/app/ChannelIntegration
+linnworks channel config: https://www.linnworks.net/#/app/ChannelIntegration
+linnworks bc config: https://www.linnworks.net/#/app/ChannelIntegration
+linnworks bigcommerce config: https://www.linnworks.net/#/app/ChannelIntegration
+
+linn api reference: https://apidocs.linnworks.net/reference/overview
+linn api: https://apidocs.linnworks.net/reference/overview
+lin api: https://apidocs.linnworks.net/reference/overview
+lynn api: https://apidocs.linnworks.net/reference/overview
+linnworks api reference: https://apidocs.linnworks.net/reference/overview
+linnworks api: https://apidocs.linnworks.net/reference/overview
+
+
 
 # gb social media
 get bit youtube: https://studio.youtube.com/channel/UC0O5yWgCM28LD_02_RUh14w/videos/
