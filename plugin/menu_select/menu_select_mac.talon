@@ -2,7 +2,7 @@ os: mac
 -
 menu here <user.contextual_menu_item>: 
     user.menu_item_select(contextual_menu_item)
-
+    
 menu <user.menu_item>: 
     user.menu_item_select(menu_item)
 

@@ -203,15 +203,15 @@ class UserActions:
         if actions.user.active_menu_safe() is not None:
             return
 
-        if (element := actions.user.focused_element_safe()) is not None:
-            try:
-                element.perform("AXShowMenu")
-                actions.sleep("50ms")
-                if actions.user.active_menu_safe() is not None:
-                    return
-            except:
-                pass
-
+        #         if (element := actions.user.focused_element_safe()) is not None:
+        #             try:
+        #                 element.perform("AXShowMenu")
+        #                 actions.sleep("50ms")
+        #                 if actions.user.active_menu_safe() is not None:
+        #                     return
+        #             except:
+        #                 pass
+        # 
         ctrl.mouse_click(1)
 
         for attempt in range(10):
