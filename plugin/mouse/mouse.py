@@ -1,4 +1,6 @@
-from talon import Context, Module, actions, ctrl, settings, ui
+from dataclasses import dataclass
+
+from talon import Context, Module, actions, app, ctrl, settings, ui
 
 mod = Module()
 ctx = Context()
@@ -31,6 +33,32 @@ mod.setting(
     default=False,
     desc="When enabled, mouse wake will hide the cursor. mouse_wake enables zoom mouse.",
 )
+
+
+@dataclass(slots=True)
+class EyeTrackingState:
+    """Eye tracking state that can be queried with tracking.*_enabled actions
+    This is cached on the user.mouse_sleep action so the state can be restored on the user.mouse_wake action.
+    """
+
+    control_zoom: bool
+    control: bool
+    control1: bool
+
+
+eye_tracking_state: EyeTrackingState
+
+
+def on_ready():
+    global eye_tracking_state
+    eye_tracking_state = EyeTrackingState(
+        actions.tracking.control_zoom_enabled(),
+        actions.tracking.control_enabled(),
+        actions.tracking.control1_enabled(),
+    )
+
+
+app.register("ready", on_ready)
 
 
 @mod.action_class
@@ -93,8 +121,14 @@ class Actions:
             print(f"user.zoom_overlay failed: {e}")
 
     def mouse_wake():
-        """Enable control mouse, zoom mouse, and disables cursor"""
-        actions.tracking.control_zoom_toggle(True)
+        """Re-enable eye tracking state and disables cursor"""
+        # restore eye tracking modes enabled as of the last user.mouse_sleep
+        if eye_tracking_state.control_zoom:
+            actions.tracking.control_zoom_toggle(True)
+        if eye_tracking_state.control:
+            actions.tracking.control_toggle(True)
+        if eye_tracking_state.control1:
+            actions.tracking.control1_toggle(True)
 
         if settings.get("user.mouse_wake_hides_cursor"):
             actions.user.mouse_cursor_hide()
@@ -125,6 +159,12 @@ class Actions:
 
     def mouse_sleep():
         """Disables control mouse, zoom mouse, and re-enables cursor"""
+        # save eye tracking state so it can be restored on user.mouse_wake
+        global eye_tracking_state
+        eye_tracking_state.control_zoom = actions.tracking.control_zoom_enabled()
+        eye_tracking_state.control = actions.tracking.control_enabled()
+        eye_tracking_state.control1 = actions.tracking.control1_enabled()
+
         actions.tracking.control_zoom_toggle(False)
         actions.tracking.control_toggle(False)
         actions.tracking.control1_toggle(False)
