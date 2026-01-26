@@ -6,7 +6,7 @@ from typing import Any
 from talon import actions
 
 # The amount of time to wait for application to perform a command, in seconds
-RPC_COMMAND_TIMEOUT_SECONDS = 3.0
+RPC_COMMAND_TIMEOUT_SECONDS = 10.0
 
 # When doing exponential back off waiting for application to perform a command, how
 # long to sleep the first time
