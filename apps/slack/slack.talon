@@ -70,3 +70,10 @@ toggle right sidebar: user.slack_toggle_right_sidebar()
 (previous | last) (element | bit):
     app.notify("please use the voice command 'element last' instead of 'last element'")
     key(shift-tab)
+
+copy message:
+    # select little 3 dot mover menu more actions..
+    mouse_click(0)
+    user.mouse_helper_click_image_relative("2026-01-27_22.27.50.504075.png", 0, 0, true)
+    sleep(200ms)
+    key(cmd-c)
