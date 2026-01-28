@@ -11,11 +11,20 @@ and app.bundle: dev.warp.Warp-Stable
 # Declare custom warp actions
 @mod.action_class
 class UserActions:
+    def warp_run_command(cmd_str: str):
+        """run a command"""
+        actions.insert(cmd_str)
+        actions.sleep("200ms")
+        actions.key("enter")
+
     def warp_rename_tab(tab_name: str):
         """Rename the current Warp tab"""
 
     def warp_run_command_in_new_tab(cmd_str: str, tab_name: str):
         """Run a command in a new Warp tab and rename it"""
+
+    
+
 
 
 
@@ -29,10 +38,8 @@ class GlobalUserActions:
         actions.user.switcher_focus("Warp")
         actions.sleep("200ms")
         actions.app.tab_open()
-        actions.sleep("200ms")
-        actions.insert(cmd_str)
         actions.sleep("2000ms")
-        actions.key("enter")
+        actions.warp_run_command(cmd_str)
         actions.sleep("1000ms")
         actions.user.warp_rename_tab(tab_name)
 

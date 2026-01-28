@@ -26,10 +26,17 @@ word right:
 run: 
     key(enter)
 
-(confirm | complete) [command]: 
+(confirm | complete) [command] | do (it | that): 
     key(right)
     key(enter)
 
 (clear | cancel | quit) command: 
     key(ctrl-c)
 
+run [command] {user.community.apps.warp.bash_commands.list}: 
+    user.warp_run_command("{user.community.apps.warp.bash_commands.list}")
+
+go (directory | dir | path) {user.system_paths}:
+    cmd = "cd " + "\"{system_paths}\""
+    print(cmd) 
+    user.warp_run_command(cmd)
