@@ -7,6 +7,37 @@ os: mac
 and app.bundle: dev.warp.Warp-Stable
 """
 
+
+# Declare custom warp actions
+@mod.action_class
+class UserActions:
+    def warp_rename_tab(tab_name: str):
+        """Rename the current Warp tab"""
+
+    def warp_run_command_in_new_tab(cmd_str: str, tab_name: str):
+        """Run a command in a new Warp tab and rename it"""
+
+
+
+# Global context for actions that work from anywhere
+ctx_global = Context()
+
+
+@ctx_global.action_class("user")
+class GlobalUserActions:
+    def warp_run_command_in_new_tab(cmd_str: str, tab_name: str):
+        actions.user.switcher_focus("Warp")
+        actions.sleep("200ms")
+        actions.app.tab_open()
+        actions.sleep("200ms")
+        actions.insert(cmd_str)
+        actions.sleep("2000ms")
+        actions.key("enter")
+        actions.sleep("1000ms")
+        actions.user.warp_rename_tab(tab_name)
+
+
+# Context for Warp-specific actions (when Warp is focused)
 ctx = Context()
 ctx.matches = r"""
 app: warp
@@ -21,6 +52,12 @@ class UserActions:
 
     def tab_final():
         actions.key("cmd-9")
+
+    def warp_rename_tab(tab_name: str):
+        actions.user.menu_select("Tab|Rename the Current Tab")
+        actions.insert(tab_name)
+        actions.key("enter")
+        actions.sleep("200ms")
 
 
 @ctx.action_class("edit")
