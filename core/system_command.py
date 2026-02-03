@@ -11,32 +11,47 @@ mod = Module()
 class Actions:
     def system_command(cmd: str):
         """execute a command on the system"""
+        # Add Homebrew paths to PATH for command execution
+        env = os.environ.copy()
+        env['PATH'] = f"/opt/homebrew/bin:/usr/local/bin:{env.get('PATH', '')}"
+        os.environ.update(env)
         os.system(cmd)
 
     def system_command_run(cmd: str):
         """execute a command on the system with subprocess.run"""
         print(f"system_command_run: {cmd}")
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        # Add Homebrew paths to PATH for command execution
+        env = os.environ.copy()
+        env['PATH'] = f"/opt/homebrew/bin:/usr/local/bin:{env.get('PATH', '')}"
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, env=env)
         print(result.stdout)
 
     def system_command_nb(cmd: str):
         """execute a command on the system without blocking"""
         print(f"system_command_nb: {cmd}")
+        # Add Homebrew paths to PATH for command execution
+        env = os.environ.copy()
+        env['PATH'] = f"/opt/homebrew/bin:/usr/local/bin:{env.get('PATH', '')}"
         process = subprocess.Popen(
             cmd, 
             shell=True, 
             stdout=subprocess.PIPE, 
-            stderr=subprocess.PIPE)
+            stderr=subprocess.PIPE,
+            env=env)
         stdout, stderr = process.communicate()  # Waits for the process to finish
         print("Command completed:", stdout.decode(), stderr.decode())
 
     def system_command_nb_cmd_segments(cmd: list[str]):
         """execute a command on the system without blocking"""
         print(f"system_command_nb: {shlex.join(cmd)}")
+        # Add Homebrew paths to PATH for command execution
+        env = os.environ.copy()
+        env['PATH'] = f"/opt/homebrew/bin:/usr/local/bin:{env.get('PATH', '')}"
         process = subprocess.Popen(
             cmd, 
             stdout=subprocess.PIPE, 
-            stderr=subprocess.PIPE)
+            stderr=subprocess.PIPE,
+            env=env)
         stdout, stderr = process.communicate()  # Waits for the process to finish
         print("Command completed:", stdout.decode(), stderr.decode())
 
@@ -55,13 +70,17 @@ class Actions:
         bb_cmd =  "bb -x " + bb_fn_name 
         cmd = change_folder_cmd + " && " + bb_cmd 
         print(f"Command: {cmd}")
+        # Add Homebrew paths to PATH for command execution
+        env = os.environ.copy()
+        env['PATH'] = f"/opt/homebrew/bin:/usr/local/bin:{env.get('PATH', '')}"
         process = subprocess.Popen(
             cmd,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            shell=True)
+            shell=True,
+            env=env)
         stdout, stderr = process.communicate(input=input_text)
         # print(f"Stdout: {stdout.strip()}")
         # print(f"Stderr: {stderr.strip()}")
