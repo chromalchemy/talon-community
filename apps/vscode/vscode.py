@@ -247,8 +247,16 @@ class Actions:
 
     def eca_focus_prompt_input():
         """focus on prompt input form"""
-        actions.user.mouse_helper_click_image_relative("2026-01-29_15.27.32.524568.png", 0, 0, 38, 0, True)
+        actions.user.run_rpc_command("eca.chat.focus")
         actions.sleep("200ms")
+        try:
+            actions.user.mouse_helper_click_image_relative(
+                "2026-02-03_11.17.23.281679.png", 0, 0, 40, 0, True
+            )
+            actions.sleep("200ms")
+        except RuntimeError:
+            actions.key("tab")
+            actions.sleep("100ms")
 
 
 @mac_ctx.action_class("edit")
