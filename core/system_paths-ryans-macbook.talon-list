@@ -26,6 +26,7 @@ dropbox: /Users/ryan/Dropbox
 drop box: /Users/ryan/Dropbox
 
 groundedsol: /Users/ryan/dev/groundedsol
+groundedsol dev: /Users/ryan/dev/groundedsol
 
 dev: /Users/ryan/dev
 
@@ -44,6 +45,7 @@ get bit vendor: /Users/ryan/dev/gbo/resources/vendor
 get bit media kits: /Volumes/Scratchy/GB/Media Kits
 get bit out: /Users/ryan/dev/gbo/resources/out
 get bit out folder: /Users/ryan/dev/gbo/resources/out
+get bit dev: /Users/ryan/dev/gbo
 
 remote get bit: /Volumes/Scratchy/GB
 external get bit: /Volumes/Scratchy/GB
@@ -65,3 +67,11 @@ fuji data: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji media: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
 fuji media kit: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
+
+ps dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
+photoshop dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
+photo shop dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
+photo dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
+
+
+eca config: /Users/ryan/.config/eca
