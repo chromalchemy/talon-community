@@ -245,6 +245,11 @@ class Actions:
         actions.app.tab_close()
         actions.clip.set_text(command_id)
 
+    def eca_focus_prompt_input():
+        """focus on prompt input form"""
+        actions.user.mouse_helper_click_image_relative("2026-01-29_15.27.32.524568.png", 0, 0, 38, 0, True)
+        actions.sleep("200ms")
+
 
 @mac_ctx.action_class("edit")
 class MacEditActions:
