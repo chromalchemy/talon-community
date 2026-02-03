@@ -30,13 +30,18 @@ run:
     key(right)
     key(enter)
 
-(clear | cancel | quit) command: 
+(clear | cancel | quit | exit) command: 
     key(ctrl-c)
 
-run [command] {user.community.apps.warp.bash_commands.list}: 
+[run] [command] {user.community.apps.warp.bash_commands.list}: 
     user.warp_run_command("{user.community.apps.warp.bash_commands.list}")
 
-go (directory | dir | path) {user.system_paths}:
+go (directory | dir | path | folder) {user.system_paths}:
     cmd = "cd " + "\"{system_paths}\""
     print(cmd) 
     user.warp_run_command(cmd)
+
+run last command:
+    key(up)
+    sleep(100ms)
+    key(enter)
