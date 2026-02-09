@@ -31,3 +31,6 @@
 
 [set] (mic | mike | microphone) [(input | and put)] (level | volume)  [to] <user.number_string>:
     user.set_microphone_input_volume(number_string)
+
+[set] (mic | mike | microphone) [(input | and put)] [(level | volume)]  [to] max:
+    user.set_microphone_input_volume("100")
