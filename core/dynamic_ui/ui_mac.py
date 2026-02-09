@@ -1,0 +1,487 @@
+from contextlib import suppress
+from enum import StrEnum, auto
+from operator import itemgetter
+from typing import Optional
+
+from talon import Context, Module, actions, app, ctrl, ui
+from talon.types import Span
+
+mod = Module()
+ctx = Context()
+
+ctx.matches = r"""
+os: mac
+"""
+
+
+mod.list("scroll_direction", "Scroll directions")
+
+
+class AXScrollByPageAction(StrEnum):
+    # most (but not all) apps reverse this
+    AXScrollDownByPage = "UP"
+    AXScrollUpByPage = "DOWN"
+    AXScrollRightByPage = "LEFT"
+    AXScrollLeftByPage = "RIGHT"
+
+
+mod.list("disclosure_action", desc="Disclosure actions")
+
+
+class DisclosureAction(StrEnum):
+    @staticmethod
+    def _generate_next_value_(name, start, count, last_values):
+        return name
+
+    EXPAND = auto()
+    COLLAPSE = auto()
+    TOGGLE = auto()
+
+
+@mod.action_class
+class Actions:
+    def ui_element_active_window_or_sheet() -> Optional[ui.Element]:
+        """Return a UI element for the active window or sheet"""
+
+    def ui_element_sidebar() -> Optional[ui.Element]:
+        """Return a UI element for the active window’s sidebar"""
+
+    def ui_element_click(element: ui.Element):
+        """Click on a UI element"""
+
+    def ui_element_focus(element: ui.Element):
+        """Move keyboard focus to a UI element"""
+
+    def ui_element_hover(element: ui.Element):
+        """Move the mouse pointer to a UI element"""
+
+    def ui_element_menu(element: ui.Element):
+        """Show a menu on a UI element"""
+
+    def ui_element_select(element: ui.Element):
+        """Select a UI element"""
+
+    def ui_element_end(tail: Optional[bool] = False, select: Optional[bool] = False):
+        """Go to one end of the focused UI element (head, beginning or first item)"""
+
+    def ui_element_scroll(
+        direction: str | AXScrollByPageAction,
+        element: Optional[ui.Element] = None,
+    ):
+        """Scroll the focused (or specified) UI element"""
+
+    def ui_element_disclose(element: ui.Element, action: DisclosureAction | str):
+        """Change the disclosure state of a UI element"""
+
+
+@ctx.action_class("user")
+class UserActions:
+    def ui_element_active_window_or_sheet():
+        window = ui.active_window()
+        if window.id == -1:
+            # XXX core Talon bug? You get Window(None) instead of None
+            # even though there is a focused window (e.g. sheet in Installer)
+            parent = ui.active_app().element.AXFocusedWindow
+        else:
+            parent = window.element
+        if getattr(parent, "AXRole", None) != "AXSheet":
+            # don't expose the contents of the window to which a sheet is attached
+            with suppress(ui.UIErr):
+                parent = parent.children.find_one(AXRole="AXSheet", max_depth=0)
+
+        return parent
+
+    def ui_element_sidebar():
+        return sidebar()
+
+    def ui_element_click(element):
+        with suppress(ui.ActionFailed):
+            element.perform("AXPress")
+
+    def ui_element_focus(element):
+        element.AXFocused = True
+        if not element.AXFocused:
+            previous_position = ctrl.mouse_pos()
+            actions.user.ui_element_hover(element)
+            ctrl.mouse_click()
+            ctrl.mouse_move(*previous_position)
+
+    def ui_element_hover(element):
+        ctrl.mouse_move(*element.AXFrame.center)
+
+    def ui_element_menu(element):
+        match element.AXRole:
+            case "AXComboBox":
+                # focusing is not necessary to pop up the menu,
+                # but lets you use "row" commands
+                actions.user.ui_element_focus(element)
+                # selecting is not necessary to pop up the menu,
+                # but helps if you insert a replacement
+                selected_range = Span(0, element.AXNumberOfCharacters)
+                for attempt in range(10):
+                    element.AXSelectedTextRange = selected_range
+                    if element.AXSelectedTextRange == selected_range:
+                        break
+                    actions.sleep("10ms")
+                with suppress(ui.ActionFailed):
+                    element.children.find_one(AXRole="AXButton", max_depth=0).perform(
+                        "AXPress"
+                    )
+                return
+            case "AXRow" | "AXGroup":
+                for child in element.children.find(max_depth=1):
+                    if "AXShowMenu" in child.actions:
+                        with suppress(ui.ActionFailed):
+                            child.perform("AXShowMenu")
+                        return
+                previous_position = ctrl.mouse_pos()
+                actions.user.ui_element_hover(element)
+                ctrl.mouse_click(1)
+                ctrl.mouse_move(*previous_position)
+                return
+
+        with suppress(ui.UIErr):
+            element.AXFocused = True
+        with suppress(ui.ActionFailed):
+            element.perform("AXShowMenu")
+
+    def ui_element_select(element):
+        parent = element.parent
+        with suppress(ui.UIErr):
+            element.AXSelected = True
+        # AXSelected appears read-only in Catalyst; press to select instead
+        if element.AXRole == "AXGroup":
+            with suppress(ui.UIErr):
+                element = element.children.find_one(AXRole="AXButton", max_depth=0)
+        if "AXPress" in element.actions:
+            element.perform("AXPress")
+        if element.AXSelected:
+            return
+        if (
+            parent.AXRole == "AXList"
+            and getattr(parent, "AXSubrole", None) == "AXSectionList"
+            and parent.parent.AXRole == "AXList"
+            and getattr(parent.parent, "AXSubrole", None) == "AXCollectionList"
+        ):
+            list_top = parent.parent
+        else:
+            list_top = None
+        for attr in ("AXSelectedRows", "AXSelectedChildren"):
+            if (selected := getattr(list_top or parent, attr, None)) is not None:
+                list_top = list_top or parent
+                with suppress(ui.UIErr):
+                    setattr(list_top, attr, [element])
+                if (
+                    getattr(list_top, "AXOrientation", None)
+                    != "AXHorizontalOrientation"
+                ):
+                    if vs := getattr(list_top.parent, "AXVerticalScrollBar", None):
+                        children = list(parent.children)
+                        index = children.index(element)
+                        # Assumes equal row height
+                        vs.AXValue = index / len(children)
+                break
+
+    def ui_element_end(tail=False, select=False):
+        element = ui.focused_element()
+        if (range := getattr(element, "AXSelectedTextRange", None)) is not None:
+            # For text, move the insertion point by default
+            if tail:
+                if length := getattr(element, "AXNumberOfCharacters", None):
+                    element.AXSelectedTextRange = Span(
+                        range.left if select else length, length
+                    )
+                else:
+                    raise RuntimeError("Unable to get character count")
+            else:
+                element.AXSelectedTextRange = Span(0, range.right if select else 0)
+            return
+        if vs := getattr(element.parent, "AXVerticalScrollBar", None):
+            # For a list/table/outline or anything else scrollable, scroll by default
+            vs.AXValue = 1 if tail else 0
+            if select:
+                if hasattr(element, "AXSelectedRows") and (
+                    rows := getattr(element, "AXVisibleRows")
+                ):
+                    with suppress(ui.UIErr):
+                        rows[-1 if tail else 0].AXSelected = True
+                elif hasattr(element, "AXSelectedChildren"):
+                    if tail:
+                        child = element.children.find(max_depth=0)[-1]
+                    else:
+                        child = element.children.find_one()
+                    element.AXSelectedChildren = [child]
+            return
+
+    def ui_element_scroll(direction, element=None):
+        if element is None:
+            element = ui.focused_element()
+
+        action = AXScrollByPageAction(direction).name
+        while True:
+            element = element.parent
+            match element.AXRole:
+                case "AXScrollArea":
+                    break
+                case "AXWindow" | "AXApplication":
+                    raise Exception("Unable to find a scroll area")
+
+        if action not in element.actions:
+            raise Exception(f"Scroll area does not implement {action}")
+
+        with suppress(ui.ActionFailed):
+            element.perform(action)
+
+    def ui_element_disclose(element, action):
+        match DisclosureAction(action):
+            case DisclosureAction.EXPAND:
+                element.AXDisclosing = True
+            case DisclosureAction.COLLAPSE:
+                element.AXDisclosing = False
+            case DisclosureAction.TOGGLE:
+                element.AXDisclosing = not element.AXDisclosing
+
+
+def active_window_elements(*roles):
+    parent = actions.user.ui_element_active_window_or_sheet()
+
+    element_dict = {}
+    for role in roles:
+        if "." in role:
+            role, subrole = role.split(".", 1)
+            elements = parent.children.find(
+                AXRole=role, AXSubrole=subrole, visible_only=True
+            )
+        else:
+            elements = parent.children.find(AXRole=role, visible_only=True)
+        for element in elements:
+            titles = []
+            if (
+                role != "AXRadioButton"
+                and (title_element := getattr(element, "AXTitleUIElement", None))
+                and (title := getattr(title_element, "AXValue", None))
+            ):
+                titles.append(title)
+            else:
+                for attr in (
+                    "AXTitle",
+                    "AXDescription",
+                    "AXAttributedDescription",
+                    "AXHelp",
+                    "AXRoleDescription",
+                ):
+                    if title := getattr(element, attr, None):
+                        titles.append(title)
+                        break
+                else:
+                    if identifier := getattr(element, "AXIdentifier", None):
+                        if not identifier.startswith("_") and not identifier.endswith(
+                            ":"
+                        ):
+                            titles.append(identifier)
+
+            if role in ("AXPopUpButton", "AXTextField", "AXComboBox"):
+                for attr in (
+                    "AXValue",
+                    "AXPlaceholderValue",
+                ):
+                    if value := getattr(element, attr, None):
+                        titles.append(str(value) + "\n")
+                        break
+
+            for title in titles:
+                element_dict[title] = element
+
+    return element_dict
+
+
+def list_rows(element, all=False):
+    element_dict = {}
+    match element.AXRole:
+        case "AXList":
+            if section_lists := element.children.find(
+                AXRole="AXList", AXSubrole="AXSectionList"
+            ):
+                rows = [c for cl in [l.children for l in section_lists] for c in cl]
+            else:
+                rows = element.children
+        case "AXGrid":
+            rows = element.children
+        case "AXGroup":  # Catalyst AXValue for headings may be expansion state
+            rows = [c for c in element.children if c.AXRole != "AXHeading"]
+        case _:
+            rows = getattr(element, "AXRows" if all else "AXVisibleRows", [])
+    i = 1
+    for row in rows:
+        titles = []
+        for role in (
+            None,
+            "AXStaticText",
+            "AXTextField",
+            "AXImage",
+            "AXCell",
+            "AXButton",
+        ):
+            elements = [row] if role is None else row.children.find(AXRole=role)
+            for text in elements:
+                for attr in ("AXValue", "AXTitle", "AXDescription"):
+                    if title := getattr(text, attr, None):
+                        titles.append([text.AXPosition.y, text.AXPosition.x, title])
+                        break
+        if not titles:
+            continue
+
+        titles.sort()
+        element_dict[f"{i}. " + " - ".join(title for top, left, title in titles)] = row
+        i += 1
+
+    return element_dict
+
+
+def combo_box_rows(element):
+    element_dict = {}
+    list = element.children.find_one(AXRole="AXList", max_depth=1)
+    i = 1
+    for text in list.children:
+        if title := getattr(text, "AXValue", None):
+            if str.isnumeric(title):
+                element_dict[title] = text
+            else:
+                element_dict[f"{i}. {title}"] = text
+                i += 1
+
+    return element_dict
+
+
+def focused_list_rows(all=False):
+    element = actions.user.focused_element_safe()
+    if not element:
+        return {}
+
+    if element.AXRole == "AXComboBox":
+        return combo_box_rows(element)
+
+    return list_rows(element, all)
+
+
+def potential_sidebars():
+    # Doesn't identify sidebars in Catalyst apps
+    parent = actions.user.ui_element_active_window_or_sheet()
+    seen_children = []
+    if parent.children.find(AXRole="AXGroup", AXSubrole="iOSContentGroup", max_depth=0):
+        for splitter in parent.children.find(AXRole="AXSplitter", max_depth=3):
+            # Splitters in Catalyst apps have no containing split group
+            split = splitter.parent
+            for group in split.children.find(AXRole="AXGroup", max_depth=0):
+                for collection in group.children.find(
+                    AXRole="AXGroup", AXRoleDescription="collection", max_depth=3
+                ):
+                    if collection in seen_children:
+                        continue
+                    yield collection
+                    seen_children.append(collection)
+        return
+
+    for depth in range(3):
+        for split in parent.children.find(AXRole="AXSplitGroup", max_depth=depth):
+            for outline in split.children.find(AXRole="AXOutline", max_depth=0):
+                if outline in seen_children:
+                    continue
+                yield outline
+                seen_children.append(outline)
+            if scroll_areas := split.children.find(AXRole="AXScrollArea", max_depth=2):
+                frame_scroll = [(sa.AXFrame.left, sa) for sa in scroll_areas]
+                frame_scroll.sort(key=itemgetter(0))
+                for _, sa in frame_scroll:
+                    scroll_child = sa.children[0]
+                    if scroll_child in seen_children:
+                        continue
+                    if scroll_child.AXRole in ("AXOutline", "AXTable"):
+                        yield scroll_child
+                    seen_children.append(scroll_child)
+
+
+def sidebar():
+    for scroll_child in potential_sidebars():
+        if rows := list_rows(scroll_child, True):
+            return scroll_child
+
+
+def sidebar_rows():
+    for scroll_child in potential_sidebars():
+        if rows := list_rows(scroll_child, True):
+            return rows
+    else:
+        return {}
+
+
+def on_ready():
+    actions.user.ui_dynamic_list_and_capture(
+        "button in active window",
+        ctx,
+        mod.list("ui_active_window_button", desc="Buttons in active window"),
+        lambda: active_window_elements(
+            "AXButton",
+            "AXCheckBox",
+            "AXColorWell",
+            "AXDisclosureTriangle",
+            "AXMenuButton",
+            "AXPopUpButton",
+            "AXRadioButton",
+        ),
+    )
+    actions.user.ui_dynamic_list_and_capture(
+        "text field in active window",
+        ctx,
+        mod.list("ui_active_window_field", desc="Text fields in active window"),
+        lambda: active_window_elements(
+            "AXTextArea", "AXTextField", "AXComboBox", "AXDateTimeArea"
+        ),
+    )
+    actions.user.ui_dynamic_list_and_capture(
+        "list, table, outline, icon or column view in active window",
+        ctx,
+        mod.list(
+            "ui_active_window_list",
+            desc="Lists, tables, outlines, icon and column views in active window",
+        ),
+        lambda: active_window_elements(
+            "AXTable", "AXOutline", "AXBrowser", "AXGrid", "AXList.AXCollectionList"
+        ),
+    )
+    actions.user.ui_dynamic_list_and_capture(
+        "visible rows or items of focused list, table, outline, column or icon view",
+        ctx,
+        mod.list(
+            "ui_focused_list_visible_row",
+            desc="Visible rows of focused list, table, outline, column or icon view",
+        ),
+        focused_list_rows,
+    )
+    actions.user.ui_dynamic_list_and_capture(
+        "rows of focused list, table, outline, column or icon view",
+        ctx,
+        mod.list(
+            "ui_focused_list_row",
+            desc="Rows of focused list, table, outline, column or icon view",
+        ),
+        lambda: focused_list_rows(True),
+    )
+    actions.user.ui_dynamic_list_and_capture(
+        "rows of sidebar",
+        ctx,
+        mod.list("ui_sidebar_row", desc="Rows of sidebar"),
+        sidebar_rows,
+    )
+    actions.user.ui_dynamic_list_and_capture(
+        "link in active window",
+        ctx,
+        mod.list(
+            "ui_active_window_link",
+            desc="Links in active window",
+        ),
+        lambda: active_window_elements("AXLink"),
+    )
+
+
+app.register("ready", on_ready)
