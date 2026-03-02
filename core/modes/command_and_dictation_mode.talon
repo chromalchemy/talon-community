@@ -3,31 +3,17 @@ mode: dictation
 -
 
 ^(dictate | dictation | dict | dick | talk) mode$:
-    mode.disable("sleep")
-    mode.disable("command")
-    mode.enable("dictation")
-    user.code_clear_language_mode()
-    user.gdb_disable()
+    user.dictation_mode()
 
 ^(dictation | dictate):
-    mode.disable("sleep")
-    mode.disable("command")
-    mode.enable("dictation")
-    user.code_clear_language_mode()
-    user.gdb_disable()
+    user.dictation_mode()
 
 ^(dictation | dictate) <user.raw_prose>:
-    mode.disable("sleep")
-    mode.disable("command")
-    mode.enable("dictation")
-    user.code_clear_language_mode()
-    user.gdb_disable()
+    user.dictation_mode()
     user.dictation_insert(raw_prose)
 
 ^((command | commander | com | calm | coms | action | act) mode | commander)$:
-    mode.disable("sleep")
-    mode.disable("dictation")
-    mode.enable("command")
+    user.command_mode()
 
 ^((mixed | mix) (mode | com | coms) | mixier)$:
   mode.disable("sleep")
