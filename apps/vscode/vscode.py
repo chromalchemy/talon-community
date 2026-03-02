@@ -245,6 +245,12 @@ class Actions:
         actions.app.tab_close()
         actions.clip.set_text(command_id)
 
+    def eca_clear_prompt():
+        """clear chat prompt box"""
+        actions.user.run_rpc_command("eca.chat.focus")
+        actions.sleep("300ms")
+        actions.edit.delete_all()
+    
     def eca_focus_prompt_input():
         """focus on prompt input form"""
         actions.user.run_rpc_command("eca.chat.focus")
@@ -482,3 +488,9 @@ class UserActions:
 
     def move_cursor_to_next_snippet_stop():
         actions.user.vscode("jumpToNextSnippetPlaceholder")
+
+    def go_back():
+        actions.user.run_rpc_command("workbench.action.navigateBack")
+
+    def go_forward():
+        actions.user.run_rpc_command("workbench.action.navigateForward")
