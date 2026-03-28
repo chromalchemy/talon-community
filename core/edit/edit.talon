@@ -107,7 +107,7 @@ select word: edit.select_word()
 
 # Indentation
 indent [more]: edit.indent_more()
-(indent less | out dent): edit.indent_less()
+indent less | out dent: edit.indent_less()
 dedent | (unindent | un indent) [that]: 
     key(shift-tab)
 

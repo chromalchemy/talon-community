@@ -4,6 +4,7 @@ app.name: Cursor
 app.name: Windsurf
 app.name: Windsurf - Next
 -
+
 tag(): user.find_and_replace
 tag(): user.line_commands
 tag(): user.multiple_cursors
@@ -245,7 +246,7 @@ language switch:
 
 ## +++++++++++++++++++ code navigation .
 
-(go declaration | follow): 
+go declaration | follow: 
     user.vscode("editor.action.revealDefinition")
 
 go back: 

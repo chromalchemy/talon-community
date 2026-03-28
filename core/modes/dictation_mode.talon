@@ -8,8 +8,8 @@ mode: dictation
 (yes cap | make cap | capitalize): 
     user.dictation_format_cap()
 # Hyphenated variants are for Dragon.
-(no cap | no-caps): user.dictation_format_no_cap()
-(no space | no-space): user.dictation_format_no_space()
+no cap | no-caps: user.dictation_format_no_cap()
+no space | no-space: user.dictation_format_no_space()
 ^cap that$: user.dictation_reformat_cap()
 ^(no cap | no-caps) that$: user.dictation_reformat_no_cap()
 ^(no space | no-space) that$: user.dictation_reformat_no_space()
