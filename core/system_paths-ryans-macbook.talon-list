@@ -64,9 +64,11 @@ batson vendor: /Users/ryan/dev/gbo/resources/vendor/batson
 
 fuji vendor: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji data: /Users/ryan/dev/gbo/resources/vendor/fuji
+fuji dev: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji media: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
 fuji media kit: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
+fuji catalogs: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit/Fuji Catalogs
 
 ps dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
 photoshop dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
