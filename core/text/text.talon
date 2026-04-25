@@ -12,10 +12,9 @@ phrase <user.text> {user.phrase_ender}:
 
 viper <user.text>$:
     txt = user.formatted_text(text, "NOOP")
-    print(txt)
     print(text)
-
-
+    print(txt)
+    
 {user.prose_formatter} <user.prose> {user.phrase_ender}:
     user.insert_formatted(prose, prose_formatter)
     insert(phrase_ender)
