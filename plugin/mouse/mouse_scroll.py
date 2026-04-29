@@ -1,6 +1,6 @@
 import time
 from enum import Enum, auto
-from typing import Optional
+from typing import Literal, Optional
 
 from talon import Context, Module, actions, app, cron, ctrl, imgui, settings, ui
 
