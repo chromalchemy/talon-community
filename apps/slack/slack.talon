@@ -14,8 +14,8 @@ focus (move | next): key(ctrl-`)
 (slack | lack) (starred [items] | stars): user.slack_open_starred_items()
 (slack | lack) [direct] messages: user.slack_open_direct_messages()
 (slack | lack) threads: user.slack_open_threads()
-(slack | lack) (history [next] | back | backward): user.slack_go_back()
-(slack | lack) forward: user.slack_go_forward()
+(slack | lack | go) (history [next] | back | backward): user.slack_go_back()
+(slack | lack | go) forward: user.slack_go_forward()
 
 # Messaging
 grab left: key(shift-up)
