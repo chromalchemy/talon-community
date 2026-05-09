@@ -217,7 +217,7 @@ problem last:
 	 user.vscode("editor.action.marker.prevInFiles")
 
 problem fix:
-	 user.vscode("problems.action.showQuickFixes")
+	 user.vscode("editor.action.quickFix")
 
 rename that | refactor rename:
 	 user.vscode("editor.action.rename")
