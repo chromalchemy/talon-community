@@ -48,18 +48,6 @@ bar test:
 bar switch: 
     user.vscode("workbench.action.toggleSidebarVisibility")
 
- ## +++++++++++++++++++++ Symbol search .
-
-symbol hunt [<user.text>]:
-    user.vscode("workbench.action.gotoSymbol")
-    sleep(50ms)
-    insert(text or "")
-
-symbol hunt all [<user.text>]:
-    user.vscode("workbench.action.showAllSymbols")
-    sleep(50ms)
-    insert(text or "")
-
  ## ++++++++++++++++++++++++++++ Panels .
 
 panel control: 
