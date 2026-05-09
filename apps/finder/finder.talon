@@ -79,7 +79,11 @@ gallery view: key(cmd-4)
 
 go [to] folder: key(cmd-shift-g)
 
-copy path: key(alt-cmd-c)
+# is shadowed by copy address
+# copy path: key(alt-cmd-c)
+
+copy full path | copy path full:
+    key("shift-ctrl-alt-cmd-f")
 
 ## ++++++++++++++++++++++++++ filename .
 
