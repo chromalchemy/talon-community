@@ -34,6 +34,8 @@ time two thousand: insert("20:00")
 
 insert date: user.insert_date(0, "%-m/%-d/%Y")
 
+insert kebab date: user.insert_date(0, "%-m-%-d-%y")
+
 insert time: user.insert_time_ampm()
 
 time stamp:
