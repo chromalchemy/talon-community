@@ -47,6 +47,7 @@ class GlobalUserActions:
 # Context for Warp-specific actions (when Warp is focused)
 ctx = Context()
 ctx.matches = r"""
+os: mac
 app: warp
 """
 

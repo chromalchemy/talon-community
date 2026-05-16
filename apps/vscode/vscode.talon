@@ -231,6 +231,11 @@ whitespace trim:
 language switch:
 	 user.vscode("workbench.action.editor.changeLanguageMode")
 
+refactor rename: 
+    user.vscode("editor.action.rename")
+
+refactor this: 
+    user.vscode("editor.action.refactor")
 
 ## +++++++++++++++++++ code navigation .
 
