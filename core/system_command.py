@@ -26,6 +26,25 @@ class Actions:
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True, env=env)
         print(result.stdout)
 
+    def system_command_detached(cmd: str):
+        """Fire-and-forget a shell command. Returns immediately without
+        waiting for the child to exit. Safe for long-running processes
+        (servers, watchers) that would otherwise hang Talon."""
+        print(f"system_command_detached: {cmd}")
+        env = os.environ.copy()
+        env['PATH'] = f"/opt/homebrew/bin:/usr/local/bin:{env.get('PATH', '')}"
+        # start_new_session detaches the child from Talon's process group
+        # so it survives if Talon is killed/restarted.
+        subprocess.Popen(
+            cmd,
+            shell=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            stdin=subprocess.DEVNULL,
+            start_new_session=True,
+            env=env,
+        )
+
     def system_command_nb(cmd: str):
         """execute a command on the system without blocking"""
         print(f"system_command_nb: {cmd}")
