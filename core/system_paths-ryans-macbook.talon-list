@@ -91,3 +91,6 @@ photo shop dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
 photo dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
 
 eca config: /Users/ryan/.config/eca
+eca config folder: /Users/ryan/.config/eca
+eca folder: /Users/ryan/.config/eca
+eca: /Users/ryan/.config/eca
