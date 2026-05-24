@@ -40,40 +40,54 @@ get bit pics: /Volumes/Scratchy/GB/GB-Pictures
 get bit photos: /Volumes/Scratchy/GB/GB-Pictures
 get bit logos: /Volumes/Scratchy/GB/Logos
 get bit resources: /Users/ryan/dev/gbo/resources
-get bit vendors: /Users/ryan/dev/gbo/resources/vendor
-get bit vendor: /Users/ryan/dev/gbo/resources/vendor
-get bit media kits: /Volumes/Scratchy/GB/Media Kits
+
 get bit out: /Users/ryan/dev/gbo/resources/out
 get bit out folder: /Users/ryan/dev/gbo/resources/out
 get bit dev: /Users/ryan/dev/gbo
+
 
 remote get bit: /Volumes/Scratchy/GB
 external get bit: /Volumes/Scratchy/GB
 get bit remote: /Volumes/Scratchy/GB
 get bit external: /Volumes/Scratchy/GB
 
-media kits: /Volumes/Scratchy/GB/Media Kits
+# ++++++++++++++++++++++ media kits
+
 get bit media kits: /Volumes/Scratchy/GB/Media Kits
+media kits: /Volumes/Scratchy/GB/Media Kits
 
 batson media: /Volumes/Scratchy/GB/Media Kits/Batson
 batson media kit: /Volumes/Scratchy/GB/Media Kits/Batson
+
+fuji media: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
+fuji media kit: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
+fuji catalogs: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit/Fuji Catalogs
+
+# ++++++++++++++++++++++ vendor data
+
+get bit vendors: /Users/ryan/dev/gbo/resources/vendor
+get bit vendor: /Users/ryan/dev/gbo/resources/vendor
+
+winthrop: /Users/ryan/dev/gbo/resources/vendor/winthrop
+winthrop vendor: /Users/ryan/dev/gbo/resources/vendor/winthrop
+winthrop dev: /Users/ryan/dev/gbo/resources/vendor/winthrop
+
+recoil: /Users/ryan/dev/gbo/resources/vendor/rec
+recoil vendor: /Users/ryan/dev/gbo/resources/vendor/rec
+recoil dev: /Users/ryan/dev/gbo/resources/vendor/rec
+
 batson: /Users/ryan/dev/gbo/resources/vendor/batson
 batson data: /Users/ryan/dev/gbo/resources/vendor/batson
 batson vendor: /Users/ryan/dev/gbo/resources/vendor/batson
 
-
+fuji: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji vendor: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji data: /Users/ryan/dev/gbo/resources/vendor/fuji
 fuji dev: /Users/ryan/dev/gbo/resources/vendor/fuji
-fuji: /Users/ryan/dev/gbo/resources/vendor/fuji
-fuji media: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
-fuji media kit: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit
-fuji catalogs: /Volumes/Scratchy/GB/Media Kits/Fuji Media Kit/Fuji Catalogs
 
 ps dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
 photoshop dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
 photo shop dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
 photo dev: /Users/ryan/dev/ps script/plugins/ps-scittle-repl
-
 
 eca config: /Users/ryan/.config/eca
