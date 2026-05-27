@@ -1,9 +1,72 @@
 language: roam-markdown
 ---
 
-name: blockEmbed
+name: embed
 phrase: embed
 -
+{{[[embed]]: $0}}
+
+---
+
+name: embedBlock
+phrase: embed block
+-
 {{[[embed]]: (($0))}}
+
+---
+
+name: embedPage
+phrase: embed page
+-
+{{[[embed]]: [[$0]]}}
+
+---
+
+name: embedChildren
+phrase: embed children
+-
+{{[[embed-children]]: $0}}
+
+---
+
+name: embedBlockChildren
+phrase: embed block children
+-
+{{[[embed-children]]: (($0))}}
+
+---
+
+name: embedPageChildren
+phrase: embed page children
+-
+{{[[embed-children]]:[[$0]]}}
+
+---
+
+name: embedPath
+phrase: embed path
+-
+{{[[embed-path]]: $0}}
+
+---
+
+name: mentions
+phrase: mentions
+-
+{{[[mentions]]: $0}}
+
+---
+
+name: blockMentions
+phrase: block mentions
+-
+{{[[mentions]]: (($0))}}
+
+---
+
+name: pageMentions
+phrase: page mentions
+-
+{{[[mentions]]: [[$0]]}}
 
 ---
