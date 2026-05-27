@@ -36,6 +36,7 @@ code_languages = [
     Language("kotlin", "kotlin", ["kt"]),
     Language("lua", "lua", ["lua"]),
     Language("markdown", "mark down", ["md"]),
+    Language("roam-markdown", "roam mark down", []),
     # Language("perl", "perl", ["pl"]),
     Language("php", "p h p", ["php"]),
     # Language("powershell", "power shell", ["ps1"]),

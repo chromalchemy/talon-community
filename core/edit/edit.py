@@ -167,3 +167,18 @@ class Actions:
         actions.edit.line_end()
         actions.key(symbol)
         actions.edit.line_insert_down()
+
+    def copy_to_click():
+        """Extend selection from cursor to click point and return the selected text (via clipboard). more robust in Roam than edit.selected_text() because it doesn't depend on Roam exposing AXSelectedText"""
+        with clip.capture() as s:
+            actions.key("shift:down")
+            try:
+                actions.mouse_click(0)
+                actions.sleep("100ms")
+            finally:
+                actions.key("shift:up")
+            actions.edit.copy()
+        try:
+            return s.text() or ""
+        except clip.NoChange:
+            return ""
