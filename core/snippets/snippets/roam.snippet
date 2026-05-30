@@ -70,3 +70,45 @@ phrase: page mentions
 {{[[mentions]]: [[$0]]}}
 
 ---
+
+name: templateVar
+phrase: template var
+-
+{{$0}}
+
+---
+
+name: blockRef
+phrase: block ref
+-
+(($0$1))
+
+---
+
+name: pageRef
+phrase: page ref
+-
+[[$0$1]]
+
+---
+
+name: pageRefClosed
+phrase: page ref closed
+-
+[[$0]] $1
+
+---
+
+name: tagRef
+phrase: hash reference
+-
+#$0
+
+---
+
+name: tagRefClosed
+phrase: hash reference closed
+-
+#$0 $1
+
+---
