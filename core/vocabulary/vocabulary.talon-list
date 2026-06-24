@@ -174,7 +174,10 @@ eca
 ai
 PVC
 date elevin: datalevin
+
 basil lisp: basilisp
+base lisp: basilisp
+buzz lisp: basilisp
 
 pierre: po
 pia: po
@@ -185,3 +188,5 @@ jibe: gb
 gib: gb 
 SGB: gb
 gb
+
+allium
