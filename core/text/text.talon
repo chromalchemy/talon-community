@@ -35,7 +35,7 @@ viper <user.text>$:
 <user.formatters> (pace | paste): 
     user.insert_formatted(clip.text(), formatters)
     
-(word | were it | vert) <user.word>:
+(word | were it | vert | wert) <user.word>:
     user.add_phrase_to_history(word)
     insert(word)
 
