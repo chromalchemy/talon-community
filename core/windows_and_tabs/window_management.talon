@@ -26,7 +26,6 @@ app (window | win) last | last app win: app.window_previous()
 
 ## +++++++++++++++++++++ switch app menu (broken on mac).
 
-# following only works on windows. Can't figure out how to make it work for mac. No idea what the equivalent for linux would be.
 focus$: user.switcher_menu()
 
 ## +++++++++++ go directly to open app .
