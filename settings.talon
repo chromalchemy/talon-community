@@ -33,6 +33,8 @@ settings():
     # Set the scroll multiplier for gaze scroll
     user.mouse_gaze_scroll_speed_multiplier = 1.0
 
+    user.ocr_cursor_behavior_when_no_eye_tracker = "ACTIVE_WINDOW_CENTER"
+
     # Set the maximum acceleration factor when scrolling continuously. 1=constant speed/no acceleration.
     user.mouse_continuous_scroll_acceleration = 1
 
@@ -142,3 +144,6 @@ tag(): user.mouse_cursor_commands_enable
 # Uncomment the below to enable the experimental window layout commands
 # defined in window_layout.talon
 # tag(): user.experimental_window_layout
+
+tag(): user.gaze_ocr_unprefixed_scroll
+
