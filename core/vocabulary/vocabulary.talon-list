@@ -1,6 +1,7 @@
 list: user.vocabulary
 -
 
+
 gouache
 
 N map: nmap
@@ -192,3 +193,5 @@ gb
 allium
 
 ido: eido
+
+crone: Chrome
