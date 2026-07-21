@@ -80,9 +80,9 @@ gallery view: key(cmd-4)
 go [to] folder: key(cmd-shift-g)
 
 # is shadowed by copy address
-# copy path: key(alt-cmd-c)
+# copy [relative | user] path: key(alt-cmd-c)
 
-copy full path | copy path full:
+copy full [file] path | copy [file] path full:
     key("shift-ctrl-alt-cmd-f")
 
 ## ++++++++++++++++++++++++++ filename .
@@ -100,7 +100,7 @@ copy file name point:
     edit.copy()
     key(escape)
 
-copy (whole | full) file name: 
+copy (whole | full | entire) file name: 
     key(enter)
     sleep(100ms)
     edit.select_all()
