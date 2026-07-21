@@ -49,10 +49,10 @@ settings():
     # 0 = off
     # 1 = on with eyetracker but not zoom mouse mode
     # 2 = on but not with zoom mouse mode
-    # user.mouse_enable_pop_click = 2
+    user.mouse_enable_pop_click = 2
 
     # If `true`, use a hissing noise to scroll continuously
-    # user.mouse_enable_hiss_scroll = true
+    user.mouse_enable_hiss_scroll = true
     # does not trigger custom continuous scroll
 
     # How much time a hiss must last for to be considered a hiss rather than
