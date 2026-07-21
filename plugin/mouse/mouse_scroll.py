@@ -1,6 +1,6 @@
 import time
 from enum import Enum, auto
-from typing import Literal, Optional
+from typing import Optional
 
 from talon import Context, Module, actions, app, cron, ctrl, imgui, settings, ui
 
@@ -34,13 +34,14 @@ class Scroller:
             case ScrollingDirection.RIGHT:
                 self._set_right()
 
+    # ryan: vertical polarity reversed vs upstream (up=1, down=-1)
     def _set_up(self):
         self._is_vertical: bool = True
-        self._scroll_dir = -1
+        self._scroll_dir = 1
 
     def _set_down(self):
         self._is_vertical: bool = True
-        self._scroll_dir = 1
+        self._scroll_dir = -1
 
     def _set_left(self):
         self._is_vertical: bool = False
@@ -192,16 +193,6 @@ mod.setting(
     default=1,
     desc="The maximum (linear) acceleration factor when scrolling continuously. 1=constant speed/no acceleration",
 )
-
-mod.setting(
-    "mouse_continuous_scroll_frequency",
-    type=int,
-    default=16,
-    # my working default is 100ms
-    # community default is 16ms
-    desc="timeout frequency of scroll helper in ms",
-)
-
 mod.setting(
     "mouse_enable_hiss_scroll",
     type=bool,
@@ -246,6 +237,7 @@ def gui_wheel(gui: imgui.GUI):
 
 @mod.action_class
 class Actions:
+    # ryan: vertical polarity reversed vs upstream
     def mouse_scroll_up(amount: float = 1):
         """Scrolls up"""
         y = amount * settings.get("user.mouse_wheel_down_amount")
@@ -278,20 +270,11 @@ class Actions:
 
     def mouse_scroll_up_continuous(speed_factor: Optional[int] = None):
         """Scrolls up continuously"""
-        mouse_scroll_continuous(1, speed_factor)
+        mouse_scroll_continuous(ScrollingDirection.UP, speed_factor)
 
     def mouse_scroll_down_continuous(speed_factor: Optional[int] = None):
         """Scrolls down continuously"""
-        mouse_scroll_continuous(-1, speed_factor)
-        
-
-    def mouse_scroll_right_continuous(speed_factor: Optional[int] = None):
-        """Scrolls right continuously"""
-        mouse_scroll_continuous(1, speed_factor, is_vertical=False)
-
-    def mouse_scroll_left_continuous(speed_factor: Optional[int] = None):
-        """Scrolls left continuously"""
-        mouse_scroll_continuous(-1, speed_factor, is_vertical=False)
+        mouse_scroll_continuous(ScrollingDirection.DOWN, speed_factor)
 
     def mouse_scroll_right_continuous(speed_factor: Optional[int] = None):
         """Scrolls right continuously"""
@@ -332,19 +315,16 @@ class Actions:
 
     def mouse_scroll_set_speed(speed: Optional[int]):
         """Sets the continuous scrolling speed for the current scrolling"""
-        global continuous_scrolling_speed_factor, scroll_start_ts
-        print(f"speed = {speed}")
-        if scroll_start_ts:
-            scroll_start_ts = time.perf_counter()
+        scrolling_state.reset_scrolling_start_time()
         if speed is None:
-            print("No speed given")
             continuous_scrolling_speed_factor = 1.0
         else:
-            print(f"custom speed")
-            speed_quotient = settings.get("user.mouse_continuous_scroll_speed_quotient")
-            print(f"speed_quotient = {speed_quotient}")  
-            continuous_scrolling_speed_factor = speed / speed_quotient
-        print(f"continuous_scrolling_speed_factor = {continuous_scrolling_speed_factor}")
+            continuous_scrolling_speed_factor = speed / settings.get(
+                "user.mouse_continuous_scroll_speed_quotient"
+            )
+        scrolling_state.continuous_scrolling_speed_factor = (
+            continuous_scrolling_speed_factor
+        )
 
     def mouse_is_continuous_scrolling():
         """Returns whether continuous scroll is in progress"""
@@ -378,70 +358,22 @@ def mouse_scroll_continuous(
     new_scroll_dir: ScrollingDirection,
     speed_factor: Optional[int] = None,
 ):
-    global scroll_job, scroll_dir, scroll_start_ts, is_continuous_scrolling_vertical
-    print(f"speed_factor = {speed_factor}")
     actions.user.mouse_scroll_set_speed(speed_factor)
-    frequency = settings.get("user.mouse_continuous_scroll_frequency")
-    print(f"frequency = {frequency}")
+    current_direction = scrolling_state.scroller
 
-    was_vertical = is_continuous_scrolling_vertical
-    is_continuous_scrolling_vertical = is_vertical
-
-    update_continuous_scrolling_mode(new_scroll_dir, is_vertical)
-
-    if scroll_job:
-        print("scroll_job")
+    if (
+        scrolling_state.is_continuously_scrolling
+        and current_direction.is_direction_equal_to(new_scroll_dir)
+    ):
         # Issuing a scroll in the same direction aborts scrolling
         actions.user.mouse_scroll_stop()
     else:
-        print("No scroll job")
-        scroll_dir = new_scroll_dir
-        scroll_start_ts = time.perf_counter()
-        scroll_continuous_helper()
-        scroll_job = cron.interval(f"{frequency}ms", scroll_continuous_helper)
+        current_direction.set_direction(new_scroll_dir)
+        scrolling_state.start_continuous_scrolling_job()
         ctx.tags = ["user.continuous_scrolling"]
 
         if not settings.get("user.mouse_hide_mouse_gui"):
             gui_wheel.show()
-
-
-def update_continuous_scrolling_mode(new_scroll_dir: Literal[-1, 1], is_vertical: bool):
-    global continuous_scroll_mode
-    if new_scroll_dir == -1:
-        if is_vertical:
-            continuous_scroll_mode = "scroll up continuous"
-        else:
-            continuous_scroll_mode = "scroll left continuous"
-    else:
-        if is_vertical:
-            continuous_scroll_mode = "scroll down continuous"
-        else:
-            continuous_scroll_mode = "scroll right continuous"
-
-
-def scroll_continuous_helper():
-    scroll_amount = (
-        settings.get("user.mouse_continuous_scroll_amount")
-        * continuous_scrolling_speed_factor
-    )
-    print(f"scroll_amount = {scroll_amount}")
-    acceleration_setting = settings.get("user.mouse_continuous_scroll_acceleration")
-    print(f"acceleration_setting = {acceleration_setting}")
-    acceleration_speed = (
-        1 + min((time.perf_counter() - scroll_start_ts) / 0.5, acceleration_setting - 1)
-        if acceleration_setting > 1
-        else 1
-    )
-    print(f"acceleration_speed = {acceleration_speed}")
-
-    scroll_delta = round(scroll_amount * acceleration_speed * scroll_dir)
-    if scroll_delta == 0:
-        scroll_delta = scroll_dir
-    print(f"scroll delta final = {scroll_delta}\n")
-    if is_continuous_scrolling_vertical:
-        actions.mouse_scroll(scroll_delta)
-    else:
-        actions.mouse_scroll(0, scroll_delta)
 
 
 def scroll_gaze_helper():

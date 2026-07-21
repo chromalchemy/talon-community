@@ -82,14 +82,13 @@ mouse hiss down: user.hiss_scroll_down()
 #up 
 
 (wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill)) (max | all | top):
-
     user.mouse_scroll_up(50.0)
 
 (((wheel | we'll) ((max | all) up  | top) | (sup | (bale | bail | bill))) (max | all | top)) here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_up(50.0)
 
-## ++++++++++++++++++++++++  continuous 
+## ++++++++++++++++++++++++  community continuous 
 
 (wheel | we'll) {user.continuous_scrolling_direction}: 
     user.mouse_scroll_continuous(continuous_scrolling_direction)
