@@ -94,3 +94,12 @@ eca config: /Users/ryan/.config/eca
 eca config folder: /Users/ryan/.config/eca
 eca folder: /Users/ryan/.config/eca
 eca: /Users/ryan/.config/eca
+
+# linnworks
+
+linn inventory: /Users/ryan/dev/gbo/resources/linnworks/inventory/
+linn po order sheets: /Users/ryan/dev/gbo/resources/linnworks/PO Order Sheets/
+linn po sheets: /Users/ryan/dev/gbo/resources/linnworks/PO Order Sheets/
+linn po kevin edits: /Users/ryan/dev/gbo/resources/linnworks/kevin edits/ 
+kevin edits: /Users/ryan/dev/gbo/resources/linnworks/kevin edits/ 
+
