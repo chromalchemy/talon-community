@@ -168,6 +168,7 @@ duplicate file:
 
 rename (file | files):
     user.menu_select('File|Rename…')
+    
 
 new (finder | files | file) window:
     user.menu_select('File|New Finder Window')
@@ -175,3 +176,7 @@ new (finder | files | file) window:
 
 # my [to] {user.system_paths} [folder]:
 #     user.file_manager_open_directory(system_paths)
+
+
+quick look:
+    key(space)
