@@ -209,3 +209,11 @@ class Actions:
         elif app.platform == "windows":
             os.startfile(talon_app.exe)
             talon_app.quit()
+
+    def talon_quit():
+        """Quit  the Talon app"""
+        talon_app = ui.apps(pid=os.getpid())[0]
+        if app.platform == "mac":
+            talon_app.quit()
+        elif app.platform == "windows":
+            talon_app.quit()

@@ -34,3 +34,8 @@
 
 [set] ((mic | mike | mice) | (microphone | like a phone)) [(input | and put)] [(level | volume)]  [to] max:
     user.set_microphone_input_volume("100")
+
+release (shock z | Shaky | shocks te | shocks she) [(talon | Tallin | tell in | tellin)] [mic]:
+    sound.set_microphone("MacBook Pro Microphone")
+    user.system_command_nb('SwitchAudioSource -t input -s "MacBook Pro Microphone"')
+    user.talon_quit()

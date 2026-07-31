@@ -150,7 +150,11 @@ key(cmd-ctrl-alt-shift-d):
 
 ## +++++++++++++++++++++ restart talon .
 
-^(talon | tellin | tell in | tallin | talent | tall and) [voice] (relaunch  | restart): user.talon_relaunch()
+^(talon | tellin | tell in | tallin | talent | tall and) [voice] quit: 
+    user.talon_quit()
+
+^(talon | tellin | tell in | tallin | talent | tall and) [voice] (relaunch  | restart):
+    user.talon_relaunch()
 
 ## +++++ open talon project and search .
 
