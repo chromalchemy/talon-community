@@ -154,12 +154,17 @@ class Actions:
         """Open the Talon menu"""
         actions.user.status_menus_hide()
         actions.mimic("status touch talon")
-    
-    def select_talon_menu_item(submenu: str, menu_item: str = ""):
+
+    def open_talon_submenu(submenu: str):
         """Select a menu item in the Talon menu"""
         actions.user.open_talon_menu()
+        actions.sleep("200ms")
         actions.insert(submenu)
         actions.key("right")
+
+    def select_talon_menu_item(submenu: str, menu_item: str = ""):
+        """Select a menu item in the Talon menu"""
+        actions.user.open_talon_submenu(submenu)
         actions.insert(menu_item)
         actions.key("enter")
 

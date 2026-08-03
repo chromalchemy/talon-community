@@ -180,3 +180,9 @@ key(cmd-ctrl-alt-shift-d):
     insert("community/settings/abbreviations.csv")
     sleep(200ms)
     key(enter)
+
+
+## ++++++++++++++++++++ talon menu nav .
+
+(open | go) (talon  | talin | tellin) menu: 
+    user.open_talon_menu()

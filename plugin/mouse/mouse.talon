@@ -1,8 +1,20 @@
-# toggle "Control Mouse" (newer implementation)
+
+## ++++++++++++++++++++ debug tracking .
+
+[show] ((gaze | gays) [ocr] | [(eye | i)] (tracker | tracking | track | tracks)) (state | status | stat | options | opts) :
+    user.open_talon_submenu("Eye Tracking")
+
+[toggle] (camera overlay | (tracking | tracker | track) debug | debug (tracking | tracker)) [(on | off | hide | show)]: 
+    tracking.control_debug_toggle()
+
+run (track | tracking | tracker | control mouse)  calibration | (calibrate | celibate) [eye | head] (tracking | tracker): 
+    tracking.calibrate() 
+
+## +++++++++++++++++++++ Control Mouse .
 
 [toggle] control mouse | tracking: 
     tracking.control_toggle()
-
+    
 (track | tracking | tracker | control mouse) on: 
     tracking.control_toggle(true)
 
@@ -13,11 +25,49 @@
 [(toggle | use)] (legacy | old) (control mouse | tracking):
     tracking.control1_toggle()
 
-
 # Disables control mouse, zoom mouse, and re-enables cursor
 control off:  
     user.mouse_sleep()
 
+[(toggle | use)] tracking always (on | off): 
+    tracking.control_always_on_toggle()
+
+
+## +++++++++++++++++  track gaze .
+
+[toggle] gaze [control]: 
+    tracking.control_gaze_toggle()
+
+track head | gaze [control] off : 
+    tracking.control_gaze_toggle(false)
+
+track gaze | gaze [control] on: 
+    tracking.control_gaze_toggle(true)
+
+## +++++++++++++++++  gaze focus .
+
+[toggle] gaze focus: 
+    tracking.control_gaze_focus_toggle()
+
+gaze focus off: 
+    tracking.control_gaze_focus_toggle(false)
+
+gaze focus on: 
+    tracking.control_gaze_focus_toggle(true)
+
+## ++++++++++++++  head tracking .
+
+[toggle] head tracking:
+    tracking.control_head_toggle()
+
+head [tracking] on: 
+    tracking.control_head_toggle(true)
+
+head [tracking] off: 
+    tracking.control_head_toggle(false)
+
+
+## ++++++++++++++++++++++ eye tracking .
 
 # this doesnt work, deadlocks
 # user.status_menu_select_by_title("Talon")
@@ -30,7 +80,6 @@ control off:
 
 (tracking | track) both (eyes | eye):
     user.select_talon_menu_item("Eye Tracking", "Use Both Eyes")
-
 
 ## ++++++++++++++++++++++++ zoom mouse .
 
@@ -45,40 +94,6 @@ zoom mouse on:
 
 zoom mouse off: 
     tracking.control_zoom_toggle(false)
-
-
-## +++++++++++++++++ toggle track gaze .
-
-[toggle] gaze [control]: 
-    tracking.control_gaze_toggle()
-
-track head | gaze [control] off : 
-    tracking.control_gaze_toggle(false)
-
-track gaze | gaze [control] on: 
-    tracking.control_gaze_toggle(true)
-
-## +++++++++++++++++ toggle gaze focus .
-
-[toggle] gaze focus: 
-    tracking.control_gaze_focus_toggle()
-
-gaze focus off : 
-    tracking.control_gaze_focus_toggle(false)
-
-gaze focus on: 
-    tracking.control_gaze_focus_toggle(true)
-
-## ++++++++++++++ toggle head tracking .
-
-[toggle] head tracking:
-    tracking.control_head_toggle()
-
-head [tracking] on: 
-    tracking.control_head_toggle(true)
-
-head [tracking] off: 
-    tracking.control_head_toggle(false)
 
 ## +++++++++++++++++++++++++ head jump .
 
@@ -95,7 +110,7 @@ head jump on:
 head jump off: 
     tracking.control_head_jump_toggle(false)
 
-## +++++++++++++++++ toggle mouse jump .
+## +++++++++++++++++  mouse jump .
 
 [toggle] mouse jump: 
     tracking.control_mouse_jump_toggle()
@@ -106,7 +121,7 @@ mouse jump on:
 mouse jump off: 
     tracking.control_mouse_jump_toggle(false)
 
-## +++++++++++++++++ combined modes .
+## +++++++++++++++++ higher level tracking modes .
 
 # only mouse jump    
 secret [control mouse] mode | mouse jump only:
@@ -121,24 +136,20 @@ all tracking [on] | tracking all:
     tracking.control_head_jump_toggle(true)
     tracking.control_mouse_jump_toggle(true) 
 
-## ++++++++++++++++++++ debug tracking .
+## ++++++++++++++++++++++++++++ Cursor .
 
-[toggle] (camera overlay | (tracking | tracker | track) debug | debug (tracking | tracker)): 
-    tracking.control_debug_toggle()
+#andreas action missing implementation
+# cursor center:              user.mouse_move_center_window()
 
-run calibration | calibrate [eye | head] (tracking | tracker): 
-    tracking.calibrate()
-
-
-# Cursor
-cursor center:              user.mouse_move_center_window()
 cursor print:               print("{mouse_x()}, {mouse_y()}")
-cursor copy:                clip.set_text("{mouse_x()}, {mouse_y()}")
+
+cursor copy | copy mouse (position | coordinates):
+    user.copy_mouse_position()
 
 
-## ++++++++++++++++++++++++++++ clicks .
+## ++++++++++++++++++++++++++++ mouse clicks .
 
-touch:
+touch | tut:
     # close zoom if open
     tracking.zoom_cancel()
     mouse_click(0)
@@ -148,20 +159,14 @@ touch:
     # Touch automatically ends left drags so this is for right drags specifically
     user.mouse_drag_end()
 
-righty:
+((right | r | are | part) click | (context | see | sea) (click | touch | tut | that | menu | options)) | righty:
     # close zoom if open
     tracking.zoom_cancel()
     mouse_click(1)
     # close the mouse grid if open
     user.grid_close()
-
-((right | r | are | part) click | (context | see | sea) (click | touch | that | menu | options)):
-    mouse_click(1)
-    # close the mouse grid if open
-    user.grid_close()
     
-
-mid click:
+mid (click | touch | tut):
     # close zoom if open
     tracking.zoom_cancel()
     mouse_click(2)
@@ -264,11 +269,6 @@ command drag:
     user.mouse_drag(0)
     user.grid_close()
 
-
-
-## +++++++++++++++++++++++++++++++ position
-
-copy mouse position: user.copy_mouse_position()
 
 ## ++++++++++++++++++++++++++ my stuff . 
 
