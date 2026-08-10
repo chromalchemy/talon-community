@@ -7,7 +7,9 @@ settings():
     # Uncomment to set the speech timeout. This is the amount of time after you stop
     # speaking until Talon starts processing the spoken audio. Default is 0.3s. 
     # nriley has 0.15 !
-    speech.timeout = 0.6
+    # I've comfortably had it at 0.6  for quite a while
+    speech.timeout = 0.4
+    
 
     # Uncomment to enable dark mode for talon help menus
     # imgui.dark_mode = true
@@ -147,6 +149,7 @@ tag(): user.mouse_cursor_commands_enable
 # Uncomment the below to enable the experimental window layout commands
 # defined in window_layout.talon
 # tag(): user.experimental_window_layout
+
 
 tag(): user.gaze_ocr_unprefixed_scroll
 
