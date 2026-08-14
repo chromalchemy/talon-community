@@ -4,12 +4,14 @@ macbook: MacBook Pro Microphone
 default: MacBook Pro Microphone
 razor: Razer BlackShark V2 Pro 2.4
 headphones: Razer BlackShark V2 Pro 2.4
-shocks: OpenMeet by Shokz
-shock z: OpenMeet by Shokz
-Shaky: OpenMeet by Shokz
-shocks te: OpenMeet by Shokz
-shocks she: OpenMeet by Shokz
-open meet: OpenMeet by Shokz
+
+# bluetooth mic name: OpenMeet by Shokz
+shocks: Loop120 by Shokz 
+shock z: Loop120 by Shokz
+Shaky: Loop120 by Shokz
+shocks te: Loop120 by Shokz
+shocks she: Loop120 by Shokz
+open meet: Loop120 by Shokz
 loop one twenty: Loop120 by Shokz
 shocks loop: Loop120 by Shokz
 shock z loop: Loop120 by Shokz
