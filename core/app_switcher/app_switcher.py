@@ -264,7 +264,7 @@ elif app.platform == "mac":
         return None
 
 
-@mod.capture(rule="{self.running}")  # | <user.text>)")
+@mod.capture(rule="{user.running}")  # | <user.text>)")
 def running_applications(m) -> str:
     "Returns a single application name"
     try:
@@ -278,7 +278,7 @@ def running_applications(m) -> str:
         return m.text
 
 
-@mod.capture(rule="{self.launch}")
+@mod.capture(rule="{user.launch}")
 def launch_applications(m) -> str:
     "Returns a single application name"
     return m.launch
@@ -315,7 +315,7 @@ def update_running_list():
         if running_app_name := running_application_dict.get(full_application_name):
             running[running_name] = running_app_name
 
-    ctx.lists["self.running"] = running
+    ctx.lists["user.running"] = running
 
 
 def update_overrides(name, flags):
@@ -355,7 +355,7 @@ class Actions:
                     f'Skipped getting app: "{name}" has less than 3 chars.'
                 )
             for running_name, full_application_name in ctx.lists[
-                "self.running"
+                "user.running"
             ].items():
                 if running_name == name or running_name.lower().startswith(
                     name.lower()
@@ -456,7 +456,7 @@ def gui_running(gui: imgui.GUI):
     gui.text("Running applications (with spoken forms)")
     gui.line()
     running_apps = sorted(
-        (v.lower(), k, v) for k, v in ctx.lists["self.running"].items()
+        (v.lower(), k, v) for k, v in ctx.lists["user.running"].items()
     )
     for _, running_name, full_application_name in running_apps:
         gui.text(f"{full_application_name}: {running_name}")
@@ -506,7 +506,7 @@ def update_launch_list():
         if app_path:
             launch_spoken_forms[spoken_form] = app_path
 
-    ctx.lists["self.launch"] = launch_spoken_forms
+    ctx.lists["user.launch"] = launch_spoken_forms
 
 
 def ui_event(event, arg):
