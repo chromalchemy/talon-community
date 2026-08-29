@@ -153,3 +153,6 @@ tag(): user.mouse_cursor_commands_enable
 
 tag(): user.gaze_ocr_unprefixed_scroll
 
+
+# Uncomment the below to hold mouse buttons for 16 ms so clicks register reliably
+# tag(): user.mouse_click_with_hold

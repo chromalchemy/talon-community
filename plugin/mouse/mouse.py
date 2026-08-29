@@ -225,4 +225,4 @@ class UserActions:
         should_click = (setting_val == 2) or (setting_val == 1 and is_using_eye_tracker)
 
         if should_click and not is_zoom_overlay_active:
-            ctrl.mouse_click(button=0, hold=16000)
+            actions.mouse_click()
