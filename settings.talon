@@ -54,7 +54,7 @@ settings():
     # user.mouse_enable_pop_click = 2
 
     # If `true`, use a hissing noise to scroll continuously
-    user.mouse_enable_hiss_scroll = true
+    user.mouse_enable_hiss_scroll = false
     # does not trigger custom continuous scroll
 
     # How much time a hiss must last for to be considered a hiss rather than
