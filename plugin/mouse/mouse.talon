@@ -12,13 +12,13 @@ run (track | tracking | tracker | control mouse)  calibration | (calibrate | cel
 
 ## +++++++++++++++++++++ Control Mouse .
 
-[toggle] control mouse | tracking: 
+[toggle] control mouse | tracking : 
     tracking.control_toggle()
-    
-(track | tracking | tracker | control mouse) on: 
-    tracking.control_toggle(true)
 
-[all] (track | tracking | tracker | control mouse) off: 
+((track | jack | drag) | (tracking | draggin) | tracker | control mouse) on | Chacon | check on | triton: 
+    tracking.control_toggle(true) 
+
+[all] ((track | drag | jack) | tracking | tracker | control mouse) (off | of) | chekov | chaco | trio: 
     tracking.control_toggle(false)
 
 # legacy control mouse
@@ -29,7 +29,7 @@ run (track | tracking | tracker | control mouse)  calibration | (calibrate | cel
 control off:  
     user.mouse_sleep()
 
-[(toggle | use)] tracking always (on | off): 
+[(toggle | use)] (tracking | track) (always | stay) (on | off): 
     tracking.control_always_on_toggle()
 
 
