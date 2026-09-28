@@ -16,9 +16,7 @@ mode: dictation
     user.command_mode()
 
 ^((mixed | mix) (mode | com | coms) | mixier)$:
-  mode.disable("sleep")
-  mode.enable("dictation")
-  mode.enable("command")
+  user.mixed_mode()
 
 # not working
 # change engine:
