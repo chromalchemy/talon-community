@@ -15,6 +15,9 @@ mode: dictation
 ^((command | commander | com | calm | coms | action | act) mode | commander)$:
     user.command_mode()
 
+^whisper mode$:
+    user.whisper_mode()
+
 ^((mixed | mix) (mode | com | coms) | mixier)$:
   user.mixed_mode()
 

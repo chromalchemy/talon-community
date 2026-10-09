@@ -1,6 +1,7 @@
 from talon import Context, Module, actions, app, speech_system
 
 mod = Module()
+mod.mode("whisper", desc="Dictation with a longer speech timeout")
 ctx_sleep = Context()
 ctx_awake = Context()
 
@@ -31,19 +32,31 @@ class Actions:
         """Enable command mode"""
         actions.mode.disable("sleep")
         actions.mode.disable("dictation")
+        actions.mode.disable("user.whisper")
         actions.mode.enable("command")
 
     def dictation_mode():
         """Enable dictation mode"""
         actions.mode.disable("sleep")
         actions.mode.disable("command")
+        actions.mode.disable("user.whisper")
         actions.mode.enable("dictation")
+        actions.user.code_clear_language_mode()
+        actions.user.gdb_disable()
+
+    def whisper_mode():
+        """Enable dictation with whisper and longer timeout"""
+        actions.mode.disable("sleep")
+        actions.mode.disable("command")
+        actions.mode.enable("dictation")
+        actions.mode.enable("user.whisper")
         actions.user.code_clear_language_mode()
         actions.user.gdb_disable()
 
     def mixed_mode():
         """Enable mixed mode"""
         actions.mode.disable("sleep")
+        actions.mode.disable("user.whisper")
         actions.mode.enable("command")
         actions.mode.enable("dictation")
 
