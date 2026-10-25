@@ -12,38 +12,13 @@
 ## ++++++++++++++ open debug menu .
 
 # the debug window is only available in the talon beta
-talon open debug: menu.open_debug_window()
-
-## +++++++++++++++++++++++++ talon log .
-
-(open | launch) (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love) [tab]: 
-    user.talon_open_log_in_warp_window()
-    # menu.open_log()
-
-
-[(go | view | show)] (talon | tellin | tell in | tallin | talent) [voice] [show] (log | love):
-    user.talon_focus_warp_talon_log()
-
-
-key(cmd-ctrl-alt-shift-d): 
-    user.talon_focus_warp_talon_log()
-    # menu.open_log()
-
-
-## ++++++++++++++++++++++++ talon repl .
-
-(talon | tellin | tell in | tallin | talent) [voice] [(show | open)] (rebel | repl): 
-    menu.open_repl()
-
-## ++++++++++++++++++++++ copy state .
-
-(talon | tellin | tell in | tallin | talent) [voice] copy context pie: 
-    user.talon_add_context_clipboard_python()
-
-(talon | tellin | tell in | tallin | talent) [voice] copy context: 
-    user.talon_add_context_clipboard()
-
-(talon | tellin | tell in | tallin | talent) [voice] copy name:
+talon open debug | talon open command editor: gui.show_command_editor()
+talon open log: menu.open_log()
+talon open rebel: menu.open_repl()
+talon home: menu.open_talon_home()
+talon copy context pie: user.talon_add_context_clipboard_python()
+talon copy context: user.talon_add_context_clipboard()
+talon copy name:
     name = app.name()
     clip.set_text(name)
 
