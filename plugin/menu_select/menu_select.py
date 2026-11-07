@@ -1,5 +1,6 @@
 import os
 import re
+from contextlib import suppress
 from typing import Optional
 
 from talon import Context, Module, actions, app, ctrl, imgui, ui
@@ -68,8 +69,7 @@ def spoken_forms(s):
         if has_non_alpha_or_space:
             return f"""{spoken_forms}
 {RE_NON_ALPHA_OR_SPACE.sub(" ", s.lower())}"""
-        else:
-            return spoken_forms
+        return spoken_forms
     return s.lower()
 
 
@@ -90,17 +90,15 @@ def element_title(e):
 
 
 def enabled_items_with_role(element, role):
-    return [
-        item for item in element.children.find(AXRole=role, AXEnabled=True, max_depth=0)
-    ]
+    return list(element.children.find(AXRole=role, AXEnabled=True, max_depth=0))
 
 
 def item_titles(items, fallback=None):
     for item in items:
         if title := element_title(item):
             yield title
-        elif fallback is not None:
-            if element := fallback(item):
+        elif fallback is not None:  # noqa: SIM102
+            if element := fallback(item):  # noqa: SIM102
                 if title := element_title(element):
                     yield title
 
@@ -113,8 +111,8 @@ def saved_item_selection_list(items, fallback=None):
         spoken_title = ""
         if title := element_title(item):
             spoken_title = spoken_forms(title)
-        elif fallback is not None:
-            if element := fallback(item):
+        elif fallback is not None:  # noqa: SIM102
+            if element := fallback(item):  # noqa: SIM102
                 if title := element_title(element):
                     spoken_title = spoken_forms(title)
         if spoken_title:
@@ -143,30 +141,6 @@ class Actions:
     def active_menu_safe() -> Optional[ui.Element]:
         """Returns the active menu if there is actually one (working around app/Talon issues)"""
         return ui.active_menu()
-
-    def status_menu_by_title(title: str) -> ui.Element:
-        """Return the status menu item matching the supplied title"""
-
-    def status_menu_select_by_title(title: str):
-        """Select the status menu item matching the supplied title"""
-
-    def open_talon_menu():
-        """Open the Talon menu"""
-        actions.user.status_menus_hide()
-        actions.mimic("status touch talon")
-
-    def open_talon_submenu(submenu: str):
-        """Select a menu item in the Talon menu"""
-        actions.user.open_talon_menu()
-        actions.sleep("200ms")
-        actions.insert(submenu)
-        actions.key("right")
-
-    def select_talon_menu_item(submenu: str, menu_item: str = ""):
-        """Select a menu item in the Talon menu"""
-        actions.user.open_talon_submenu(submenu)
-        actions.insert(menu_item)
-        actions.key("enter")
 
 
 STATUS_MENU_TITLES = []
@@ -219,7 +193,7 @@ class UserActions:
 
         ctrl.mouse_click(1)
 
-        for attempt in range(10):
+        for _attempt in range(10):
             actions.sleep("50ms")
             if actions.user.active_menu_safe() is not None:
                 return
@@ -227,10 +201,8 @@ class UserActions:
         raise Exception("Unable to pop up contextual menu")
 
     def menu_item_select(menu_item: ui.Element):
-        try:
+        with suppress(ui.UIErr):  # XXX sometimes "fails" when it actually succeeds
             menu_item.perform("AXPress")
-        except:  # XXX sometimes "fails" when it actually succeeds
-            pass
 
     def menu_item_hover(menu_item: ui.Element):
         ctrl.mouse_move(*menu_item.AXFrame.center)
@@ -263,25 +235,9 @@ class UserActions:
         gui_extras.y = frame.top
         gui_extras.show()
 
-    def status_menu_by_title(title: str) -> ui.Element:
-        items, fallback = status_menu_items_fallback()
-
-        for item in items:
-            if element_title(item) == title:
-                return item
-            if fallback:
-                if element := fallback(item):
-                    if element_title(element) == title:
-                        return item
-
-        raise RuntimeError(f'Status menu "{title}" not found')
-
-    def status_menu_select_by_title(title: str):
-        actions.user.menu_item_select(actions.user.status_menu_by_title(title))
-
 
 @ctx_win_citrix.action_class("user")
-class UserActions:
+class WinCitrixUserActions:
     def contextual_menu_open():
         actions.key("shift-f10")
 
@@ -337,14 +293,14 @@ def status_menu_items_fallback():
     screen_rect = display_area().inset(-1)
 
     talon_pid = os.getpid()
-    for app in ui.apps():
-        # if app.pid == talon_pid:
-        #     continue  # XXX can pop up menu extra but can't select from it
+    for a in ui.apps():
+        if a.pid == talon_pid:
+            continue  # XXX can pop up menu extra but can't select from it
 
-        if "/XPCServices/" in app.exe:
+        if "/XPCServices/" in a.exe:
             continue  # XXX hangs; can we filter these out more cleanly?
 
-        if menu_bar := getattr(app.element, "AXExtrasMenuBar", None):
+        if menu_bar := getattr(a.element, "AXExtrasMenuBar", None):
             if (position := getattr(menu_bar, "AXPosition", None)) is None:
                 continue
 
@@ -359,6 +315,7 @@ def status_menu_items_fallback():
     def fallback(item):
         if item in singletons:
             return item.AXTopLevelUIElement.AXParent
+        return None
 
     return items, fallback
 
